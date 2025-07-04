@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions Complete RPG - Powers and Abilities System</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Champions Complete RPG</h1>
+        <h2>Powers and Abilities - The Universal System</h2>
+        <p><em>If You Can Imagine It, You Can Build It</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>The Power Construction Philosophy</h2>
+            <p>Imagine you're a master chef with an unlimited pantry. You have basic ingredients (the base powers), seasonings and spices (advantages), and cooking techniques (limitations). With these tools, you can create anything from a simple sandwich to a five-star gourmet meal. The Champions power system works the same way - it gives you the ingredients and techniques to build any superpower ever conceived.</p>
+            
+            <p>Unlike systems that give you a list of pre-made powers to choose from, Champions treats powers like building blocks. Want Superman's heat vision? Build it. Want something completely original like the ability to turn sound into solid matter? Build it. Want Magneto's magnetic control but only over gold? Build it with limitations. The system is infinitely flexible because it's based on universal principles.</p>
+        </section>
+
+        <section class="power-framework">
+            <h2>The Universal Power Framework</h2>
+            <p>Every power in Champions, no matter how exotic, is built from the same components. Think of it like a universal language that can express any concept:</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Power Concept] --> B[Base Power]
+                    B --> C[Add Advantages]
+                    C --> D[Apply Limitations]
+                    D --> E[Calculate Final Cost]
+                    E --> F[Add Special Effects]
+                    F --> G[Complete Power]
+                    
+                    B --> H[Attack Powers]
+                    B --> I[Defense Powers] 
+                    B --> J[Movement Powers]
+                    B --> K[Mental Powers]
+                    B --> L[Sensory Powers]
+                    B --> M[Body Powers]
+                    
+                    style A fill:#ff9999
+                    style B fill:#99ccff
+                    style C fill:#99ff99
+                    style D fill:#ffff99
+                    style E fill:#ff99ff
+                    style F fill:#99ffcc
+                    style G fill:#cccccc
+            </div>
+        </section>
+
+        <section class="base-powers">
+            <h2>Base Powers: The Foundation</h2>
+            <p>Base powers are like the fundamental forces of physics - everything else builds from these core concepts. Let's explore the major categories:</p>
+
+            <div class="power-categories">
+                <div class="category-card attack">
+                    <h3>🎯 Attack Powers</h3>
+                    <p><strong>Core Concept:</strong> Powers that damage or affect targets</p>
+                    <div class="power-examples">
+                        <div class="power-detail">
+                            <h4>Energy Blast</h4>
+                            <p><strong>What it does:</strong> Ranged energy attack</p>
+                            <p><strong>Examples:</strong> Laser beams, fire blasts, force bolts, lightning</p>
+                            <p><strong>Cost:</strong> 5 points per d6 of damage</p>
+                            <p><strong>Real Power:</strong> Cyclops' optic blasts, Iron Man's repulsors</p>
+                        </div>
+                        
+                        <div class="power-detail">
+                            <h4>Killing Attack</h4>
+                            <p><strong>What it does:</strong> Lethal damage (bullets, blades, claws)</p>
+                            <p><strong>Examples:</strong> Energy swords, razor claws, death rays</p>
+                            <p><strong>Cost:</strong> 15 points per d6 of killing damage</p>
+                            <p><strong>Real Power:</strong> Wolverine's claws, Deadshot's bullets</p>
+                        </div>
+
+                        <div class="power-detail">
+                            <h4>Hand-to-Hand Attack</h4>
+                            <p><strong>What it does:</strong> Adds damage to punches and kicks</p>
+                            <p><strong>Examples:</strong> Super strength, martial arts techniques</p>
+                            <p><strong>Cost:</strong> 5 points per d6, requires physical contact</p>
+                            <p><strong>Real Power:</strong> Luke Cage's strength, Iron Fist's chi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card defense">
+                    <h3>🛡️ Defense Powers</h3>
+                    <p><strong>Core Concept:</strong> Powers that protect you from harm</p>
+                    <div class="power-examples">
+                        <div class="power-detail">
+                            <h4>Damage Resistance</h4>
+                            <p><strong>What it does:</strong> Reduces incoming damage</p>
+                            <p><strong>Examples:</strong> Armor, tough skin, energy fields</p>
+                            <p><strong>Cost:</strong> 2 points per point of resistance</p>
+                            <p><strong>Real Power:</strong> Superman's invulnerability, Iron Man's armor</p>
+                        </div>
+
+                        <div class="power-detail">
+                            <h4>Damage Reduction</h4>
+                            <p><strong>What it does:</strong> Reduces damage by percentage</p>
+                            <p><strong>Examples:</strong> Partial phasing, probability manipulation</p>
+                            <p><strong>Cost:</strong> 10 points per 25% reduction</p>
+                            <p><strong>Real Power:</strong> Kitty Pryde's phasing, Domino's luck</p>
+                        </div>
+
+                        <div class="power-detail">
+                            <h4>Force Field</h4>
+                            <p><strong>What it does:</strong> Protective barrier that can be extended</p>
+                            <p><strong>Examples:</strong> Energy shields, invisible barriers</p>
+                            <p><strong>Cost:</strong> 1 point per point of defense</p>
+                            <p><strong>Real Power:</strong> Invisible Woman's fields, Green Lantern's constructs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card movement">
+                    <h3>💨 Movement Powers</h3>
+                    <p><strong>Core Concept:</strong> Powers that change how you move through space</p>
+                    <div class="power-examples">
+                        <div class="power-detail">
+                            <h4>Flight</h4>
+                            <p><strong>What it does:</strong> Move through the air in any direction</p>
+                            <p><strong>Examples:</strong> Wings, anti-gravity, magnetic levitation</p>
+                            <p><strong>Cost:</strong> 10 points per 10" of movement</p>
+                            <p><strong>Real Power:</strong> Superman's flight, Storm's wind riding</p>
+                        </div>
+
+                        <div class="power-detail">
+                            <h4>Teleportation</h4>
+                            <p><strong>What it does:</strong> Instantly move from place to place</p>
+                            <p><strong>Examples:</strong> Dimensional rifts, molecular dispersal</p>
+                            <p><strong>Cost:</strong> 10 points per 10" of teleportation</p>
+                            <p><strong>Real Power:</strong> Nightcrawler's bamfing, Doctor Strange's portals</p>
+                        </div>
+
+                        <div class="power-detail">
+                            <h4>Super Speed</h4>
+                            <p><strong>What it does:</strong> Move incredibly fast on foot</p>
+                            <p><strong>Examples:</strong> Enhanced metabolism, time dilation</p>
+                            <p><strong>Cost:</strong> 10 points per 10" of running</p>
+                            <p><strong>Real Power:</strong> The Flash's speed force, Quicksilver's velocity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card mental">
+                    <h3>🧠 Mental Powers</h3>
+                    <p><strong>Core Concept:</strong> Powers that affect minds and thoughts</p>
+                    <div class="power-examples">
+                        <div class="power-detail">
+                            <h4>Mind Control</h4>
+                            <p><strong>What it does:</strong> Control another person's actions</p>
+                            <p><strong>Examples:</strong> Telepathic domination, hypnotic gaze</p>
+                            <p><strong>Cost:</strong> 10 points per d6 of effect</p>
+                            <p><strong>Real Power:</strong> Professor X's telepathy, Purple Man's pheromones</p>
+                        </div>
+
+                        <div class="power-detail">
+                            <h4>Telepathy</h4>
+                            <p><strong>What it does:</strong> Read thoughts and communicate mentally</p>
+                            <p><strong>Examples:</strong> Psychic contact, emotional sensing</p>
+                            <p><strong>Cost:</strong> 5 points per d6 of effect</p>
+                            <p><strong>Real Power:</strong> Jean Grey's mind reading, Mantis' empathy</p>
+                        </div>
+
+                        <div class="power-detail">
+                            <h4>Mental Defense</h4>
+                            <p><strong>What it does:</strong> Protect against mental attacks</p>
+                            <p><strong>Examples:</strong> Mental shields, disciplined mind</p>
+                            <p><strong>Cost:</strong> 2 points per point of defense</p>
+                            <p><strong>Real Power:</strong> Magneto's helmet, trained resistance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="advantages">
+            <h2>Advantages: Enhancing Your Powers</h2>
+            <p>Advantages are like turbocharging your car's engine or adding premium features. They make your powers more effective, but they also increase the cost. Think of advantages as answering "How can I make this power even better?"</p>
+
+            <canvas id="advantagesChart" width="800" height="400"></canvas>
+
+            <div class="advantage-examples">
+                <h3>Common Advantages and Their Effects</h3>
+                
+                <div class="advantage-grid">
+                    <div class="advantage-card">
+                        <h4>Area of Effect (+½ to +1¼)</h4>
+                        <p><strong>What it does:</strong> Affects multiple targets in an area</p>
+                        <p><strong>Example:</strong> Fireball that explodes, ice blast that freezes everyone nearby</p>
+                        <p><strong>Cost Multiplier:</strong> ×1.5 to ×2.25</p>
+                        <p><strong>Hero Example:</strong> Human Torch's nova blast affecting everything around him</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <h4>Armor Piercing (+¼ to +1½)</h4>
+                        <p><strong>What it does:</strong> Ignores some or all armor</p>
+                        <p><strong>Example:</strong> Laser that cuts through anything, psychic blade that bypasses physical defenses</p>
+                        <p><strong>Cost Multiplier:</strong> ×1.25 to ×2.5</p>
+                        <p><strong>Hero Example:</strong> Psylocke's psychic knife, Cyclops' focused beams</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <h4>Autofire (+½)</h4>
+                        <p><strong>What it does:</strong> Can hit multiple times with one attack</p>
+                        <p><strong>Example:</strong> Machine gun effect, rapid-fire energy bolts</p>
+                        <p><strong>Cost Multiplier:</strong> ×1.5</p>
+                        <p><strong>Hero Example:</strong> War Machine's gatling guns, Multiple Man's duplicate attacks</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <h4>Penetrating (+½)</h4>
+                        <p><strong>What it does:</strong> Each die does at least 1 point of damage</p>
+                        <p><strong>Example:</strong> Attacks that always hurt, even heavily armored targets</p>
+                        <p><strong>Cost Multiplier:</strong> ×1.5</p>
+                        <p><strong>Hero Example:</strong> Wolverine's claws always cutting through</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <h4>Invisible Power Effects (+½)</h4>
+                        <p><strong>What it does:</strong> Power effects can't be seen</p>
+                        <p><strong>Example:</strong> Invisible force bolts, undetectable telepathy</p>
+                        <p><strong>Cost Multiplier:</strong> ×1.5</p>
+                        <p><strong>Hero Example:</strong> Invisible Woman's invisible force blasts</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <h4>Does Knockback (+¼)</h4>
+                        <p><strong>What it does:</strong> Sends targets flying backward</p>
+                        <p><strong>Example:</strong> Concussive blasts, super punches with impact</p>
+                        <p><strong>Cost Multiplier:</strong> ×1.25</p>
+                        <p><strong>Hero Example:</strong> Cannonball's blast effect, Thor's hammer strikes</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="advantage-stacking">
+                <h3>Stacking Advantages: The Multiplication Effect</h3>
+                <p>Here's where Champions gets mathematically elegant. Multiple advantages multiply together, creating exponentially more powerful (and expensive) effects:</p>
+                
+                <div class="stacking-example">
+                    <h4>Example: Building Thor's Lightning</h4>
+                    <p><strong>Base Power:</strong> Energy Blast 12d6 (60 points)</p>
+                    <p><strong>Add Advantages:</strong></p>
+                    <ul>
+                        <li>Area of Effect (+½) - affects multiple enemies</li>
+                        <li>Indirect (+¼) - comes from the sky</li>
+                        <li>Invisible Power Effects (+½) - electricity isn't visible until it strikes</li>
+                    </ul>
+                    <p><strong>Total Multiplier:</strong> ×(1 + 0.5 + 0.25 + 0.5) = ×2.25</p>
+                    <p><strong>Final Cost:</strong> 60 × 2.25 = 135 Active Points</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="limitations">
+            <h2>Limitations: The Discount System</h2>
+            <p>Limitations are like buying a sports car that only runs on premium fuel or a smartphone that only works with one carrier. They give you discounts on powerful abilities by adding realistic restrictions. Smart use of limitations lets you build more powerful characters within your point budget.</p>
+
+            <div class="limitation-philosophy">
+                <h3>The Philosophy of Limitations</h3>
+                <p>Good limitations should enhance your character's story, not just provide cheap points. They answer questions like:</p>
+                <ul>
+                    <li>"What makes this power interesting rather than just powerful?"</li>
+                    <li>"What challenges does having this ability create?"</li>
+                    <li>"How does this limitation reflect my character's personality or origin?"</li>
+                </ul>
+            </div>
+
+            <div class="limitation-examples">
+                <h3>Common Limitations and Their Applications</h3>
+                
+                <div class="limitation-grid">
+                    <div class="limitation-card">
+                        <h4>Only in Heroic Identity (-¼)</h4>
+                        <p><strong>Restriction:</strong> Can only use power when in costume/hero mode</p>
+                        <p><strong>Story Impact:</strong> Forces dramatic moments about revealing identity</p>
+                        <p><strong>Cost Reduction:</strong> ÷1.25 (20% discount)</p>
+                        <p><strong>Example:</strong> Captain Marvel can only access powers as Shazam, not Billy Batson</p>
+                    </div>
+
+                    <div class="limitation-card">
+                        <h4>Requires a Skill Roll (-½)</h4>
+                        <p><strong>Restriction:</strong> Must make a skill check to activate power</p>
+                        <p><strong>Story Impact:</strong> Creates tension - will the power work when needed?</p>
+                        <p><strong>Cost Reduction:</strong> ÷1.5 (33% discount)</p>
+                        <p><strong>Example:</strong> Doctor Strange must succeed at Sorcery rolls to cast spells</p>
+                    </div>
+
+                    <div class="limitation-card">
+                        <h4>Gestures (-¼)</h4>
+                        <p><strong>Restriction:</strong> Must be able to move hands to use power</p>
+                        <p><strong>Story Impact:</strong> Vulnerable when restrained or injured</p>
+                        <p><strong>Cost Reduction:</strong> ÷1.25 (20% discount)</p>
+                        <p><strong>Example:</strong> Doctor Strange's hand gestures for spells</p>
+                    </div>
+
+                    <div class="limitation-card">
+                        <h4>Incantations (-¼)</h4>
+                        <p><strong>Restriction:</strong> Must be able to speak to use power</p>
+                        <p><strong>Story Impact:</strong> Useless when gagged or in vacuum</p>
+                        <p><strong>Cost Reduction:</strong> ÷1.25 (20% discount)</p>
+                        <p><strong>Example:</strong> Zatanna's backwards magic words</p>
+                    </div>
+
+                    <div class="limitation-card">
+                        <h4>Only vs. Limited Target (-½ to -1)</h4>
+                        <p><strong>Restriction:</strong> Power only works against specific things</p>
+                        <p><strong>Story Impact:</strong> Highly effective in niche, useless otherwise</p>
+                        <p><strong>Cost Reduction:</strong> ÷1.5 to ÷2 (33-50% discount)</p>
+                        <p><strong>Example:</strong> Magneto's powers only affect metal</p>
+                    </div>
+
+                    <div class="limitation-card">
+                        <h4>Charges (-¼ to -2)</h4>
+                        <p><strong>Restriction:</strong> Limited number of uses</p>
+                        <p><strong>Story Impact:</strong> Must conserve power for crucial moments</p>
+                        <p><strong>Cost Reduction:</strong> ÷1.25 to ÷3 (20-67% discount)</p>
+                        <p><strong>Example:</strong> Green Lantern's ring running out of power</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="limitation-math">
+                <h3>Limitation Mathematics</h3>
+                <p>Unlike advantages that multiply costs upward, limitations divide costs downward. Multiple limitations add together before dividing:</p>
+                
+                <div class="math-example">
+                    <h4>Example: Building Cyclops' Optic Blast</h4>
+                    <p><strong>Base Power:</strong> Energy Blast 15d6 (75 points)</p>
+                    <p><strong>Advantages:</strong> Armor Piercing (+½) = 75 × 1.5 = 112.5 Active Points</p>
+                    <p><strong>Limitations:</strong></p>
+                    <ul>
+                        <li>Always On (-½) - can't turn off without ruby quartz</li>
+                        <li>Only Through Eyes (-¼) - requires line of sight</li>
+                        <li>Beam (-¼) - narrow attack that can be dodged</li>
+                    </ul>
+                    <p><strong>Total Limitations:</strong> -½ + -¼ + -¼ = -1</p>
+                    <p><strong>Final Cost:</strong> 112.5 ÷ (1 + 1) = 56.25 = 56 Real Points</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="power-construction">
+            <h2>Power Construction Workshop</h2>
+            <p>Let's build some iconic superpowers from scratch to see how the system works in practice. Each example shows the thought process from concept to finished power:</p>
+
+            <div class="construction-examples">
+                <div class="power-build">
+                    <h3>Building Spider-Man's Web-Swinging</h3>
+                    <div class="build-steps">
+                        <div class="step">
+                            <h4>Step 1: Identify the Core Effect</h4>
+                            <p>Spider-Man shoots webs to swing through the city. This is primarily a movement power.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Step 2: Choose Base Power</h4>
+                            <p><strong>Swinging:</strong> This is like limited flight - he can move through the air but needs anchor points.</p>
+                            <p><strong>Base:</strong> Flight 20" (200 mph swinging speed) = 100 points</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Step 3: Add Advantages</h4>
+                            <p>None needed - basic web-swinging doesn't need enhancement</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Step 4: Apply Limitations</h4>
+                            <ul>
+                                <li><strong>Requires Anchor Points (-½):</strong> Needs buildings, trees, etc.</li>
+                                <li><strong>Beam (-¼):</strong> Web can be cut or blocked</li>
+                                <li><strong>Charges (-¼):</strong> Limited web fluid</li>
+                            </ul>
+                            <p><strong>Total Limitations:</strong> -1</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Step 5: Calculate Final Cost</h4>
+                            <p><strong>100 ÷ (1 + 1) = 50 Real Points</strong></p>
+                            <p>We've built realistic web-swinging that's effective but has clear limitations!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="power-build">
+                    <h3>Building Jean Grey's Phoenix Force</h3>
+                    <div class="build-steps">
+                        <div class="step">
+                            <h4>Step 1: Identify the Core Effect</h4>
+                            <p>Telekinetic manipulation of matter and energy on a cosmic scale</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Step 2: Choose Base Power</h4>
+                            <p><strong>Telekinesis:</strong> 100 STR (can lift 51.2 tons) = 100 points</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Step 3: Add Advantages</h4>
+                            <ul>
+                                <li><strong>Area of Effect (+1):</strong> Can affect huge areas</li>
+                                <li><strong>Indirect (+½):</strong> Can attack from any direction</li>
+                                <li><strong>Invisible Power Effects (+½):</strong> Telekinetic force is invisible</li>
+                            </ul>
+                            <p><strong>Active Points:</strong> 100 × (1 + 1 + 0.5 + 0.5) = 300</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Step 4: Apply Limitations</h4>
+                            <ul>
+                                <li><strong>Costs Endurance (-½):</strong> Drains Jean's life force</li>
+                                <li><strong>Emotional Control Required (-¼):</strong> Must maintain emotional balance</li>
+                            </ul>
+                            <p><strong>Total Limitations:</strong> -¾</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Step 5: Calculate Final Cost</h4>
+                            <p><strong>300 ÷ (1 + 0.75) = 171 Real Points</strong></p>
+                            <p>Incredibly powerful but demanding to use - perfect for Phoenix!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="special-effects">
+            <h2>Special Effects: The Story Layer</h2>
+            <p>Special effects are the narrative wrapper around your mechanical powers. They don't change the game mechanics, but they define how the power looks, feels, and fits into your character's story. Think of special effects as the difference between "Energy Blast 10d6" and "Cyclops shoots devastating ruby-red beams from his eyes that can cut through steel."</p>
+
+            <div class="special-effects-examples">
+                <h3>The Same Power, Different Stories</h3>
+                <div class="effects-comparison">
+                    <h4>Energy Blast 8d6 with Five Different Special Effects</h4>
+                    
+                    <div class="effect-variants">
+                        <div class="variant">
+                            <h5>🔥 Fire Blast</h5>
+                            <p><strong>Description:</strong> Shoots gouts of flame from hands</p>
+                            <p><strong>Visuals:</strong> Orange-red flames, heat distortion, smoke</p>
+                            <p><strong>Sound:</strong> Roaring whoosh, crackling</p>
+                            <p><strong>Aftermath:</strong> Scorch marks, lingering heat</p>
+                        </div>
+                        
+                        <div class="variant">
+                            <h5>❄️ Ice Beam</h5>
+                            <p><strong>Description:</strong> Crystalline beam of absolute cold</p>
+                            <p><strong>Visuals:</strong> Blue-white crystal beam, frost forming</p>
+                            <p><strong>Sound:</strong> Sharp crackling, tinkling ice</p>
+                            <p><strong>Aftermath:</strong> Ice patches, frozen surfaces</p>
+                        </div>
+                        
+                        <div class="variant">
+                            <h5>⚡ Lightning Bolt</h5>
+                            <p><strong>Description:</strong> Electrical discharge from fingertips</p>
+                            <p><strong>Visuals:</strong> Jagged blue-white energy, sparks</p>
+                            <p><strong>Sound:</strong> Thunder crack, electrical buzzing</p>
+                            <p><strong>Aftermath:</strong> Ozone smell, electrical burns</p>
+                        </div>
+                        
+                        <div class="variant">
+                            <h5>🌟 Force Bolt</h5>
+                            <p><strong>Description:</strong> Pure kinetic energy projectile</p>
+                            <p><strong>Visuals:</strong> Shimmering distortion in air</p>
+                            <p><strong>Sound:</strong> Deep thrum, impact boom</p>
+                            <p><strong>Aftermath:</strong> Dented surfaces, no other trace</p>
+                        </div>
+                        
+                        <div class="variant">
+                            <h5>🧠 Psychic Lance</h5>
+                            <p><strong>Description:</strong> Mental energy made manifest</p>
+                            <p><strong>Visuals:</strong> Faint purple-pink glow</p>
+                            <p><strong>Sound:</strong> High-pitched whine, psychic feedback</p>
+                            <p><strong>Aftermath:</strong> Temporal disorientation in target</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="effects-guidelines">
+                <h3>Guidelines for Great Special Effects</h3>
+                <div class="guidelines-grid">
+                    <div class="guideline">
+                        <h4>🎨 Be Vivid and Specific</h4>
+                        <p>Instead of "energy blast," describe "crackling bolts of amber lightning that smell like ozone and leave spiral burn patterns."</p>
+                    </div>
+                    
+                    <div class="guideline">
+                        <h4>🔗 Connect to Character</h4>
+                        <p>A firefighter's flame powers might smell like wood smoke, while a chef's fire might smell like cooking spices.</p>
+                    </div>
+                    
+                    <div class="guideline">
+                        <h4>⚖️ Maintain Game Balance</h4>
+                        <p>Special effects are cosmetic - they don't provide mechanical advantages without paying points.</p>
+                    </div>
+                    
+                    <div class="guideline">
+                        <h4>🎭 Create Signature Style</h4>
+                        <p>Your effects should be unique enough that other characters could recognize your power's "signature."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h2>Practice Exercises</h2>
+
+            <div class="exercise">
+                <h3>Exercise: Power Deconstruction</h3>
+                <p>Take these famous superhero abilities and break them down into Champions components:</p>
+                <div class="deconstruction-challenges">
+                    <div class="challenge">
+                        <h4>Wonder Woman's Lasso of Truth</h4>
+                        <p><strong>Effects:</strong> Forces people to tell the truth, unbreakable, can extend to great lengths</p>
+                        <p><strong>Your Task:</strong> What base power(s)? What advantages? What limitations?</p>
+                    </div>
+                    
+                    <div class="challenge">
+                        <h4>Green Lantern's Power Ring</h4>
+                        <p><strong>Effects:</strong> Creates solid constructs from willpower, flight, force fields, must be recharged daily</p>
+                        <p><strong>Your Task:</strong> How would you build this as multiple related powers?</p>
+                    </div>
+                    
+                    <div class="challenge">
+                        <h4>The Flash's Speed Force</h4>
+                        <p><strong>Effects:</strong> Super speed, vibrate through walls, time travel, speed-sharing with others</p>
+                        <p><strong>Your Task:</strong> What's the base power? How do you handle the secondary effects?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise: Original Power Creation</h3>
+                <p>Design three completely original powers using this framework:</p>
+                <div class="creation-framework">
+                    <div class="power-seed">
+                        <h4>Power Concept: "Emotion Manipulation"</h4>
+                        <p><strong>Base Idea:</strong> Character can create, amplify, or suppress emotions in others</p>
+                        <p><strong>Your Challenge:</strong></p>
+                        <ul>
+                            <li>What base power represents this?</li>
+                            <li>What advantages make it more versatile?</li>
+                            <li>What limitations keep it balanced?</li>
+                            <li>What special effects make it unique?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="power-seed">
+                        <h4>Power Concept: "Gravity Painting"</h4>
+                        <p><strong>Base Idea:</strong> Character can paint areas where gravity works differently</p>
+                        <p><strong>Your Challenge:</strong> Build this as both utility and combat power</p>
+                    </div>
+                    
+                    <div class="power-seed">
+                        <h4>Power Concept: "Memory Crystals"</h4>
+                        <p><strong>Base Idea:</strong> Character can store memories in crystal formations</p>
+                        <p><strong>Your Challenge:</strong> How does this work as information gathering and sharing?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise: Power Balancing Workshop</h3>
+                <p>You have 60 points to spend on a single power. Design three different versions:</p>
+                <div class="balancing-options">
+                    <div class="option">
+                        <h4>Version A: The Specialist</h4>
+                        <p>One very powerful, focused ability with significant limitations</p>
+                    </div>
+                    
+                    <div class="option">
+                        <h4>Version B: The Generalist</h4>
+                        <p>Moderate power with several useful advantages</p>
+                    </div>
+                    
+                    <div class="option">
+                        <h4>Version C: The Utility Player</h4>
+                        <p>Lower power level but extremely versatile applications</p>
+                    </div>
+                </div>
+                <p><strong>Base Power:</strong> Telekinesis (choose your own strength level)</p>
+                <p><strong>Goal:</strong> See how different advantage/limitation combinations create different play styles</p>
+            </div>
+        </section>
+
+        <section class="next-steps">
+            <h2>Next: Combat and Action Resolution</h2>
+            <p>Now that you understand how to build any power imaginable, it's time to learn how those powers work in action! Our next lesson covers:</p>
+            <ul>
+                <li><strong>Combat Sequence:</strong> How superhero battles flow</li>
+                <li><strong>Action Resolution:</strong> When and how to roll dice</li>
+                <li><strong>Damage and Effects:</strong> What happens when powers hit</li>
+                <li><strong>Tactical Options:</strong> Making combat cinematic and strategic</li>
+            </ul>
+            <p>Get ready to bring your carefully crafted heroes into dynamic action scenes worthy of the comic book page!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>End of Lesson: Powers and Abilities System</em></p>
+        <p>The only limit is your imagination - and your point budget!</p>
+    </footer>
+
+    <script>
+        // Draw advantages visualization
+        const canvas = document.getElementById('advantagesChart');
+        const ctx = canvas.getContext('2d');
+        
+        // Base power cost visualization
+        const basePower = {
+            name: 'Energy Blast 10d6',
+            cost: 50,
+            x: 100,
+            y: 200,
+            width: 120,
+            height: 60
+        };
+        
+        // Draw base power
+        ctx.fillStyle = '#4ecdc4';
+        ctx.fillRect(basePower.x, basePower.y, basePower.width, basePower.height);
+        ctx.fillStyle = '#333';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(basePower.name, basePower.x + basePower.width/2, basePower.y + 25);
+        ctx.fillText(basePower.cost + ' points', basePower.x + basePower.width/2, basePower.y + 40);
+        
+        // Draw advantages as arrows and cost multipliers
+        const advantages = [
+            { name: 'Area of Effect (+½)', multiplier: 1.5, color: '#ff6b6b', x: 300, y: 120 },
+            { name: 'Armor Piercing (+½)', multiplier: 1.5, color: '#45b7d1', x: 300, y: 180 },
+            { name: 'Autofire (+½)', multiplier: 1.5, color: '#96ceb4', x: 300, y: 240 },
+            { name: 'Penetrating (+½)', multiplier: 1.5, color: '#ffeaa7', x: 300, y: 300 }
+        ];
+        
+        advantages.forEach((adv, index) => {
+            // Draw advantage box
+            ctx.fillStyle = adv.color;
+            ctx.fillRect(adv.x, adv.y, 150, 40);
+            
+            // Draw arrow from base power
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(basePower.x + basePower.width, basePower.y + basePower.height/2);
+            ctx.lineTo(adv.x, adv.y + 20);
+            ctx.stroke();
+            
+            // Add text
+            ctx.fillStyle = '#333';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(adv.name, adv.x + 75, adv.y + 15);
+            ctx.fillText('×' + adv.multiplier, adv.x + 75, adv.y + 30);
+        });
+        
+        // Draw final result
+        const finalCost = basePower.cost * 3; // Example with multiple advantages
+        ctx.fillStyle = '#ff9999';
+        ctx.fillRect(550, 180, 120, 80);
+        ctx.fillStyle = '#333';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Enhanced Blast', 610, 205);
+        ctx.fillText('with 3 Advantages', 610, 220);
+        ctx.font = '14px Arial';
+        ctx.fillText(finalCost + ' Active Points', 610, 240);
+        
+        // Draw final arrow
+        ctx.strokeStyle = '#666';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(450, 230);
+        ctx.lineTo(550, 220);
+        ctx.stroke();
+        
+        // Title
+        ctx.fillStyle = '#333';
+        ctx.font = '18px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('How Advantages Multiply Power Costs', canvas.width/2, 30);
+        
+        // Explanation
+        ctx.font = '12px Arial';
+        ctx.fillText('Base Power + Multiple Advantages = Higher Active Point Cost', canvas.width/2, 60);
+    </script>
+</body>
+</html>

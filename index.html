@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions Complete RPG - Complete Tutorial Series</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><radialGradient id="grad1"><stop offset="0%" stop-color="%23ff6b6b"/><stop offset="100%" stop-color="%234ecdc4"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23grad1)" opacity="0.1"/></svg>');
+            text-align: center;
+            padding: 80px 20px;
+            color: white;
+        }
+        .hero-title {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: 1.3em;
+            margin: 20px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .hero-description {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 30px auto;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .main-content {
+            background: white;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .lesson-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-left: 6px solid transparent;
+        }
+        .lesson-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .lesson-card.intro { border-left-color: #ff6b6b; }
+        .lesson-card.creation { border-left-color: #4ecdc4; }
+        .lesson-card.powers { border-left-color: #45b7d1; }
+        .lesson-card.combat { border-left-color: #f39c12; }
+        .lesson-card.skills { border-left-color: #27ae60; }
+        .lesson-card.gm { border-left-color: #9b59b6; }
+        .lesson-card.tools { border-left-color: #e74c3c; }
+        
+        .lesson-header {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            text-align: center;
+        }
+        .lesson-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 auto 15px;
+        }
+        .lesson-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0;
+        }
+        .lesson-subtitle {
+            color: #7f8c8d;
+            font-style: italic;
+            margin: 5px 0 0;
+        }
+        .lesson-content {
+            padding: 25px;
+        }
+        .lesson-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .lesson-topics {
+            margin: 20px 0;
+        }
+        .lesson-topics h4 {
+            color: #2c3e50;
+            margin: 0 0 10px;
+            font-size: 1.1em;
+        }
+        .topics-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .topics-list li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #666;
+        }
+        .topics-list li:before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        .lesson-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        .lesson-link:hover {
+            background: linear-gradient(45deg, #5a67d8, #6b46c1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .progress-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .progress-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .learning-path {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .path-step {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: left;
+        }
+        .step-number {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .quick-start {
+            background: #f8f9fa;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .quick-start-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 30px auto 0;
+        }
+        .quick-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-top: 4px solid #3498db;
+        }
+        .stats-section {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5em; }
+            .lesson-grid { grid-template-columns: 1fr; }
+            .quick-start-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1 class="hero-title">Champions Complete RPG</h1>
+        <p class="hero-subtitle">The Ultimate Superhero Gaming Experience</p>
+        <p class="hero-description">
+            Master the art of superhero storytelling with our comprehensive tutorial series. From creating your first hero to running epic adventures, learn everything you need to become a Champions legend. Whether you're new to tabletop RPGs or a veteran looking to explore the superhero genre, this complete guide will transform you into a confident player and gamemaster.
+        </p>
+    </div>
+
+    <div class="main-content">
+        <h2 style="text-align: center; color: #2c3e50; font-size: 2.2em; margin-bottom: 40px;">Complete Tutorial Series</h2>
+        
+        <div class="lesson-grid">
+            <!-- Lesson 1: Introduction -->
+            <div class="lesson-card intro">
+                <div class="lesson-header">
+                    <div class="lesson-number">1</div>
+                    <h3 class="lesson-title">Introduction and Core Concepts</h3>
+                    <p class="lesson-subtitle">Foundation of Superhero Gaming</p>
+                </div>
+                <div class="lesson-content">
+                    <p class="lesson-description">
+                        Start your Champions journey by understanding the fundamental philosophy and mechanics that make superhero gaming unique. Learn the HERO System's universal approach to character creation and game mechanics.
+                    </p>
+                    <div class="lesson-topics">
+                        <h4>Key Topics:</h4>
+                        <ul class="topics-list">
+                            <li>HERO System philosophy and point-buy basics</li>
+                            <li>The eight core characteristics</li>
+                            <li>3d6 dice system and probability</li>
+                            <li>Game flow and comic book pacing</li>
+                            <li>Real-world analogies and examples</li>
+                        </ul>
+                    </div>
+                    <a href="champions_introduction.html" class="lesson-link">Begin Your Journey →</a>
+                </div>
+            </div>
+
+            <!-- Lesson 2: Character Creation -->
+            <div class="lesson-card creation">
+                <div class="lesson-header">
+                    <div class="lesson-number">2</div>
+                    <h3 class="lesson-title">Character Creation Step-by-Step</h3>
+                    <p class="lesson-subtitle">From Concept to Hero</p>
+                </div>
+                <div class="lesson-content">
+                    <p class="lesson-description">
+                        Master the seven-step process of creating compelling Champions characters. Learn how to translate your superhero vision into game mechanics while maintaining narrative depth and balance.
+                    </p>
+                    <div class="lesson-topics">
+                        <h4>Key Topics:</h4>
+                        <ul class="topics-list">
+                            <li>Seven-step character creation process</li>
+                            <li>Origin story frameworks and archetypes</li>
+                            <li>Point allocation strategies</li>
+                            <li>Derived statistics calculations</li>
+                            <li>Complete character build examples</li>
+                        </ul>
+                    </div>
+                    <a href="champions_character_creation.html" class="lesson-link">Create Your Hero →</a>
+                </div>
+            </div>
+
+            <!-- Lesson 3: Powers and Abilities -->
+            <div class="lesson-card powers">
+                <div class="lesson-header">
+                    <div class="lesson-number">3</div>
+                    <h3 class="lesson-title">Powers and Abilities System</h3>
+                    <p class="lesson-subtitle">If You Can Imagine It, You Can Build It</p>
+                </div>
+                <div class="lesson-content">
+                    <p class="lesson-description">
+                        Unlock the unlimited potential of Champions' universal power system. Learn to construct any superpower imaginable using base powers, advantages, limitations, and special effects.
+                    </p>
+                    <div class="lesson-topics">
+                        <h4>Key Topics:</h4>
+                        <ul class="topics-list">
+                            <li>Universal power construction framework</li>
+                            <li>Base powers across all categories</li>
+                            <li>Advantages and limitations system</li>
+                            <li>Special effects and narrative elements</li>
+                            <li>Iconic power construction examples</li>
+                        </ul>
+                    </div>
+                    <a href="champions_powers_system.html" class="lesson-link">Build Amazing Powers →</a>
+                </div>
+            </div>
+
+            <!-- Lesson 4: Combat and Action -->
+            <div class="lesson-card combat">
+                <div class="lesson-header">
+                    <div class="lesson-number">4</div>
+                    <h3 class="lesson-title">Combat and Action Resolution</h3>
+                    <p class="lesson-subtitle">Creating Comic Book Action</p>
+                </div>
+                <div class="lesson-content">
+                    <p class="lesson-description">
+                        Transform mechanical combat into cinematic superhero action. Master the speed-based combat system, damage mechanics, and tactical options that make every fight feel epic.
+                    </p>
+                    <div class="lesson-topics">
+                        <h4>Key Topics:</h4>
+                        <ul class="topics-list">
+                            <li>Speed-based turn sequence</li>
+                            <li>Attack and damage resolution</li>
+                            <li>Two-track damage system (STUN/BODY)</li>
+                            <li>Tactical combat options and maneuvers</li>
+                            <li>Environmental and teamwork combat</li>
+                        </ul>
+                    </div>
+                    <a href="champions_combat_system.html" class="lesson-link">Master Epic Combat →</a>
+                </div>
+            </div>
+
+            <!-- Lesson 5: Skills and Equipment -->
+            <div class="lesson-card skills">
+                <div class="lesson-header">
+                    <div class="lesson-number">5</div>
+                    <h3 class="lesson-title">Skills, Equipment, and Development</h3>
+                    <p class="lesson-subtitle">The Hero Behind the Mask</p>
+                </div>
+                <div class="lesson-content">
+                    <p class="lesson-description">
+                        Develop complete characters beyond their superpowers. Learn skill systems, equipment design, character advancement, and social mechanics that bring heroes to life.
+                    </p>
+                    <div class="lesson-topics">
+                        <h4>Key Topics:</h4>
+                        <ul class="topics-list">
+                            <li>Comprehensive skill categories and packages</li>
+                            <li>Equipment design with Focus limitations</li>
+                            <li>Character development and advancement</li>
+                            <li>Social mechanics and reputation</li>
+                            <li>Professional background integration</li>
+                        </ul>
+                    </div>
+                    <a href="champions_skills_equipment.html" class="lesson-link">Complete Your Character →</a>
+                </div>
+            </div>
+
+            <!-- Lesson 6: Gamemastering -->
+            <div class="lesson-card gm">
+                <div class="lesson-header">
+                    <div class="lesson-number">6</div>
+                    <h3 class="lesson-title">Gamemastering and Adventure Design</h3>
+                    <p class="lesson-subtitle">Crafting Legendary Adventures</p>
+                </div>
+                <div class="lesson-content">
+                    <p class="lesson-description">
+                        Step behind the screen and learn the art of superhero storytelling. Master adventure structure, villain design, campaign themes, and advanced GM techniques.
+                    </p>
+                    <div class="lesson-topics">
+                        <h4>Key Topics:</h4>
+                        <ul class="topics-list">
+                            <li>Superhero GM mindset and philosophy</li>
+                            <li>Four-act adventure structure</li>
+                            <li>Memorable villain design and motivation</li>
+                            <li>Campaign themes from street to cosmic</li>
+                            <li>Advanced GM techniques and session zero</li>
+                        </ul>
+                    </div>
+                    <a href="champions_gamemastering.html" class="lesson-link">Become a Legendary GM →</a>
+                </div>
+            </div>
+
+            <!-- Digital Tools -->
+            <div class="lesson-card tools">
+                <div class="lesson-header">
+                    <div class="lesson-number">⚡</div>
+                    <h3 class="lesson-title">Digital Dice Roller and Tools</h3>
+                    <p class="lesson-subtitle">Your Complete Gaming Toolkit</p>
+                </div>
+                <div class="lesson-content">
+                    <p class="lesson-description">
+                        Streamline your Champions gaming with comprehensive digital tools. From dice rolling to character tracking, damage calculation to power building - everything you need for smooth gameplay.
+                    </p>
+                    <div class="lesson-topics">
+                        <h4>Tools Include:</h4>
+                        <ul class="topics-list">
+                            <li>3d6 dice roller with probability calculation</li>
+                            <li>Damage calculator and character tracker</li>
+                            <li>Combat initiative and power cost calculators</li>
+                            <li>Quick reference tables and guides</li>
+                            <li>Advanced calculators for complex mechanics</li>
+                        </ul>
+                    </div>
+                    <a href="champions_dice_roller.html" class="lesson-link">Access Digital Tools →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Path Section -->
+    <div class="progress-section">
+        <h2 class="progress-title">Your Champions Learning Journey</h2>
+        <div class="learning-path">
+            <div class="path-step">
+                <span class="step-number">1</span>
+                <strong>Foundation Building (Lessons 1-2):</strong> Start with core concepts and character creation to understand the system's philosophy and mechanics.
+            </div>
+            <div class="path-step">
+                <span class="step-number">2</span>
+                <strong>Power Mastery (Lesson 3):</strong> Dive deep into the universal power system that makes Champions infinitely flexible.
+            </div>
+            <div class="path-step">
+                <span class="step-number">3</span>
+                <strong>Action Expertise (Lesson 4):</strong> Learn combat mechanics and action resolution for dynamic gameplay.
+            </div>
+            <div class="path-step">
+                <span class="step-number">4</span>
+                <strong>Character Depth (Lesson 5):</strong> Add skills, equipment, and development for complete heroes.
+            </div>
+            <div class="path-step">
+                <span class="step-number">5</span>
+                <strong>Storytelling Mastery (Lesson 6):</strong> Master the art of running Champions adventures and campaigns.
+            </div>
+            <div class="path-step">
+                <span class="step-number">⚡</span>
+                <strong>Digital Enhancement (Tools):</strong> Use digital tools to streamline and enhance your gaming experience.
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Start Section -->
+    <div class="quick-start">
+        <h2 style="color: #2c3e50; margin-bottom: 20px;">Quick Start Options</h2>
+        <div class="quick-start-grid">
+            <div class="quick-card">
+                <h3 style="color: #e74c3c;">🚀 New to Champions?</h3>
+                <p>Start with <strong>Lesson 1: Introduction</strong> to understand the core philosophy, then move through lessons 2-4 for essential gameplay knowledge.</p>
+                <a href="champions_introduction.html" style="color: #e74c3c; font-weight: bold;">Start Here →</a>
+            </div>
+            <div class="quick-card">
+                <h3 style="color: #27ae60;">🎮 Ready to Play?</h3>
+                <p>Jump to the <strong>Digital Tools</strong> for dice rolling and character tracking, with <strong>Lessons 1-4</strong> as your reference guide.</p>
+                <a href="champions_dice_roller.html" style="color: #27ae60; font-weight: bold;">Access Tools →</a>
+            </div>
+            <div class="quick-card">
+                <h3 style="color: #8e44ad;">🎭 Want to GM?</h3>
+                <p>Read through all lessons for complete understanding, then focus on <strong>Lesson 6: Gamemastering</strong> for running amazing adventures.</p>
+                <a href="champions_gamemastering.html" style="color: #8e44ad; font-weight: bold;">Master GMing →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <h2>Tutorial Series Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div>Complete Lessons</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div>Interactive Examples</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25+</div>
+                <div>Practice Exercises</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <div>Hero Possibilities</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Visualization -->
+    <div style="background: white; padding: 40px 20px; text-align: center;">
+        <h2 style="color: #2c3e50; margin-bottom: 30px;">Your Champions Mastery Path</h2>
+        <div class="mermaid">
+            graph TD
+                A[🎯 Start: Introduction] --> B[🦸‍♂️ Character Creation]
+                B --> C[⚡ Powers & Abilities]
+                C --> D[⚔️ Combat & Action]
+                D --> E[🛠️ Skills & Equipment]
+                E --> F[🎭 Gamemastering]
+                F --> G[🎲 Digital Tools]
+                G --> H[🌟 Champions Master!]
+                
+                style A fill:#ff6b6b,color:#fff
+                style B fill:#4ecdc4,color:#fff
+                style C fill:#45b7d1,color:#fff
+                style D fill:#f39c12,color:#fff
+                style E fill:#27ae60,color:#fff
+                style F fill:#9b59b6,color:#fff
+                style G fill:#e74c3c,color:#fff
+                style H fill:#2c3e50,color:#fff
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <h3>Ready to Begin Your Champions Adventure?</h3>
+            <p>This comprehensive tutorial series provides everything you need to master Champions Complete RPG. Whether you're creating your first superhero or designing epic adventures, these lessons will guide you every step of the way.</p>
+            <p style="margin-top: 30px; font-style: italic;">
+                "With great power comes great responsibility... and great gaming experiences!"
+            </p>
+            <p style="margin-top: 20px; color: #bdc3c7;">
+                Champions Complete RPG Tutorial Series • Created for aspiring heroes and legendary gamemasters
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions Complete RPG - Digital Dice Roller and Tools</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .tool-container {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #4ecdc4;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .dice-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .roll-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        .roll-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255,107,107,0.3);
+        }
+        .result-display {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            min-height: 60px;
+            overflow-y: auto;
+            max-height: 200px;
+        }
+        .damage-calculator {
+            background: #e8f5e8;
+            border: 2px solid #27ae60;
+        }
+        .input-group {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .input-group label {
+            min-width: 120px;
+            font-weight: bold;
+        }
+        .input-group input, .input-group select {
+            padding: 8px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .char-tracker {
+            background: #fff9e6;
+            border: 2px solid #f39c12;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .stat-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .modifier-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .mod-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .power-builder {
+            background: #f0e6ff;
+            border: 2px solid #9b59b6;
+        }
+        .power-display {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .quick-reference {
+            background: #e6f3ff;
+            border: 2px solid #3498db;
+        }
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .reference-card {
+            background: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+        .success-rate {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .failure-rate {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .roll-history {
+            max-height: 150px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Champions Complete RPG</h1>
+        <h2>Digital Dice Roller and Gaming Tools</h2>
+        <p><em>Your Complete Digital Toolkit for Champions Gaming</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Your Digital Champions Command Center</h2>
+            <p>Welcome to your comprehensive digital toolkit for Champions Complete RPG! These tools will speed up your gameplay, help you understand the mechanics, and make both playing and running Champions more enjoyable. Whether you're a player tracking your hero's abilities or a GM managing complex encounters, these tools have you covered.</p>
+            
+            <p>Each tool is designed to capture the unique aspects of Champions gaming - from the 3d6 system to complex power interactions. They're built to work seamlessly during your game sessions, helping you focus on the story and action rather than getting bogged down in calculations.</p>
+        </section>
+
+        <div class="tool-grid">
+            <!-- 3d6 Dice Roller -->
+            <section class="tool-container">
+                <div class="dice-section">
+                    <h3>🎲 Champions 3d6 Dice Roller</h3>
+                    <p>The heart of Champions - roll 3d6 for skill checks, attack rolls, and characteristic rolls</p>
+                    
+                    <div class="input-group">
+                        <label>Target Number:</label>
+                        <input type="number" id="targetNumber" value="11" min="3" max="18">
+                        <span id="successChance" class="success-rate">62.5%</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Modifier:</label>
+                        <input type="number" id="rollModifier" value="0" min="-10" max="10">
+                        <span>(Penalty/Bonus to roll)</span>
+                    </div>
+                    
+                    <button class="roll-button" onclick="roll3d6()">Roll 3d6</button>
+                    <button class="roll-button" onclick="rollMultiple3d6()">Roll 5 Times</button>
+                    <button class="roll-button" onclick="clearDiceHistory()">Clear History</button>
+                    
+                    <div id="diceResult" class="result-display">Ready to roll...</div>
+                    <div id="rollHistory" class="roll-history"></div>
+                </div>
+            </section>
+
+            <!-- Damage Calculator -->
+            <section class="tool-container damage-calculator">
+                <div class="dice-section">
+                    <h3>⚔️ Damage Calculator</h3>
+                    <p>Calculate damage for attacks, apply defenses, and determine STUN/BODY results</p>
+                    
+                    <div class="input-group">
+                        <label>Damage Dice:</label>
+                        <input type="number" id="damageDice" value="10" min="1" max="50">
+                        <span>d6</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Damage Type:</label>
+                        <select id="damageType">
+                            <option value="normal">Normal Damage</option>
+                            <option value="killing">Killing Damage</option>
+                            <option value="mental">Mental Damage</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Physical Defense:</label>
+                        <input type="number" id="physicalDefense" value="5" min="0" max="50">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Energy Defense:</label>
+                        <input type="number" id="energyDefense" value="5" min="0" max="50">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Damage Resistance:</label>
+                        <input type="number" id="damageResistance" value="0" min="0" max="30">
+                    </div>
+                    
+                    <button class="roll-button" onclick="rollDamage()">Roll Damage</button>
+                    <button class="roll-button" onclick="rollDamageMultiple()">Roll 3 Times</button>
+                    
+                    <div id="damageResult" class="result-display">Ready to calculate damage...</div>
+                </div>
+            </section>
+        </div>
+
+        <div class="tool-grid">
+            <!-- Character Tracker -->
+            <section class="tool-container char-tracker">
+                <div class="dice-section">
+                    <h3>🦸‍♂️ Character Status Tracker</h3>
+                    <p>Track your hero's current STUN, BODY, END, and other vital statistics during play</p>
+                    
+                    <div class="stat-grid" id="statGrid">
+                        <div class="stat-card">
+                            <h4>STUN</h4>
+                            <div class="stat-value" id="currentStun">45</div>
+                            <div>/ <span id="maxStun">45</span></div>
+                            <div class="modifier-buttons">
+                                <button class="mod-button" onclick="modifyCurrentStat('stun', -10)">-10</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('stun', -5)">-5</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('stun', -1)">-1</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('stun', 1)">+1</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('stun', 5)">+5</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('stun', 10)">+10</button>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <h4>BODY</h4>
+                            <div class="stat-value" id="currentBody">15</div>
+                            <div>/ <span id="maxBody">15</span></div>
+                            <div class="modifier-buttons">
+                                <button class="mod-button" onclick="modifyCurrentStat('body', -5)">-5</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('body', -1)">-1</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('body', 1)">+1</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('body', 5)">+5</button>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <h4>ENDURANCE</h4>
+                            <div class="stat-value" id="currentEnd">40</div>
+                            <div>/ <span id="maxEnd">40</span></div>
+                            <div class="modifier-buttons">
+                                <button class="mod-button" onclick="modifyCurrentStat('end', -10)">-10</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('end', -5)">-5</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('end', -1)">-1</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('end', 1)">+1</button>
+                                <button class="mod-button" onclick="modifyCurrentStat('end', 5)">+5</button>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <h4>RECOVERY</h4>
+                            <div class="stat-value" id="recovery">8</div>
+                            <div class="modifier-buttons">
+                                <button class="mod-button" onclick="recoverEndurance()">Recover END</button>
+                                <button class="mod-button" onclick="recoverStun()">Recover STUN</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <button class="roll-button" onclick="resetCharacterStats()">Reset to Full</button>
+                        <button class="roll-button" onclick="saveCharacterState()">Save State</button>
+                        <button class="roll-button" onclick="loadCharacterState()">Load State</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Power Builder -->
+            <section class="tool-container power-builder">
+                <div class="dice-section">
+                    <h3>⚡ Quick Power Calculator</h3>
+                    <p>Calculate the cost of powers with advantages and limitations</p>
+                    
+                    <div class="input-group">
+                        <label>Base Power Cost:</label>
+                        <input type="number" id="basePowerCost" value="50" min="1" max="500">
+                        <span>Active Points</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Advantages:</label>
+                        <select id="advantageSelect" multiple style="height: 80px;">
+                            <option value="0.25">Area of Effect (+¼)</option>
+                            <option value="0.5">Armor Piercing (+½)</option>
+                            <option value="0.5">Autofire (+½)</option>
+                            <option value="0.5">Penetrating (+½)</option>
+                            <option value="0.25">Does Knockback (+¼)</option>
+                            <option value="1.0">Area of Effect: Explosion (+1)</option>
+                            <option value="0.5">Invisible Power Effects (+½)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Limitations:</label>
+                        <select id="limitationSelect" multiple style="height: 80px;">
+                            <option value="0.25">Gestures (-¼)</option>
+                            <option value="0.25">Incantations (-¼)</option>
+                            <option value="0.5">Requires Skill Roll (-½)</option>
+                            <option value="1.0">OAF: Obvious Accessible Focus (-1)</option>
+                            <option value="0.5">IAF: Inobvious Accessible Focus (-½)</option>
+                            <option value="0.25">Charges: 8 (-¼)</option>
+                            <option value="0.5">Charges: 4 (-½)</option>
+                        </select>
+                    </div>
+                    
+                    <button class="roll-button" onclick="calculatePowerCost()">Calculate Power Cost</button>
+                    
+                    <div id="powerResult" class="power-display">
+                        <h4>Power Cost Breakdown</h4>
+                        <p><strong>Base Cost:</strong> <span id="displayBaseCost">50</span> Active Points</p>
+                        <p><strong>Advantages:</strong> <span id="displayAdvantages">None</span></p>
+                        <p><strong>Active Points:</strong> <span id="displayActivePoints">50</span></p>
+                        <p><strong>Limitations:</strong> <span id="displayLimitations">None</span></p>
+                        <p><strong>Real Cost:</strong> <span id="displayRealCost">50</span> Character Points</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Quick Reference -->
+        <section class="tool-container quick-reference">
+            <h3>📖 Quick Reference Tables</h3>
+            <p>Essential Champions information at your fingertips</p>
+            
+            <div class="reference-grid">
+                <div class="reference-card">
+                    <h4>3d6 Success Probabilities</h4>
+                    <div id="probabilityTable"></div>
+                </div>
+                
+                <div class="reference-card">
+                    <h4>Combat Maneuvers</h4>
+                    <ul>
+                        <li><strong>Strike:</strong> +0 OCV, +0 DCV, Normal damage</li>
+                        <li><strong>Haymaker:</strong> +0 OCV, -5 DCV, +4 damage dice</li>
+                        <li><strong>Move By:</strong> +0 OCV, -2 DCV, STR/2 + velocity</li>
+                        <li><strong>Block:</strong> +0 OCV, +0 DCV, Block with +1 DCV</li>
+                        <li><strong>Dodge:</strong> +0 OCV, +3 DCV, Abort to dodge</li>
+                        <li><strong>Grab:</strong> -1 OCV, -2 DCV, Grab with STR</li>
+                    </ul>
+                </div>
+                
+                <div class="reference-card">
+                    <h4>Speed Chart (12-segment turn)</h4>
+                    <ul>
+                        <li><strong>SPD 1:</strong> Segment 12</li>
+                        <li><strong>SPD 2:</strong> Segments 6, 12</li>
+                        <li><strong>SPD 3:</strong> Segments 4, 8, 12</li>
+                        <li><strong>SPD 4:</strong> Segments 3, 6, 9, 12</li>
+                        <li><strong>SPD 5:</strong> Segments 3, 5, 8, 10, 12</li>
+                        <li><strong>SPD 6:</strong> Segments 2, 4, 6, 8, 10, 12</li>
+                    </ul>
+                </div>
+                
+                <div class="reference-card">
+                    <h4>Range Modifiers</h4>
+                    <ul>
+                        <li><strong>0-8":</strong> No modifier</li>
+                        <li><strong>9-16":</strong> -2 OCV</li>
+                        <li><strong>17-32":</strong> -4 OCV</li>
+                        <li><strong>33-64":</strong> -6 OCV</li>
+                        <li><strong>65-125":</strong> -8 OCV</li>
+                        <li><strong>126-250":</strong> -10 OCV</li>
+                    </ul>
+                </div>
+                
+                <div class="reference-card">
+                    <h4>Damage Effects</h4>
+                    <ul>
+                        <li><strong>Stunned:</strong> STUN = 0, lose next action</li>
+                        <li><strong>Unconscious:</strong> STUN below 0</li>
+                        <li><strong>Dying:</strong> BODY below 0</li>
+                        <li><strong>Dead:</strong> BODY = -BODY total</li>
+                        <li><strong>Knockback:</strong> 2" per 5 BODY taken</li>
+                    </ul>
+                </div>
+                
+                <div class="reference-card">
+                    <h4>Characteristic Costs</h4>
+                    <ul>
+                        <li><strong>STR:</strong> 1 point per +1</li>
+                        <li><strong>DEX:</strong> 3 points per +1</li>
+                        <li><strong>CON:</strong> 2 points per +1</li>
+                        <li><strong>INT:</strong> 1 point per +1</li>
+                        <li><strong>EGO:</strong> 2 points per +1</li>
+                        <li><strong>PRE:</strong> 1 point per +1</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combat Tracker -->
+        <section class="tool-container">
+            <div class="dice-section">
+                <h3>⚔️ Combat Initiative Tracker</h3>
+                <p>Track turn order and timing in Champions combat</p>
+                
+                <div class="input-group">
+                    <label>Current Segment:</label>
+                    <input type="number" id="currentSegment" value="12" min="1" max="12">
+                    <button class="mod-button" onclick="advanceSegment()">Next Segment</button>
+                    <button class="mod-button" onclick="resetCombat()">New Turn</button>
+                </div>
+                
+                <div id="combatTracker" class="result-display">
+                    <h4>Who Acts This Segment?</h4>
+                    <div id="activeCharacters">Enter character SPD values below...</div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Add Character:</label>
+                    <input type="text" id="characterName" placeholder="Character Name">
+                    <input type="number" id="characterSpd" placeholder="SPD" min="1" max="12">
+                    <button class="roll-button" onclick="addCharacterToCombat()">Add</button>
+                </div>
+                
+                <div id="characterList" class="roll-history"></div>
+            </div>
+        </section>
+
+        <!-- Advanced Calculators -->
+        <section class="tool-container">
+            <div class="dice-section">
+                <h3>🧮 Advanced Calculators</h3>
+                <p>Specialized calculations for complex Champions mechanics</p>
+                
+                <div class="input-group">
+                    <h4>Knockback Calculator</h4>
+                    <label>BODY Damage Taken:</label>
+                    <input type="number" id="knockbackDamage" value="10" min="0">
+                    <label>Character Mass:</label>
+                    <select id="characterMass">
+                        <option value="100">Normal Human (100kg)</option>
+                        <option value="200">Large Human (200kg)</option>
+                        <option value="500">Brick/Powerhouse (500kg)</option>
+                        <option value="1000">Very Heavy (1000kg)</option>
+                        <option value="50">Small/Light (50kg)</option>
+                    </select>
+                    <button class="roll-button" onclick="calculateKnockback()">Calculate Knockback</button>
+                    <div id="knockbackResult" class="result-display">Ready to calculate...</div>
+                </div>
+                
+                <div class="input-group">
+                    <h4>Lifting Capacity by STR</h4>
+                    <label>STR Value:</label>
+                    <input type="number" id="strValue" value="10" min="1" max="100">
+                    <button class="roll-button" onclick="calculateLifting()">Calculate Lifting</button>
+                    <div id="liftingResult" class="result-display">Ready to calculate...</div>
+                </div>
+                
+                <div class="input-group">
+                    <h4>Skill Roll Difficulty</h4>
+                    <label>Base Characteristic:</label>
+                    <input type="number" id="baseChar" value="13" min="8" max="25">
+                    <label>Skill Points:</label>
+                    <input type="number" id="skillPoints" value="3" min="0" max="10">
+                    <label>Difficulty Modifier:</label>
+                    <input type="number" id="difficultyMod" value="0" min="-5" max="5">
+                    <button class="roll-button" onclick="calculateSkillTarget()">Calculate Target</button>
+                    <div id="skillResult" class="result-display">Ready to calculate...</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="usage-tips">
+            <h3>💡 Usage Tips and Best Practices</h3>
+            <div class="reference-grid">
+                <div class="reference-card">
+                    <h4>🎲 Dice Rolling Tips</h4>
+                    <ul>
+                        <li>Use the target number field for all skill checks and attack rolls</li>
+                        <li>Apply modifiers for difficulty, range, or circumstances</li>
+                        <li>The success chance updates automatically to help you understand odds</li>
+                        <li>Roll multiple dice for getting averages or handling multiple attacks</li>
+                    </ul>
+                </div>
+                
+                <div class="reference-card">
+                    <h4>⚔️ Combat Usage</h4>
+                    <ul>
+                        <li>Use the damage calculator for all attack damage</li>
+                        <li>Remember to select the correct damage type (Normal/Killing/Mental)</li>
+                        <li>Apply appropriate defenses (PD for physical, ED for energy)</li>
+                        <li>Track initiative with the combat tracker</li>
+                    </ul>
+                </div>
+                
+                <div class="reference-card">
+                    <h4>📊 Character Tracking</h4>
+                    <ul>
+                        <li>Update your character's max values when they change</li>
+                        <li>Use the recovery buttons for post-turn healing</li>
+                        <li>Save character state before dangerous encounters</li>
+                        <li>Reset to full health between adventures</li>
+                    </ul>
+                </div>
+                
+                <div class="reference-card">
+                    <h4>⚡ Power Building</h4>
+                    <ul>
+                        <li>Start with base power cost from the Champions rules</li>
+                        <li>Select multiple advantages/limitations using Ctrl+Click</li>
+                        <li>The calculator shows both Active and Real point costs</li>
+                        <li>Use this for quick "what if" power modifications</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>Champions Complete RPG Digital Tools</em></p>
+        <p>Streamline your Champions gaming experience with these essential digital aids!</p>
+    </footer>
+
+    <script>
+        // Global variables for character tracking
+        let characterStats = {
+            maxStun: 45,
+            currentStun: 45,
+            maxBody: 15,
+            currentBody: 15,
+            maxEnd: 40,
+            currentEnd: 40,
+            recovery: 8
+        };
+
+        let rollHistoryArray = [];
+        let combatCharacters = [];
+        let currentCombatSegment = 12;
+
+        // Initialize the page
+        window.onload = function() {
+            updateSuccessChance();
+            generateProbabilityTable();
+            updateCharacterDisplay();
+            calculatePowerCost();
+        };
+
+        // 3d6 Dice Rolling Functions
+        function roll3d6() {
+            const target = parseInt(document.getElementById('targetNumber').value);
+            const modifier = parseInt(document.getElementById('rollModifier').value);
+            
+            const die1 = Math.floor(Math.random() * 6) + 1;
+            const die2 = Math.floor(Math.random() * 6) + 1;
+            const die3 = Math.floor(Math.random() * 6) + 1;
+            const total = die1 + die2 + die3 + modifier;
+            
+            const success = total <= target;
+            const margin = Math.abs(total - target);
+            
+            let result = `Roll: ${die1}, ${die2}, ${die3}`;
+            if (modifier !== 0) {
+                result += ` (${modifier >= 0 ? '+' : ''}${modifier})`;
+            }
+            result += ` = ${total}`;
+            result += `\nTarget: ${target} - ${success ? 'SUCCESS' : 'FAILURE'}`;
+            result += `\nMargin: ${success ? 'Made by' : 'Missed by'} ${margin}`;
+            
+            document.getElementById('diceResult').textContent = result;
+            
+            // Add to history
+            const historyEntry = `${new Date().toLocaleTimeString()}: ${total} vs ${target} (${success ? 'Success' : 'Failure'})`;
+            rollHistoryArray.unshift(historyEntry);
+            if (rollHistoryArray.length > 10) rollHistoryArray.pop();
+            updateRollHistory();
+        }
+
+        function rollMultiple3d6() {
+            let results = "Rolling 5 times:\n";
+            const target = parseInt(document.getElementById('targetNumber').value);
+            const modifier = parseInt(document.getElementById('rollModifier').value);
+            let successes = 0;
+            
+            for (let i = 0; i < 5; i++) {
+                const die1 = Math.floor(Math.random() * 6) + 1;
+                const die2 = Math.floor(Math.random() * 6) + 1;
+                const die3 = Math.floor(Math.random() * 6) + 1;
+                const total = die1 + die2 + die3 + modifier;
+                const success = total <= target;
+                if (success) successes++;
+                
+                results += `${i + 1}: ${total} ${success ? '✓' : '✗'}\n`;
+            }
+            
+            results += `\nSuccesses: ${successes}/5 (${(successes/5*100).toFixed(1)}%)`;
+            document.getElementById('diceResult').textContent = results;
+        }
+
+        function clearDiceHistory() {
+            rollHistoryArray = [];
+            updateRollHistory();
+        }
+
+        function updateRollHistory() {
+            document.getElementById('rollHistory').innerHTML = rollHistoryArray.join('<br>');
+        }
+
+        function updateSuccessChance() {
+            const target = parseInt(document.getElementById('targetNumber').value);
+            const chances = calculateSuccessChance(target);
+            document.getElementById('successChance').textContent = chances + '%';
+            document.getElementById('successChance').className = chances >= 50 ? 'success-rate' : 'failure-rate';
+        }
+
+        function calculateSuccessChance(target) {
+            // Calculate exact probability for 3d6 <= target
+            let successes = 0;
+            for (let d1 = 1; d1 <= 6; d1++) {
+                for (let d2 = 1; d2 <= 6; d2++) {
+                    for (let d3 = 1; d3 <= 6; d3++) {
+                        if (d1 + d2 + d3 <= target) successes++;
+                    }
+                }
+            }
+            return ((successes / 216) * 100).toFixed(1);
+        }
+
+        // Event listeners for dice roller
+        document.getElementById('targetNumber').addEventListener('input', updateSuccessChance);
+        document.getElementById('rollModifier').addEventListener('input', updateSuccessChance);
+
+        // Damage Calculator Functions
+        function rollDamage() {
+            const dice = parseInt(document.getElementById('damageDice').value);
+            const damageType = document.getElementById('damageType').value;
+            const pd = parseInt(document.getElementById('physicalDefense').value);
+            const ed = parseInt(document.getElementById('energyDefense').value);
+            const dr = parseInt(document.getElementById('damageResistance').value);
+            
+            let totalDamage = 0;
+            let individualRolls = [];
+            
+            // Roll the dice
+            for (let i = 0; i < dice; i++) {
+                const roll = Math.floor(Math.random() * 6) + 1;
+                totalDamage += roll;
+                individualRolls.push(roll);
+            }
+            
+            let stunDamage, bodyDamage;
+            let defense = pd; // Default to physical defense
+            
+            if (damageType === 'killing') {
+                bodyDamage = totalDamage;
+                stunDamage = totalDamage * 3; // Killing damage does 3x STUN
+            } else if (damageType === 'mental') {
+                bodyDamage = 0;
+                stunDamage = totalDamage;
+                defense = 0; // Mental damage ignores physical defenses
+            } else {
+                bodyDamage = Math.floor(totalDamage / 3); // Normal damage BODY = total/3
+                stunDamage = totalDamage;
+            }
+            
+            // Apply defenses
+            const totalDefense = defense + dr;
+            const finalStunDamage = Math.max(0, stunDamage - totalDefense);
+            const finalBodyDamage = Math.max(0, bodyDamage - totalDefense);
+            
+            let result = `Damage Roll: [${individualRolls.join(', ')}] = ${totalDamage}\n`;
+            result += `Damage Type: ${damageType.charAt(0).toUpperCase() + damageType.slice(1)}\n`;
+            result += `Defense: ${totalDefense} (${defense} base + ${dr} resistance)\n\n`;
+            result += `STUN Damage: ${stunDamage} - ${totalDefense} = ${finalStunDamage}\n`;
+            result += `BODY Damage: ${bodyDamage} - ${totalDefense} = ${finalBodyDamage}\n\n`;
+            
+            if (finalBodyDamage >= 5) {
+                const knockback = Math.floor(finalBodyDamage / 5) * 2;
+                result += `Knockback: ${knockback}" (${Math.floor(finalBodyDamage / 5)} × 2")`;
+            }
+            
+            document.getElementById('damageResult').textContent = result;
+        }
+
+        function rollDamageMultiple() {
+            let results = "Rolling damage 3 times:\n\n";
+            
+            for (let i = 0; i < 3; i++) {
+                const dice = parseInt(document.getElementById('damageDice').value);
+                let totalDamage = 0;
+                
+                for (let j = 0; j < dice; j++) {
+                    totalDamage += Math.floor(Math.random() * 6) + 1;
+                }
+                
+                results += `Roll ${i + 1}: ${totalDamage}\n`;
+            }
+            
+            document.getElementById('damageResult').textContent = results;
+        }
+
+        // Character Tracker Functions
+        function modifyCurrentStat(stat, amount) {
+            switch(stat) {
+                case 'stun':
+                    characterStats.currentStun = Math.max(0, Math.min(characterStats.maxStun, characterStats.currentStun + amount));
+                    break;
+                case 'body':
+                    characterStats.currentBody = Math.max(-characterStats.maxBody, Math.min(characterStats.maxBody, characterStats.currentBody + amount));
+                    break;
+                case 'end':
+                    characterStats.currentEnd = Math.max(0, Math.min(characterStats.maxEnd, characterStats.currentEnd + amount));
+                    break;
+            }
+            updateCharacterDisplay();
+        }
+
+        function recoverEndurance() {
+            const recovery = characterStats.recovery;
+            characterStats.currentEnd = Math.min(characterStats.maxEnd, characterStats.currentEnd + recovery);
+            updateCharacterDisplay();
+        }
+
+        function recoverStun() {
+            const recovery = characterStats.recovery;
+            characterStats.currentStun = Math.min(characterStats.maxStun, characterStats.currentStun + recovery);
+            updateCharacterDisplay();
+        }
+
+        function updateCharacterDisplay() {
+            document.getElementById('currentStun').textContent = characterStats.currentStun;
+            document.getElementById('maxStun').textContent = characterStats.maxStun;
+            document.getElementById('currentBody').textContent = characterStats.currentBody;
+            document.getElementById('maxBody').textContent = characterStats.maxBody;
+            document.getElementById('currentEnd').textContent = characterStats.currentEnd;
+            document.getElementById('maxEnd').textContent = characterStats.maxEnd;
+            document.getElementById('recovery').textContent = characterStats.recovery;
+            
+            // Color code based on condition
+            const stunElement = document.getElementById('currentStun');
+            const bodyElement = document.getElementById('currentBody');
+            
+            if (characterStats.currentStun <= 0) stunElement.style.color = '#e74c3c';
+            else if (characterStats.currentStun <= characterStats.maxStun * 0.25) stunElement.style.color = '#f39c12';
+            else stunElement.style.color = '#27ae60';
+            
+            if (characterStats.currentBody <= 0) bodyElement.style.color = '#e74c3c';
+            else if (characterStats.currentBody <= characterStats.maxBody * 0.25) bodyElement.style.color = '#f39c12';
+            else bodyElement.style.color = '#27ae60';
+        }
+
+        function resetCharacterStats() {
+            characterStats.currentStun = characterStats.maxStun;
+            characterStats.currentBody = characterStats.maxBody;
+            characterStats.currentEnd = characterStats.maxEnd;
+            updateCharacterDisplay();
+        }
+
+        function saveCharacterState() {
+            const state = JSON.stringify(characterStats);
+            localStorage.setItem('championsCharacterState', state);
+            alert('Character state saved!');
+        }
+
+        function loadCharacterState() {
+            const state = localStorage.getItem('championsCharacterState');
+            if (state) {
+                characterStats = JSON.parse(state);
+                updateCharacterDisplay();
+                alert('Character state loaded!');
+            } else {
+                alert('No saved character state found!');
+            }
+        }
+
+        // Power Calculator Functions
+        function calculatePowerCost() {
+            const baseCost = parseInt(document.getElementById('basePowerCost').value);
+            const advantageSelect = document.getElementById('advantageSelect');
+            const limitationSelect = document.getElementById('limitationSelect');
+            
+            let totalAdvantages = 0;
+            let totalLimitations = 0;
+            let advantageList = [];
+            let limitationList = [];
+            
+            // Calculate advantages
+            for (let option of advantageSelect.selectedOptions) {
+                const value = parseFloat(option.value);
+                totalAdvantages += value;
+                advantageList.push(option.text);
+            }
+            
+            // Calculate limitations
+            for (let option of limitationSelect.selectedOptions) {
+                const value = parseFloat(option.value);
+                totalLimitations += value;
+                limitationList.push(option.text);
+            }
+            
+            const activePoints = Math.round(baseCost * (1 + totalAdvantages));
+            const realCost = Math.round(activePoints / (1 + totalLimitations));
+            
+            // Update display
+            document.getElementById('displayBaseCost').textContent = baseCost;
+            document.getElementById('displayAdvantages').textContent = advantageList.length > 0 ? advantageList.join(', ') : 'None';
+            document.getElementById('displayActivePoints').textContent = activePoints;
+            document.getElementById('displayLimitations').textContent = limitationList.length > 0 ? limitationList.join(', ') : 'None';
+            document.getElementById('displayRealCost').textContent = realCost;
+        }
+
+        // Quick Reference Functions
+        function generateProbabilityTable() {
+            const table = document.getElementById('probabilityTable');
+            let html = '<table style="width: 100%; font-size: 11px;">';
+            html += '<tr><th>Target</th><th>Success %</th></tr>';
+            
+            for (let target = 8; target <= 18; target++) {
+                const chance = calculateSuccessChance(target);
+                const color = parseFloat(chance) >= 50 ? '#27ae60' : '#e74c3c';
+                html += `<tr><td>${target}</td><td style="color: ${color}; font-weight: bold;">${chance}%</td></tr>`;
+            }
+            
+            html += '</table>';
+            table.innerHTML = html;
+        }
+
+        // Combat Tracker Functions
+        function addCharacterToCombat() {
+            const name = document.getElementById('characterName').value.trim();
+            const spd = parseInt(document.getElementById('characterSpd').value);
+            
+            if (name && spd >= 1 && spd <= 12) {
+                combatCharacters.push({name: name, spd: spd});
+                document.getElementById('characterName').value = '';
+                document.getElementById('characterSpd').value = '';
+                updateCombatDisplay();
+                updateCharacterList();
+            }
+        }
+
+        function advanceSegment() {
+            currentCombatSegment++;
+            if (currentCombatSegment > 12) currentCombatSegment = 1;
+            document.getElementById('currentSegment').value = currentCombatSegment;
+            updateCombatDisplay();
+        }
+
+        function resetCombat() {
+            currentCombatSegment = 12;
+            document.getElementById('currentSegment').value = 12;
+            updateCombatDisplay();
+        }
+
+        function updateCombatDisplay() {
+            const segment = parseInt(document.getElementById('currentSegment').value);
+            currentCombatSegment = segment;
+            
+            const activeChars = combatCharacters.filter(char => {
+                return getSegmentsForSpd(char.spd).includes(segment);
+            });
+            
+            let display = `<strong>Segment ${segment}:</strong><br>`;
+            if (activeChars.length > 0) {
+                display += activeChars.map(char => `• ${char.name} (SPD ${char.spd})`).join('<br>');
+            } else {
+                display += 'No characters act this segment';
+            }
+            
+            document.getElementById('activeCharacters').innerHTML = display;
+        }
+
+        function updateCharacterList() {
+            const list = document.getElementById('characterList');
+            if (combatCharacters.length > 0) {
+                list.innerHTML = '<strong>Characters in Combat:</strong><br>' + 
+                    combatCharacters.map((char, index) => 
+                        `${char.name} (SPD ${char.spd}) <button onclick="removeCharacter(${index})" style="margin-left: 10px; font-size: 10px;">Remove</button>`
+                    ).join('<br>');
+            } else {
+                list.innerHTML = 'No characters added yet.';
+            }
+        }
+
+        function removeCharacter(index) {
+            combatCharacters.splice(index, 1);
+            updateCharacterList();
+            updateCombatDisplay();
+        }
+
+        function getSegmentsForSpd(spd) {
+            const segments = [];
+            const interval = 12 / spd;
+            for (let i = 1; i <= spd; i++) {
+                segments.push(Math.round(i * interval));
+            }
+            return segments;
+        }
+
+        // Advanced Calculator Functions
+        function calculateKnockback() {
+            const damage = parseInt(document.getElementById('knockbackDamage').value);
+            const mass = parseInt(document.getElementById('characterMass').value);
+            
+            const baseKnockback = Math.floor(damage / 5) * 2; // 2" per 5 BODY
+            let massModifier = 0;
+            
+            if (mass <= 50) massModifier = +2;
+            else if (mass <= 100) massModifier = 0;
+            else if (mass <= 200) massModifier = -1;
+            else if (mass <= 500) massModifier = -2;
+            else massModifier = -4;
+            
+            const totalKnockback = Math.max(0, baseKnockback + massModifier);
+            
+            let result = `BODY Damage: ${damage}\n`;
+            result += `Base Knockback: ${baseKnockback}" (${Math.floor(damage / 5)} × 2")\n`;
+            result += `Mass Modifier: ${massModifier >= 0 ? '+' : ''}${massModifier}"\n`;
+            result += `Total Knockback: ${totalKnockback}"`;
+            
+            document.getElementById('knockbackResult').textContent = result;
+        }
+
+        function calculateLifting() {
+            const str = parseInt(document.getElementById('strValue').value);
+            
+            // Champions lifting formula: 25kg × 2^((STR-10)/5)
+            let baseWeight = 25;
+            if (str >= 10) {
+                const multiplier = Math.pow(2, (str - 10) / 5);
+                baseWeight = Math.round(baseWeight * multiplier);
+            } else {
+                const divisor = Math.pow(2, (10 - str) / 5);
+                baseWeight = Math.round(baseWeight / divisor);
+            }
+            
+            const overheadPress = baseWeight;
+            const carryWalk = baseWeight * 2;
+            const dragPull = baseWeight * 5;
+            
+            let result = `STR ${str} Lifting Capacity:\n`;
+            result += `Overhead Press: ${overheadPress}kg\n`;
+            result += `Carry/Walk: ${carryWalk}kg\n`;
+            result += `Drag/Pull: ${dragPull}kg\n\n`;
+            
+            if (baseWeight >= 1000) {
+                result += `(${(baseWeight/1000).toFixed(1)} tonnes overhead)`;
+            }
+            
+            document.getElementById('liftingResult').textContent = result;
+        }
+
+        function calculateSkillTarget() {
+            const baseChar = parseInt(document.getElementById('baseChar').value);
+            const skillPoints = parseInt(document.getElementById('skillPoints').value);
+            const diffMod = parseInt(document.getElementById('difficultyMod').value);
+            
+            const skillLevel = baseChar + skillPoints;
+            const effectiveTarget = skillLevel + diffMod;
+            const successChance = calculateSuccessChance(effectiveTarget);
+            
+            let result = `Base Characteristic: ${baseChar}\n`;
+            result += `Skill Points: +${skillPoints}\n`;
+            result += `Skill Level: ${skillLevel}-\n`;
+            result += `Difficulty Modifier: ${diffMod >= 0 ? '+' : ''}${diffMod}\n`;
+            result += `Effective Target: ${effectiveTarget}\n`;
+            result += `Success Chance: ${successChance}%`;
+            
+            document.getElementById('skillResult').textContent = result;
+        }
+
+        // Event listeners for real-time updates
+        document.getElementById('basePowerCost').addEventListener('input', calculatePowerCost);
+        document.getElementById('advantageSelect').addEventListener('change', calculatePowerCost);
+        document.getElementById('limitationSelect').addEventListener('change', calculatePowerCost);
+        document.getElementById('currentSegment').addEventListener('input', updateCombatDisplay);
+    </script>
+</body>
+</html>

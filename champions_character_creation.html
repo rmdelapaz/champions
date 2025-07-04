@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions Complete RPG - Character Creation Step-by-Step</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Champions Complete RPG</h1>
+        <h2>Character Creation Step-by-Step</h2>
+        <p><em>From Concept to Cape: Building Your First Hero</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>The Architecture of Heroes</h2>
+            <p>Creating a Champions character is like designing a custom car. You start with a vision - maybe a sleek sports car or a rugged off-road vehicle. Then you allocate your budget across engine power, handling, comfort features, and safety equipment. Some choices enhance performance while others provide reliability or style. The end result should feel cohesive and purposeful.</p>
+            
+            <p>In Champions, your "budget" is character points, and every choice shapes both your hero's capabilities and their story. Let's walk through this process step by step, building a complete character from the ground up.</p>
+        </section>
+
+        <section class="creation-process">
+            <h2>The Seven Steps of Hero Creation</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[Step 1: Concept & Origin] --> B[Step 2: Determine Point Totals]
+                    B --> C[Step 3: Buy Characteristics]
+                    C --> D[Step 4: Calculate Derived Stats]
+                    D --> E[Step 5: Buy Powers & Equipment]
+                    E --> F[Step 6: Buy Skills & Talents]
+                    F --> G[Step 7: Add Disadvantages]
+                    G --> H[Final Character Sheet]
+                    
+                    style A fill:#ff9999
+                    style B fill:#99ccff
+                    style C fill:#99ff99
+                    style D fill:#ffff99
+                    style E fill:#ff99ff
+                    style F fill:#99ffcc
+                    style G fill:#ffcc99
+                    style H fill:#cccccc
+            </div>
+        </section>
+
+        <section class="step-one">
+            <h2>Step One: Concept and Origin Story</h2>
+            <p>Before spending a single point, you need to know WHO your character is and WHY they became a hero. This is like choosing the genre of movie you're making before writing the script.</p>
+
+            <div class="concept-framework">
+                <h3>The Five W's Framework</h3>
+                <div class="framework-grid">
+                    <div class="framework-card">
+                        <h4>WHO are they?</h4>
+                        <p>Name, age, occupation, personality. Are they a college student, a veteran soldier, a brilliant scientist, or a street performer?</p>
+                    </div>
+                    <div class="framework-card">
+                        <h4>WHAT are their powers?</h4>
+                        <p>What makes them super? Flight, super strength, telepathy, magic, high-tech gadgets?</p>
+                    </div>
+                    <div class="framework-card">
+                        <h4>WHERE did they come from?</h4>
+                        <p>Their background and origin. Lab accident, alien heritage, mystical training, genetic mutation?</p>
+                    </div>
+                    <div class="framework-card">
+                        <h4>WHEN did they become a hero?</h4>
+                        <p>Recently or years ago? Are they experienced or just starting out?</p>
+                    </div>
+                    <div class="framework-card">
+                        <h4>WHY do they fight crime?</h4>
+                        <p>Personal tragedy, sense of responsibility, redemption, protecting loved ones?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="origin-types">
+                <h3>Common Origin Story Patterns</h3>
+                <svg width="800" height="400" viewBox="0 0 800 400">
+                    <!-- Accident Origin -->
+                    <g transform="translate(50, 50)">
+                        <circle cx="75" cy="75" r="60" fill="#ff6b6b" opacity="0.7"/>
+                        <text x="75" y="70" text-anchor="middle" font-size="12" font-weight="bold">ACCIDENT</text>
+                        <text x="75" y="85" text-anchor="middle" font-size="10">Lab explosion</text>
+                        <text x="75" y="95" text-anchor="middle" font-size="10">Radiation</text>
+                        <text x="75" y="105" text-anchor="middle" font-size="10">Chemical spill</text>
+                        <text x="75" y="170" text-anchor="middle" font-size="11" font-style="italic">Spider-Man, Flash, Hulk</text>
+                    </g>
+                    
+                    <!-- Alien/Other World -->
+                    <g transform="translate(250, 50)">
+                        <circle cx="75" cy="75" r="60" fill="#4ecdc4" opacity="0.7"/>
+                        <text x="75" y="70" text-anchor="middle" font-size="12" font-weight="bold">ALIEN</text>
+                        <text x="75" y="85" text-anchor="middle" font-size="10">Other planet</text>
+                        <text x="75" y="95" text-anchor="middle" font-size="10">Different dimension</text>
+                        <text x="75" y="105" text-anchor="middle" font-size="10">Space heritage</text>
+                        <text x="75" y="170" text-anchor="middle" font-size="11" font-style="italic">Superman, Thor, Green Lantern</text>
+                    </g>
+                    
+                    <!-- Training/Skill -->
+                    <g transform="translate(450, 50)">
+                        <circle cx="75" cy="75" r="60" fill="#45b7d1" opacity="0.7"/>
+                        <text x="75" y="70" text-anchor="middle" font-size="12" font-weight="bold">TRAINING</text>
+                        <text x="75" y="85" text-anchor="middle" font-size="10">Martial arts</text>
+                        <text x="75" y="95" text-anchor="middle" font-size="10">Military service</text>
+                        <text x="75" y="105" text-anchor="middle" font-size="10">Mystical teaching</text>
+                        <text x="75" y="170" text-anchor="middle" font-size="11" font-style="italic">Batman, Iron Fist, Black Widow</text>
+                    </g>
+                    
+                    <!-- Technology -->
+                    <g transform="translate(650, 50)">
+                        <circle cx="75" cy="75" r="60" fill="#96ceb4" opacity="0.7"/>
+                        <text x="75" y="70" text-anchor="middle" font-size="12" font-weight="bold">TECH</text>
+                        <text x="75" y="85" text-anchor="middle" font-size="10">Powered armor</text>
+                        <text x="75" y="95" text-anchor="middle" font-size="10">Gadgets</text>
+                        <text x="75" y="105" text-anchor="middle" font-size="10">Inventions</text>
+                        <text x="75" y="170" text-anchor="middle" font-size="11" font-style="italic">Iron Man, Batman, Blue Beetle</text>
+                    </g>
+                    
+                    <!-- Genetic/Born -->
+                    <g transform="translate(150, 250)">
+                        <circle cx="75" cy="75" r="60" fill="#ffeaa7" opacity="0.7"/>
+                        <text x="75" y="70" text-anchor="middle" font-size="12" font-weight="bold">GENETIC</text>
+                        <text x="75" y="85" text-anchor="middle" font-size="10">Mutant</text>
+                        <text x="75" y="95" text-anchor="middle" font-size="10">Born with powers</text>
+                        <text x="75" y="105" text-anchor="middle" font-size="10">Family heritage</text>
+                        <text x="75" y="170" text-anchor="middle" font-size="11" font-style="italic">X-Men, Aquaman, Inhumans</text>
+                    </g>
+                    
+                    <!-- Magic/Mystical -->
+                    <g transform="translate(350, 250)">
+                        <circle cx="75" cy="75" r="60" fill="#dda0dd" opacity="0.7"/>
+                        <text x="75" y="70" text-anchor="middle" font-size="12" font-weight="bold">MYSTICAL</text>
+                        <text x="75" y="85" text-anchor="middle" font-size="10">Magic artifact</text>
+                        <text x="75" y="95" text-anchor="middle" font-size="10">Divine blessing</text>
+                        <text x="75" y="105" text-anchor="middle" font-size="10">Sorcery</text>
+                        <text x="75" y="170" text-anchor="middle" font-size="11" font-style="italic">Dr. Strange, Wonder Woman, Shazam</text>
+                    </g>
+                    
+                    <!-- Tragedy/Revenge -->
+                    <g transform="translate(550, 250)">
+                        <circle cx="75" cy="75" r="60" fill="#fd79a8" opacity="0.7"/>
+                        <text x="75" y="70" text-anchor="middle" font-size="12" font-weight="bold">TRAGEDY</text>
+                        <text x="75" y="85" text-anchor="middle" font-size="10">Personal loss</text>
+                        <text x="75" y="95" text-anchor="middle" font-size="10">Seeking justice</text>
+                        <text x="75" y="105" text-anchor="middle" font-size="10">Redemption</text>
+                        <text x="75" y="170" text-anchor="middle" font-size="11" font-style="italic">Batman, Punisher, Daredevil</text>
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <section class="step-two">
+            <h2>Step Two: Determine Point Totals</h2>
+            <p>Think of this like setting your construction budget. Champions campaigns typically use these point levels:</p>
+
+            <div class="point-levels">
+                <div class="level-card street-level">
+                    <h3>Street Level Heroes (75-100 points)</h3>
+                    <p><strong>Think:</strong> Daredevil, early Spider-Man, skilled vigilantes</p>
+                    <ul>
+                        <li>Limited powers or high-skill normal humans</li>
+                        <li>Local neighborhood focus</li>
+                        <li>Realistic consequences and limitations</li>
+                        <li>Examples: Skilled martial artist, tech-based detective</li>
+                    </ul>
+                </div>
+
+                <div class="level-card heroic">
+                    <h3>Heroic Level (150-200 points)</h3>
+                    <p><strong>Think:</strong> Classic comic book heroes</p>
+                    <ul>
+                        <li>Solid superpowers with some limitations</li>
+                        <li>City or regional scope</li>
+                        <li>Balanced between power and vulnerability</li>
+                        <li>Examples: Flying brick, energy projector, telepath</li>
+                    </ul>
+                </div>
+
+                <div class="level-card super-heroic">
+                    <h3>Super-Heroic (250-400 points)</h3>
+                    <p><strong>Think:</strong> Major league superheroes</p>
+                    <ul>
+                        <li>Multiple powerful abilities</li>
+                        <li>National or global threats</li>
+                        <li>Member of major superhero teams</li>
+                        <li>Examples: Superman-level heroes, major team leaders</li>
+                    </ul>
+                </div>
+
+                <div class="level-card cosmic">
+                    <h3>Cosmic Level (500+ points)</h3>
+                    <p><strong>Think:</strong> Gods among mortals</p>
+                    <ul>
+                        <li>Reality-altering powers</li>
+                        <li>Universal scope threats</li>
+                        <li>Galactic or dimensional protectors</li>
+                        <li>Examples: Silver Surfer, Doctor Manhattan</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="disadvantage-points">
+                <h3>Disadvantage Points: Getting More Bang for Your Buck</h3>
+                <p>Here's where Champions gets clever. You can take disadvantages to gain extra character points - but there are limits to prevent abuse:</p>
+                
+                <canvas id="disadvantageChart" width="700" height="300"></canvas>
+                
+                <div class="disadvantage-rules">
+                    <h4>Disadvantage Limits by Campaign Level</h4>
+                    <ul>
+                        <li><strong>Street Level:</strong> Up to 50 points in disadvantages</li>
+                        <li><strong>Heroic:</strong> Up to 75 points in disadvantages</li>
+                        <li><strong>Super-Heroic:</strong> Up to 100 points in disadvantages</li>
+                        <li><strong>Cosmic:</strong> Up to 150 points in disadvantages</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="step-three">
+            <h2>Step Three: Buy Characteristics</h2>
+            <p>This is like choosing the engine, transmission, and basic framework of your car. Your characteristics define your hero's fundamental capabilities.</p>
+
+            <div class="characteristic-costs">
+                <h3>Point Costs Per Characteristic</h3>
+                <div class="cost-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Characteristic</th>
+                                <th>Cost per Point</th>
+                                <th>Normal Human Range</th>
+                                <th>Superhero Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>STR</strong></td>
+                                <td>1 point</td>
+                                <td>8-12</td>
+                                <td>Superman (100), Hulk (120+)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DEX</strong></td>
+                                <td>3 points</td>
+                                <td>8-12</td>
+                                <td>Spider-Man (25), Quicksilver (30)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CON</strong></td>
+                                <td>2 points</td>
+                                <td>8-12</td>
+                                <td>Wolverine (25), Hulk (30+)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>INT</strong></td>
+                                <td>1 point</td>
+                                <td>8-12</td>
+                                <td>Reed Richards (30), Lex Luthor (25)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EGO</strong></td>
+                                <td>2 points</td>
+                                <td>8-12</td>
+                                <td>Professor X (30), Dr. Strange (25)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PRE</strong></td>
+                                <td>1 point</td>
+                                <td>8-12</td>
+                                <td>Captain America (25), Superman (30)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="characteristic-strategy">
+                <h3>Characteristic Strategy: The 80/20 Rule</h3>
+                <p>Like investing in stocks, you want to concentrate your points where they'll have the most impact. Here's a strategic approach:</p>
+                
+                <div class="strategy-tips">
+                    <div class="tip-card">
+                        <h4>🎯 Primary Stats (40% of points)</h4>
+                        <p>Invest heavily in 1-2 characteristics that define your hero's core concept. A brick character needs high STR, a speedster needs high DEX and SPD.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4>⚖️ Secondary Stats (40% of points)</h4>
+                        <p>Boost characteristics that support your primary role. Most heroes need decent CON for survivability and reasonable mental stats.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4>📊 Baseline Stats (20% of points)</h4>
+                        <p>Keep remaining characteristics at or slightly above human average (10-13). Don't leave glaring weaknesses unless they're intentional disadvantages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="step-four">
+            <h2>Step Four: Calculate Derived Statistics</h2>
+            <p>These are like your car's fuel efficiency, top speed, and safety ratings - they're calculated from your basic specs but tell you how the vehicle actually performs.</p>
+
+            <div class="derived-stats">
+                <div class="stat-calculation">
+                    <h3>Physical Defense (PD)</h3>
+                    <p><strong>Formula:</strong> STR ÷ 5 (rounded down)</p>
+                    <p><strong>What it does:</strong> Reduces physical damage from punches, bullets, clubs, etc.</p>
+                    <p><strong>Example:</strong> STR 20 = 4 PD (each point of PD stops 1 point of physical damage)</p>
+                </div>
+
+                <div class="stat-calculation">
+                    <h3>Energy Defense (ED)</h3>
+                    <p><strong>Formula:</strong> CON ÷ 5 (rounded down)</p>
+                    <p><strong>What it does:</strong> Reduces energy damage from lasers, fire, cold, electricity, etc.</p>
+                    <p><strong>Example:</strong> CON 18 = 3 ED</p>
+                </div>
+
+                <div class="stat-calculation">
+                    <h3>Speed (SPD)</h3>
+                    <p><strong>Formula:</strong> (DEX ÷ 10) + 2 (rounded down)</p>
+                    <p><strong>What it does:</strong> Determines how many actions you get per turn</p>
+                    <p><strong>Example:</strong> DEX 18 = SPD 3 (you act 3 times per 12-second turn)</p>
+                </div>
+
+                <div class="stat-calculation">
+                    <h3>Recovery (REC)</h3>
+                    <p><strong>Formula:</strong> (STR + CON) ÷ 10 (rounded down)</p>
+                    <p><strong>What it does:</strong> How much STUN and END you recover each turn</p>
+                    <p><strong>Example:</strong> STR 15 + CON 18 = 3 REC</p>
+                </div>
+
+                <div class="stat-calculation">
+                    <h3>Endurance (END)</h3>
+                    <p><strong>Formula:</strong> CON × 2</p>
+                    <p><strong>What it does:</strong> Your stamina pool for using powers and skills</p>
+                    <p><strong>Example:</strong> CON 18 = 36 END</p>
+                </div>
+
+                <div class="stat-calculation">
+                    <h3>Stun (STUN)</h3>
+                    <p><strong>Formula:</strong> BODY + STR + CON</p>
+                    <p><strong>What it does:</strong> How much stunning damage you can take before falling unconscious</p>
+                </div>
+
+                <div class="stat-calculation">
+                    <h3>Body (BODY)</h3>
+                    <p><strong>Formula:</strong> (STR + CON) ÷ 10 + 10 (rounded down)</p>
+                    <p><strong>What it does:</strong> Your actual physical health - when this reaches 0, you're dying</p>
+                </div>
+            </div>
+
+            <div class="derived-example">
+                <h3>Example: Calculating Sarah "Flamethrower" Chen</h3>
+                <div class="example-character">
+                    <h4>Base Characteristics</h4>
+                    <ul>
+                        <li>STR 13 (slightly above average firefighter)</li>
+                        <li>DEX 18 (quick reflexes, essential for the job)</li>
+                        <li>CON 20 (tough as nails, handles smoke and heat)</li>
+                        <li>INT 13 (smart problem solver)</li>
+                        <li>EGO 16 (strong willed, brave)</li>
+                        <li>PRE 14 (natural leader, reassuring presence)</li>
+                    </ul>
+                    
+                    <h4>Derived Statistics</h4>
+                    <ul>
+                        <li><strong>PD:</strong> 13 ÷ 5 = 2 (tough but not superhuman)</li>
+                        <li><strong>ED:</strong> 20 ÷ 5 = 4 (good heat resistance even before powers)</li>
+                        <li><strong>SPD:</strong> (18 ÷ 10) + 2 = 3 (acts 3 times per turn)</li>
+                        <li><strong>REC:</strong> (13 + 20) ÷ 10 = 3 (recovers quickly)</li>
+                        <li><strong>END:</strong> 20 × 2 = 40 (good stamina)</li>
+                        <li><strong>BODY:</strong> (13 + 20) ÷ 10 + 10 = 13 (healthy but mortal)</li>
+                        <li><strong>STUN:</strong> 13 + 13 + 20 = 46 (can take a beating)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-build">
+            <h2>Complete Example: Building "Resonance"</h2>
+            <p>Let's build a complete 150-point heroic-level character from start to finish. Meet Dr. Marcus Webb, a sound engineer who gained vibrational powers in a laboratory accident.</p>
+
+            <div class="character-build">
+                <h3>Step 1: Concept</h3>
+                <div class="concept-details">
+                    <p><strong>WHO:</strong> Dr. Marcus Webb, 32, acoustic engineer and music producer</p>
+                    <p><strong>WHAT:</strong> Controls sound and vibrations - can create sonic blasts, vibrate through walls, enhanced hearing</p>
+                    <p><strong>WHERE:</strong> Gained powers during earthquake research when experimental sonic equipment overloaded</p>
+                    <p><strong>WHEN:</strong> Six months ago - still learning his abilities</p>
+                    <p><strong>WHY:</strong> Wants to use his scientific knowledge and new powers to help prevent disasters and protect people</p>
+                </div>
+
+                <h3>Step 2: Point Budget</h3>
+                <p><strong>Base Points:</strong> 150 (Heroic Level)<br>
+                <strong>Disadvantages:</strong> +75 points (maximum for this level)<br>
+                <strong>Total to Spend:</strong> 225 points</p>
+
+                <h3>Step 3: Characteristics (90 points)</h3>
+                <div class="build-characteristics">
+                    <table>
+                        <tr><td>STR 13</td><td>(13 points)</td><td>Average build</td></tr>
+                        <tr><td>DEX 18</td><td>(24 points)</td><td>Quick reflexes for fine audio work</td></tr>
+                        <tr><td>CON 15</td><td>(10 points)</td><td>Decent health</td></tr>
+                        <tr><td>INT 20</td><td>(10 points)</td><td>Brilliant scientist</td></tr>
+                        <tr><td>EGO 15</td><td>(10 points)</td><td>Focused mind</td></tr>
+                        <tr><td>PRE 13</td><td>(3 points)</td><td>Somewhat shy</td></tr>
+                    </table>
+                    <p><strong>Characteristics Total:</strong> 70 points</p>
+                </div>
+
+                <h3>Step 4: Derived Stats</h3>
+                <ul>
+                    <li><strong>PD:</strong> 2, <strong>ED:</strong> 3, <strong>SPD:</strong> 3, <strong>REC:</strong> 2</li>
+                    <li><strong>END:</strong> 30, <strong>BODY:</strong> 12, <strong>STUN:</strong> 40</li>
+                </ul>
+
+                <h3>Step 5: Powers (95 points)</h3>
+                <div class="powers-list">
+                    <div class="power-entry">
+                        <h4>Sonic Blast - 60 Active Points</h4>
+                        <p><strong>Game Stats:</strong> Energy Blast 12d6</p>
+                        <p><strong>Limitations:</strong> -¼ No Range (-10 Active Points = 50 points)</p>
+                        <p><strong>Description:</strong> Focused sound waves that can shatter glass or knock people down</p>
+                    </div>
+
+                    <div class="power-entry">
+                        <h4>Enhanced Hearing - 15 Points</h4>
+                        <p><strong>Game Stats:</strong> Enhanced Perception (Hearing) +5</p>
+                        <p><strong>Description:</strong> Can hear whispers through walls, detect heartbeats, identify people by breathing patterns</p>
+                    </div>
+
+                    <div class="power-entry">
+                        <h4>Vibration Control - 20 Points</h4>
+                        <p><strong>Game Stats:</strong> Tunneling 2", Trigger (Activated by touching walls)</p>
+                        <p><strong>Description:</strong> Can vibrate molecular structure to pass through walls (like Kitty Pryde)</p>
+                    </div>
+                </div>
+
+                <h3>Step 6: Skills and Talents (45 points)</h3>
+                <ul>
+                    <li><strong>Engineering (Acoustics) 18-</strong> (8 points) - His professional expertise</li>
+                    <li><strong>Science Skills</strong> (15 points) - Physics, Mathematics, Computer Programming</li>
+                    <li><strong>Combat Skills</strong> (12 points) - Basic self-defense training</li>
+                    <li><strong>Absolute Pitch</strong> (5 points) - Perfect musical ear</li>
+                    <li><strong>Language: Spanish</strong> (2 points) - From growing up in California</li>
+                </ul>
+
+                <h3>Step 7: Disadvantages (-75 points)</h3>
+                <ul>
+                    <li><strong>Secret Identity</strong> (-15 points) - Must protect Dr. Webb identity</li>
+                    <li><strong>Code Against Killing</strong> (-15 points) - Won't use lethal force</li>
+                    <li><strong>Susceptible to Sonic Attacks</strong> (-20 points) - Takes double damage from sound-based attacks</li>
+                    <li><strong>Protective of Innocent Bystanders</strong> (-15 points) - Will risk himself to save civilians</li>
+                    <li><strong>Accidental Change</strong> (-10 points) - Powers activate during emotional stress</li>
+                </ul>
+
+                <h3>Final Point Tally</h3>
+                <div class="point-summary">
+                    <table>
+                        <tr><td>Characteristics:</td><td>70 points</td></tr>
+                        <tr><td>Powers:</td><td>95 points</td></tr>
+                        <tr><td>Skills & Talents:</td><td>45 points</td></tr>
+                        <tr><td>Disadvantages:</td><td>-75 points</td></tr>
+                        <tr><td><strong>Total:</strong></td><td><strong>135 points</strong></td></tr>
+                        <tr><td>Remaining:</td><td>15 points (saved for growth)</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h2>Practice Exercises</h2>
+
+            <div class="exercise">
+                <h3>Exercise: Character Concept Workshop</h3>
+                <p>Create three different character concepts using the same origin but different focuses:</p>
+                <p><strong>Origin:</strong> "Caught in an experimental teleportation accident"</p>
+                <div class="concept-variations">
+                    <div class="variation">
+                        <h4>Variation A: The Scientist</h4>
+                        <p>Focus on intelligence, analysis, and precise teleportation abilities</p>
+                    </div>
+                    <div class="variation">
+                        <h4>Variation B: The Warrior</h4>
+                        <p>Focus on combat teleportation, appearing behind enemies, teleporting objects</p>
+                    </div>
+                    <div class="variation">
+                        <h4>Variation C: The Rescue Hero</h4>
+                        <p>Focus on mass teleportation, evacuating civilians, reaching disaster zones</p>
+                    </div>
+                </div>
+                <p><strong>Your Task:</strong> Write a one-paragraph description for each variation, explaining how the same accident led to different heroic paths.</p>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise: Point Allocation Challenge</h3>
+                <p>You have 150 base points + 50 disadvantage points = 200 total points to build a "Flying Brick" (Superman-type) character.</p>
+                <div class="allocation-challenge">
+                    <h4>Required Powers:</h4>
+                    <ul>
+                        <li>Super Strength (must lift at least 1 ton)</li>
+                        <li>Flight (at least 60 mph)</li>
+                        <li>Damage Resistance (survive bullets)</li>
+                        <li>Enhanced vision or hearing</li>
+                    </ul>
+                    <p><strong>Constraint:</strong> No single power can cost more than 60 points</p>
+                    <p><strong>Challenge:</strong> Plan your point allocation before looking up exact power costs. What would you prioritize?</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise: Disadvantage Design</h3>
+                <p>Create meaningful disadvantages for these character concepts that enhance the story rather than just providing points:</p>
+                <ul>
+                    <li><strong>Fire-controlling hero:</strong> What weaknesses make sense?</li>
+                    <li><strong>Telepathic detective:</strong> What moral or practical limitations?</li>
+                    <li><strong>Time-traveling vigilante:</strong> What prevents abuse of time powers?</li>
+                </ul>
+                <p>Remember: Good disadvantages create interesting story moments, not just mechanical penalties.</p>
+            </div>
+        </section>
+
+        <section class="next-steps">
+            <h2>What's Coming Next</h2>
+            <p>You now have the complete roadmap for creating Champions characters! Our next lesson will dive deep into the heart of the superhero experience:</p>
+            <ul>
+                <li><strong>Powers and Abilities:</strong> How to build any superpower you can imagine</li>
+                <li><strong>The Universal Power System:</strong> Understanding how all powers work</li>
+                <li><strong>Advantages and Limitations:</strong> Customizing powers to fit your concept</li>
+                <li><strong>Power Framework:</strong> Building complex, interconnected abilities</li>
+            </ul>
+            <p>Get ready to unleash your imagination - if you can think it, Champions can build it!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>End of Lesson: Character Creation Step-by-Step</em></p>
+        <p>Your hero awaits creation. Let's bring them to life!</p>
+    </footer>
+
+    <script>
+        // Draw disadvantage limits chart
+        const canvas = document.getElementById('disadvantageChart');
+        const ctx = canvas.getContext('2d');
+        
+        const campaignTypes = [
+            { name: 'Street Level', base: 100, maxDisadvantages: 50, color: '#ff6b6b' },
+            { name: 'Heroic', base: 150, maxDisadvantages: 75, color: '#4ecdc4' },
+            { name: 'Super-Heroic', base: 250, maxDisadvantages: 100, color: '#45b7d1' },
+            { name: 'Cosmic', base: 500, maxDisadvantages: 150, color: '#96ceb4' }
+        ];
+        
+        const chartWidth = canvas.width - 100;
+        const chartHeight = canvas.height - 80;
+        const barWidth = chartWidth / campaignTypes.length;
+        
+        // Draw bars
+        campaignTypes.forEach((type, index) => {
+            const x = 50 + index * barWidth + 10;
+            const barActualWidth = barWidth - 20;
+            
+            // Base points bar
+            const baseHeight = (type.base / 600) * chartHeight;
+            ctx.fillStyle = type.color;
+            ctx.fillRect(x, canvas.height - 40 - baseHeight, barActualWidth * 0.6, baseHeight);
+            
+            // Disadvantage points bar
+            const disHeight = (type.maxDisadvantages / 600) * chartHeight;
+            ctx.fillStyle = type.color;
+            ctx.globalAlpha = 0.6;
+            ctx.fillRect(x + barActualWidth * 0.6, canvas.height - 40 - disHeight, barActualWidth * 0.4, disHeight);
+            ctx.globalAlpha = 1.0;
+            
+            // Labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(type.name, x + barActualWidth/2, canvas.height - 20);
+            
+            // Values
+            ctx.font = '10px Arial';
+            ctx.fillText(type.base + 'pts', x + barActualWidth * 0.3, canvas.height - 45 - baseHeight);
+            ctx.fillText('+' + type.maxDisadvantages, x + barActualWidth * 0.8, canvas.height - 45 - disHeight);
+        });
+        
+        // Title
+        ctx.fillStyle = '#333';
+        ctx.font = '16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Character Points by Campaign Level', canvas.width/2, 20);
+        
+        // Legend
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#666';
+        ctx.fillText('■ Base Points', 50, 50);
+        ctx.fillStyle = '#666';
+        ctx.globalAlpha = 0.6;
+        ctx.fillText('■ Max Disadvantages', 150, 50);
+        ctx.globalAlpha = 1.0;
+    </script>
+</body>
+</html>

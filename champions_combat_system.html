@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions Complete RPG - Combat and Action Resolution</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Champions Complete RPG</h1>
+        <h2>Combat and Action Resolution</h2>
+        <p><em>From Panel to Panel: Creating Comic Book Action</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>The Cinematic Combat Philosophy</h2>
+            <p>Imagine directing an action movie where Superman fights Doomsday. You need to choreograph every punch, every blast of heat vision, every moment when our hero gets knocked through a building. The scene must feel epic, but also follow logical rules about cause and effect. Champions combat works the same way - it provides a framework for creating those amazing comic book fight scenes while maintaining dramatic tension and tactical depth.</p>
+            
+            <p>Unlike turn-based systems where everyone politely waits their turn, Champions uses a Speed-based system that mirrors comic book action. Fast characters act multiple times while slower ones are still winding up their punches. It's like watching The Flash zip around while everyone else moves in slow motion.</p>
+        </section>
+
+        <section class="combat-sequence">
+            <h2>The Turn Sequence: Twelve Seconds of Action</h2>
+            <p>Champions divides time into 12-second "Turns" - roughly equivalent to one comic book page of action. Within each Turn, characters act on specific "Segments" based on their Speed (SPD) characteristic.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Start of Turn<br/>Segment 12] --> B[Segment 1]
+                    B --> C[Segment 2]
+                    C --> D[Segment 3]
+                    D --> E[Segment 4]
+                    E --> F[Segment 5]
+                    F --> G[Segment 6]
+                    G --> H[Segment 7]
+                    H --> I[Segment 8]
+                    I --> J[Segment 9]
+                    J --> K[Segment 10]
+                    K --> L[Segment 11]
+                    L --> A
+                    
+                    B -.-> M[SPD 6 acts here]
+                    C -.-> N[SPD 6 acts here]
+                    D -.-> O[SPD 4 acts here]
+                    F -.-> P[SPD 6 acts here]
+                    H -.-> Q[SPD 3 acts here]
+                    I -.-> R[SPD 6 acts here]
+                    J -.-> S[SPD 4 acts here]
+                    L -.-> T[SPD 6 acts here]
+                    
+                    style A fill:#ff9999
+                    style H fill:#99ff99
+                    style D fill:#99ccff
+                    style J fill:#99ccff
+            </div>
+
+            <div class="speed-examples">
+                <h3>Speed in Action: The Flash vs. Regular Heroes</h3>
+                <div class="speed-comparison">
+                    <div class="character-speed">
+                        <h4>🏃‍♂️ The Flash (SPD 12)</h4>
+                        <p><strong>Acts on segments:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12</p>
+                        <p><strong>Actions per turn:</strong> 12 (acts every segment!)</p>
+                        <p><strong>Real-world feel:</strong> Blurs around the battlefield, seemingly everywhere at once</p>
+                    </div>
+                    
+                    <div class="character-speed">
+                        <h4>🕷️ Spider-Man (SPD 4)</h4>
+                        <p><strong>Acts on segments:</strong> 3, 6, 9, 12</p>
+                        <p><strong>Actions per turn:</strong> 4 (acts every 3 segments)</p>
+                        <p><strong>Real-world feel:</strong> Quick reflexes, but normal action frequency</p>
+                    </div>
+                    
+                    <div class="character-speed">
+                        <h4>🦸‍♂️ Superman (SPD 3)</h4>
+                        <p><strong>Acts on segments:</strong> 4, 8, 12</p>
+                        <p><strong>Actions per turn:</strong> 3 (acts every 4 segments)</p>
+                        <p><strong>Real-world feel:</strong> Powerful but deliberate, thinks before acting</p>
+                    </div>
+                    
+                    <div class="character-speed">
+                        <h4>👨‍🚒 Normal Human (SPD 2)</h4>
+                        <p><strong>Acts on segments:</strong> 6, 12</p>
+                        <p><strong>Actions per turn:</strong> 2 (acts every 6 segments)</p>
+                        <p><strong>Real-world feel:</strong> Cautious, needs time to aim and plan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="action-resolution">
+            <h2>Action Resolution: The 3d6 System in Action</h2>
+            <p>When a character attempts something with an uncertain outcome, you roll 3d6 and try to roll equal to or under a target number. It's like playing limbo - lower is better, and the bar height depends on how difficult the task is.</p>
+
+            <div class="target-numbers">
+                <h3>Understanding Target Numbers</h3>
+                <canvas id="targetNumberChart" width="800" height="400"></canvas>
+                
+                <div class="target-examples">
+                    <div class="target-category easy">
+                        <h4>Easy Tasks (Target 14+)</h4>
+                        <p><strong>Success Rate:</strong> ~84%</p>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Spider-Man swinging through familiar neighborhood</li>
+                            <li>Superman flying in clear skies</li>
+                            <li>Batman using basic detective skills</li>
+                            <li>Iron Man operating familiar technology</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="target-category moderate">
+                        <h4>Moderate Tasks (Target 11-13)</h4>
+                        <p><strong>Success Rate:</strong> ~50-74%</p>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Hitting a moving target in combat</li>
+                            <li>Performing acrobatics under pressure</li>
+                            <li>Hacking a secured computer system</li>
+                            <li>Persuading a hostile witness</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="target-category hard">
+                        <h4>Hard Tasks (Target 8-10)</h4>
+                        <p><strong>Success Rate:</strong> ~16-37%</p>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Dodging a surprise attack</li>
+                            <li>Performing surgery under fire</li>
+                            <li>Negotiating with arch-nemesis</li>
+                            <li>Flying through a tornado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="target-category extreme">
+                        <h4>Extreme Tasks (Target 5-7)</h4>
+                        <p><strong>Success Rate:</strong> ~1.4-9%</p>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Catching a bullet bare-handed</li>
+                            <li>Convincing a mind-controlled enemy</li>
+                            <li>Defusing a bomb with seconds left</li>
+                            <li>Threading dimensional portal needle</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="attack-resolution">
+            <h2>Attack Resolution: Bringing the Pain</h2>
+            <p>Combat in Champions follows a clear sequence that mirrors comic book action panels: the hero winds up, takes aim, unleashes their power, and we see the dramatic result. Every attack tells a story.</p>
+
+            <div class="attack-sequence">
+                <h3>The Four Steps of Attack Resolution</h3>
+                
+                <div class="attack-steps">
+                    <div class="step attack-roll">
+                        <h4>Step 1: Attack Roll</h4>
+                        <p><strong>What happens:</strong> Attacker rolls 3d6 vs. their Combat Value (CV)</p>
+                        <p><strong>Comic book moment:</strong> "Spider-Man lines up his web-shooters..."</p>
+                        <p><strong>Modifiers:</strong></p>
+                        <ul>
+                            <li><strong>Range:</strong> Harder to hit distant targets</li>
+                            <li><strong>Target size:</strong> Easier to hit big targets</li>
+                            <li><strong>Movement:</strong> Penalties for moving or targeting moving enemies</li>
+                            <li><strong>Cover:</strong> Partial protection reduces hit chance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step defense-roll">
+                        <h4>Step 2: Defense Roll</h4>
+                        <p><strong>What happens:</strong> Defender rolls 3d6 vs. their Defensive Combat Value (DCV)</p>
+                        <p><strong>Comic book moment:</strong> "The Green Goblin twists away at the last second..."</p>
+                        <p><strong>Options:</strong></p>
+                        <ul>
+                            <li><strong>Dodge:</strong> Full defense, no other actions</li>
+                            <li><strong>Block:</strong> Use limbs or weapons to intercept</li>
+                            <li><strong>Dive for Cover:</strong> Get behind protection</li>
+                            <li><strong>Abort:</strong> Drop planned action to defend</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step damage-roll">
+                        <h4>Step 3: Damage Roll</h4>
+                        <p><strong>What happens:</strong> Roll dice based on attack power</p>
+                        <p><strong>Comic book moment:</strong> "The web hits home with tremendous force!"</p>
+                        <p><strong>Damage types:</strong></p>
+                        <ul>
+                            <li><strong>Normal Damage:</strong> Non-lethal (most superhero fights)</li>
+                            <li><strong>Killing Damage:</strong> Lethal attacks (bullets, claws, swords)</li>
+                            <li><strong>Mental Damage:</strong> Psychic attacks</li>
+                            <li><strong>Effect Damage:</strong> Powers that don't hurt but incapacitate</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step apply-damage">
+                        <h4>Step 4: Apply Damage and Effects</h4>
+                        <p><strong>What happens:</strong> Subtract defenses, apply consequences</p>
+                        <p><strong>Comic book moment:</strong> "The Goblin crashes through a billboard!"</p>
+                        <p><strong>Results:</strong></p>
+                        <ul>
+                            <li><strong>STUN damage:</strong> Stunning, temporary incapacitation</li>
+                            <li><strong>BODY damage:</strong> Real injury, permanent until healed</li>
+                            <li><strong>Knockback:</strong> Flying backward from impact</li>
+                            <li><strong>Special effects:</strong> Entanglement, blindness, etc.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="damage-system">
+            <h2>The Two-Track Damage System</h2>
+            <p>Champions uses a brilliant two-track system that captures both the stunning impact and actual injury from attacks. Think of it like the difference between being winded by a punch (STUN) versus having your ribs broken (BODY).</p>
+
+            <div class="damage-tracks">
+                <div class="stun-track">
+                    <h3>🥊 STUN Damage: The Knockout Track</h3>
+                    <p><strong>What it represents:</strong> Shock, disorientation, being winded, temporary incapacitation</p>
+                    <p><strong>Comic book examples:</strong></p>
+                    <ul>
+                        <li>Getting punched and seeing stars</li>
+                        <li>Being stunned by a flash-bang</li>
+                        <li>The "impact lines" around a character getting hit</li>
+                        <li>Characters shaking their heads to clear them</li>
+                    </ul>
+                    <p><strong>Game effect:</strong> When STUN reaches zero, you fall unconscious but aren't seriously injured</p>
+                </div>
+                
+                <div class="body-track">
+                    <h3>🩸 BODY Damage: The Injury Track</h3>
+                    <p><strong>What it represents:</strong> Real physical damage, cuts, burns, broken bones</p>
+                    <p><strong>Comic book examples:</strong></p>
+                    <ul>
+                        <li>Blood from a cut</li>
+                        <li>Limping from injured leg</li>
+                        <li>Torn costume revealing wounds</li>
+                        <li>Characters grimacing in pain</li>
+                    </ul>
+                    <p><strong>Game effect:</strong> When BODY reaches negative total, you're dying and need medical attention</p>
+                </div>
+            </div>
+
+            <div class="damage-example">
+                <h3>Damage in Action: Superman vs. Doomsday</h3>
+                <div class="combat-example">
+                    <h4>Round 1: Doomsday's Bone Spike Attack</h4>
+                    <div class="damage-calculation">
+                        <p><strong>Attack Roll:</strong> Doomsday rolls 12- (hits!)</p>
+                        <p><strong>Defense Roll:</strong> Superman rolls 11- (miss!)</p>
+                        <p><strong>Damage Roll:</strong> 15d6 Killing Attack = 45 points</p>
+                        <p><strong>Defense:</strong> Superman has 30 PD, reduces to 15 points</p>
+                        <p><strong>BODY Damage:</strong> 15 points (serious injury!)</p>
+                        <p><strong>STUN Damage:</strong> 15 × 3 = 45 points (killing attacks do extra STUN)</p>
+                    </div>
+                    
+                    <div class="narrative-result">
+                        <p><strong>Narrative Result:</strong> "Doomsday's bone spike punches through Superman's chest! The Man of Steel staggers backward, a look of shock on his face as he sees his own blood. Though the wound is serious (BODY damage), it's the stunning impact that nearly drops him (STUN damage)."</p>
+                    </div>
+                </div>
+            </div>
+
+            <canvas id="damageVisualization" width="700" height="300"></canvas>
+        </section>
+
+        <section class="tactical-options">
+            <h2>Tactical Combat Options: Beyond "I Attack"</h2>
+            <p>Great superhero fights aren't just slug-fests - they're strategic battles where heroes use the environment, teamwork, and clever tactics. Champions provides numerous options to make every combat feel like a choreographed action sequence.</p>
+
+            <div class="maneuvers-grid">
+                <div class="maneuver-category basic">
+                    <h3>🥊 Basic Combat Maneuvers</h3>
+                    <div class="maneuver-list">
+                        <div class="maneuver">
+                            <h4>Strike</h4>
+                            <p><strong>Effect:</strong> Standard attack with no modifiers</p>
+                            <p><strong>When to use:</strong> Reliable damage when you need to hit</p>
+                            <p><strong>Comic example:</strong> Superman's straightforward punch</p>
+                        </div>
+                        
+                        <div class="maneuver">
+                            <h4>Haymaker</h4>
+                            <p><strong>Effect:</strong> +4 damage dice, -5 to hit</p>
+                            <p><strong>When to use:</strong> All-or-nothing powerful attack</p>
+                            <p><strong>Comic example:</strong> Hulk winding up for a devastating blow</p>
+                        </div>
+                        
+                        <div class="maneuver">
+                            <h4>Multiple Attack</h4>
+                            <p><strong>Effect:</strong> Attack several targets with penalties</p>
+                            <p><strong>When to use:</strong> Fighting multiple weak enemies</p>
+                            <p><strong>Comic example:</strong> Spider-Man web-slinging through a crowd of thugs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="maneuver-category defensive">
+                    <h3>🛡️ Defensive Maneuvers</h3>
+                    <div class="maneuver-list">
+                        <div class="maneuver">
+                            <h4>Full Dodge</h4>
+                            <p><strong>Effect:</strong> +3 DCV, can't attack</p>
+                            <p><strong>When to use:</strong> Avoiding a devastating attack</p>
+                            <p><strong>Comic example:</strong> Daredevil flipping away from explosions</p>
+                        </div>
+                        
+                        <div class="maneuver">
+                            <h4>Full Block</h4>
+                            <p><strong>Effect:</strong> +2 DCV, can't attack</p>
+                            <p><strong>When to use:</strong> Can't avoid but can intercept</p>
+                            <p><strong>Comic example:</strong> Captain America using his shield</p>
+                        </div>
+                        
+                        <div class="maneuver">
+                            <h4>Abort to Dodge</h4>
+                            <p><strong>Effect:</strong> Give up your action to defend</p>
+                            <p><strong>When to use:</strong> Surprised by unexpected attack</p>
+                            <p><strong>Comic example:</strong> Last-second dive for cover</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="maneuver-category special">
+                    <h3>⚡ Special Maneuvers</h3>
+                    <div class="maneuver-list">
+                        <div class="maneuver">
+                            <h4>Grab</h4>
+                            <p><strong>Effect:</strong> Hold opponent, they can't move freely</p>
+                            <p><strong>When to use:</strong> Control enemy position or actions</p>
+                            <p><strong>Comic example:</strong> Thing grabbing and holding Doctor Doom</p>
+                        </div>
+                        
+                        <div class="maneuver">
+                            <h4>Disarm</h4>
+                            <p><strong>Effect:</strong> Remove weapon or item from enemy</p>
+                            <p><strong>When to use:</strong> Remove dangerous equipment</p>
+                            <p><strong>Comic example:</strong> Batman disarming gunmen with batarangs</p>
+                        </div>
+                        
+                        <div class="maneuver">
+                            <h4>Trip</h4>
+                            <p><strong>Effect:</strong> Knock enemy prone</p>
+                            <p><strong>When to use:</strong> Gain tactical advantage</p>
+                            <p><strong>Comic example:</strong> Spider-Man web-lining someone's feet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="environmental-combat">
+            <h2>Environmental Combat: The World as Your Weapon</h2>
+            <p>Superheroes don't fight in empty white rooms - they battle on rooftops, in burning buildings, while flying through asteroid fields. The environment should be as much a character in the fight as the heroes themselves.</p>
+
+            <div class="environment-examples">
+                <div class="environment burning-building">
+                    <h3>🔥 The Burning Skyscraper</h3>
+                    <div class="env-details">
+                        <h4>Tactical Elements:</h4>
+                        <ul>
+                            <li><strong>Smoke:</strong> Blocks vision, causes choking</li>
+                            <li><strong>Collapsing floors:</strong> Time pressure and falling hazards</li>
+                            <li><strong>Trapped civilians:</strong> Moral complications</li>
+                            <li><strong>Fire spread:</strong> Environment changes each turn</li>
+                        </ul>
+                        
+                        <h4>Creative Uses:</h4>
+                        <ul>
+                            <li>Ice powers to create temporary bridges</li>
+                            <li>Super strength to support failing beams</li>
+                            <li>Flight to rescue people from upper floors</li>
+                            <li>Force fields to contain fire spread</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="environment space-station">
+                    <h3>🚀 The Space Station Battle</h3>
+                    <div class="env-details">
+                        <h4>Tactical Elements:</h4>
+                        <ul>
+                            <li><strong>Zero gravity:</strong> Movement in 3D space</li>
+                            <li><strong>Hull breaches:</strong> Explosive decompression</li>
+                            <li><strong>Limited oxygen:</strong> Time pressure</li>
+                            <li><strong>Delicate equipment:</strong> Collateral damage matters</li>
+                        </ul>
+                        
+                        <h4>Creative Uses:</h4>
+                        <ul>
+                            <li>Magnetic powers to control movement</li>
+                            <li>Energy shields to seal breaches</li>
+                            <li>Telekinesis for precise maneuvering</li>
+                            <li>Ice powers to plug holes temporarily</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="environment underwater">
+                    <h3>🌊 The Underwater City</h3>
+                    <div class="env-details">
+                        <h4>Tactical Elements:</h4>
+                        <ul>
+                            <li><strong>Water resistance:</strong> Slows movement and attacks</li>
+                            <li><strong>Pressure effects:</strong> Crushing depths</li>
+                            <li><strong>Limited visibility:</strong> Murky water</li>
+                            <li><strong>Breathing concerns:</strong> Drowning risk</li>
+                        </ul>
+                        
+                        <h4>Creative Uses:</h4>
+                        <ul>
+                            <li>Electrical powers conduct through water</li>
+                            <li>Sonic attacks travel farther underwater</li>
+                            <li>Water control for devastating effects</li>
+                            <li>Heat vision to create steam barriers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="teamwork-combat">
+            <h2>Teamwork and Combination Attacks</h2>
+            <p>The best superhero teams don't just fight alongside each other - they create synergistic combinations that are greater than the sum of their parts. Think Cyclops providing cover while Wolverine charges, or Iron Man's repulsors amplifying Thor's lightning.</p>
+
+            <div class="teamwork-mechanics">
+                <h3>Teamwork Mechanics</h3>
+                
+                <div class="teamwork-options">
+                    <div class="teamwork-type">
+                        <h4>🎯 Coordinated Attack</h4>
+                        <p><strong>How it works:</strong> Multiple heroes attack same target on same segment</p>
+                        <p><strong>Benefit:</strong> Easier to hit, overwhelm defenses</p>
+                        <p><strong>Example:</strong> X-Men all focusing fire on Sentinel</p>
+                    </div>
+                    
+                    <div class="teamwork-type">
+                        <h4>🤝 Cooperative Action</h4>
+                        <p><strong>How it works:</strong> One hero helps another's action</p>
+                        <p><strong>Benefit:</strong> +1 to +3 bonus to assisted action</p>
+                        <p><strong>Example:</strong> Beast calculating trajectory for Cyclops' ricochet shot</p>
+                    </div>
+                    
+                    <div class="teamwork-type">
+                        <h4>⚡ Power Combination</h4>
+                        <p><strong>How it works:</strong> Powers interact for enhanced effect</p>
+                        <p><strong>Benefit:</strong> New capabilities neither hero has alone</p>
+                        <p><strong>Example:</strong> Iceman creates ice slope for Colossus fastball special</p>
+                    </div>
+                    
+                    <div class="teamwork-type">
+                        <h4>🛡️ Mutual Defense</h4>
+                        <p><strong>How it works:</strong> Heroes protect each other</p>
+                        <p><strong>Benefit:</strong> Extended defensive capabilities</p>
+                        <p><strong>Example:</strong> Invisible Woman's force field protecting entire team</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="combination-examples">
+                <h3>Famous Combination Attacks</h3>
+                
+                <div class="combo-showcase">
+                    <div class="combo">
+                        <h4>🏈 The Fastball Special</h4>
+                        <p><strong>Team:</strong> Colossus + Wolverine</p>
+                        <p><strong>Mechanics:</strong> Colossus throws Wolverine as a living projectile</p>
+                        <p><strong>Game Effect:</strong> Wolverine's claws + Colossus' strength + increased range</p>
+                        <p><strong>When to use:</strong> Surprise attack or reaching distant enemy</p>
+                    </div>
+                    
+                    <div class="combo">
+                        <h4>⚡ Lightning Conductor</h4>
+                        <p><strong>Team:</strong> Thor + Iron Man</p>
+                        <p><strong>Mechanics:</strong> Thor's lightning channels through Iron Man's armor</p>
+                        <p><strong>Game Effect:</strong> Massive electrical attack with technological precision</p>
+                        <p><strong>When to use:</strong> Overwhelming single target or powering equipment</p>
+                    </div>
+                    
+                    <div class="combo">
+                        <h4>🌪️ Fire Tornado</h4>
+                        <p><strong>Team:</strong> Human Torch + Storm</p>
+                        <p><strong>Mechanics:</strong> Storm's winds shape and amplify Johnny's flames</p>
+                        <p><strong>Game Effect:</strong> Area attack with fire and wind components</p>
+                        <p><strong>When to use:</strong> Multiple enemies or environmental control</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dramatic-combat">
+            <h2>Making Combat Dramatic: The Story Stakes</h2>
+            <p>Great superhero combat isn't just about reducing hit points - it's about dramatic stakes, moral choices, and character moments. Every fight should advance the story and reveal character.</p>
+
+            <div class="dramatic-elements">
+                <h3>Elements of Dramatic Combat</h3>
+                
+                <div class="drama-grid">
+                    <div class="drama-element">
+                        <h4>⏰ Time Pressure</h4>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Bomb will explode in 3 minutes</li>
+                            <li>Building is collapsing</li>
+                            <li>Villain escaping with hostage</li>
+                            <li>Portal closing soon</li>
+                        </ul>
+                        <p><strong>Effect:</strong> Forces quick decisions over perfect plans</p>
+                    </div>
+                    
+                    <div class="drama-element">
+                        <h4>👥 Innocent Bystanders</h4>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Civilians in crossfire</li>
+                            <li>Hostages as human shields</li>
+                            <li>Family members in danger</li>
+                            <li>Other heroes mind-controlled</li>
+                        </ul>
+                        <p><strong>Effect:</strong> Limits tactical options, adds moral complexity</p>
+                    </div>
+                    
+                    <div class="drama-element">
+                        <h4>🏗️ Environmental Stakes</h4>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Dam that mustn't break</li>
+                            <li>Hospital during surgery</li>
+                            <li>School bus on bridge</li>
+                            <li>Nuclear plant cooling system</li>
+                        </ul>
+                        <p><strong>Effect:</strong> Restrains power use, creates secondary objectives</p>
+                    </div>
+                    
+                    <div class="drama-element">
+                        <h4>💭 Personal Stakes</h4>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Fighting former ally</li>
+                            <li>Protecting secret identity</li>
+                            <li>First time using new power</li>
+                            <li>Overcoming personal fear</li>
+                        </ul>
+                        <p><strong>Effect:</strong> Creates character development opportunities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h2>Practice Exercises</h2>
+
+            <div class="exercise">
+                <h3>Exercise: Combat Choreography</h3>
+                <p>Design a 3-round combat sequence between these characters:</p>
+                <div class="choreography-setup">
+                    <div class="character">
+                        <h4>Hero: "Shockwave" (Sonic Powers)</h4>
+                        <ul>
+                            <li>Sonic blasts (ranged attack)</li>
+                            <li>Sound barriers (defense)</li>
+                            <li>Enhanced hearing</li>
+                            <li>Flight via sound waves</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="character">
+                        <h4>Villain: "Silence" (Sound Absorption)</h4>
+                        <ul>
+                            <li>Absorbs all sound in area</li>
+                            <li>Redirect absorbed sound as attacks</li>
+                            <li>Creates zones of absolute quiet</li>
+                            <li>Immune to sonic attacks</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p><strong>Setting:</strong> Metropolitan Opera House during performance</p>
+                <p><strong>Stakes:</strong> 2,000 audience members, delicate acoustics, priceless instruments</p>
+                <p><strong>Your task:</strong> Plan each round showing how their powers interact, what tactics they use, and how the environment affects the fight.</p>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise: Team Combination Design</h3>
+                <p>Create three unique combination attacks for this superhero team:</p>
+                <div class="team-roster">
+                    <ul>
+                        <li><strong>"Prism":</strong> Light manipulation (bending, lasers, invisibility)</li>
+                        <li><strong>"Tremor":</strong> Earth control (earthquakes, stone shaping, tunneling)</li>
+                        <li><strong>"Mindbridge":</strong> Telepathy (mind reading, mental links, illusions)</li>
+                        <li><strong>"Catalyst":</strong> Chemical control (acids, gases, molecular changes)</li>
+                    </ul>
+                </div>
+                
+                <p><strong>Requirements:</strong></p>
+                <ul>
+                    <li>Each combo must use exactly 2 team members</li>
+                    <li>Describe the visual effect and tactical purpose</li>
+                    <li>Explain what makes it more effective than individual actions</li>
+                    <li>Give it a cool codename the team would use</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise: Environmental Challenge Design</h3>
+                <p>Design a combat environment that specifically challenges these power types:</p>
+                <div class="power-challenges">
+                    <div class="challenge">
+                        <h4>Challenge Flight Powers</h4>
+                        <p>Design an environment where flying is dangerous or impossible</p>
+                        <p><strong>Consider:</strong> What makes air travel hazardous? How can ground-based opponents threaten flyers?</p>
+                    </div>
+                    
+                    <div class="challenge">
+                        <h4>Challenge Super Strength</h4>
+                        <p>Create a scenario where raw power creates more problems</p>
+                        <p><strong>Consider:</strong> What breaks easily? When is gentle touch required?</p>
+                    </div>
+                    
+                    <div class="challenge">
+                        <h4>Challenge Energy Blasters</h4>
+                        <p>Design a situation where ranged attacks are problematic</p>
+                        <p><strong>Consider:</strong> What amplifies or redirects energy? When does collateral damage matter most?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="next-steps">
+            <h2>Next: Skills, Equipment, and Character Development</h2>
+            <p>You now understand how to create dynamic, cinematic combat that feels like comic book action! Our next lesson explores the non-powered side of heroes:</p>
+            <ul>
+                <li><strong>Skill Systems:</strong> What heroes know and can do without powers</li>
+                <li><strong>Equipment and Gadgets:</strong> Building the perfect utility belt</li>
+                <li><strong>Character Advancement:</strong> How heroes grow and develop</li>
+                <li><strong>Social Mechanics:</strong> Heroic interactions outside of combat</li>
+            </ul>
+            <p>Because being a superhero is about more than just having amazing powers - it's about being amazing people!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>End of Lesson: Combat and Action Resolution</em></p>
+        <p>Time to put those powers to the test in epic battles!</p>
+    </footer>
+
+    <script>
+        // Draw target number success probability chart
+        const targetCanvas = document.getElementById('targetNumberChart');
+        const targetCtx = targetCanvas.getContext('2d');
+        
+        // Target numbers and their success probabilities
+        const targetData = [
+            { target: 5, probability: 0.014, label: 'Extreme' },
+            { target: 6, probability: 0.028, label: 'Extreme' },
+            { target: 7, probability: 0.046, label: 'Extreme' },
+            { target: 8, probability: 0.074, label: 'Hard' },
+            { target: 9, probability: 0.116, label: 'Hard' },
+            { target: 10, probability: 0.162, label: 'Hard' },
+            { target: 11, probability: 0.216, label: 'Moderate' },
+            { target: 12, probability: 0.278, label: 'Moderate' },
+            { target: 13, probability: 0.347, label: 'Moderate' },
+            { target: 14, probability: 0.426, label: 'Easy' },
+            { target: 15, probability: 0.509, label: 'Easy' },
+            { target: 16, probability: 0.593, label: 'Easy' },
+            { target: 17, probability: 0.676, label: 'Easy' },
+            { target: 18, probability: 0.759, label: 'Easy' }
+        ];
+        
+        const chartWidth = targetCanvas.width - 100;
+        const chartHeight = targetCanvas.height - 100;
+        const barWidth = chartWidth / targetData.length;
+        
+        // Define colors for difficulty levels
+        const difficultyColors = {
+            'Extreme': '#ff6b6b',
+            'Hard': '#ffa500',
+            'Moderate': '#4ecdc4',
+            'Easy': '#98d8c8'
+        };
+        
+        // Draw bars
+        targetData.forEach((data, index) => {
+            const barHeight = data.probability * chartHeight;
+            const x = 50 + index * barWidth;
+            const y = targetCanvas.height - 50 - barHeight;
+            
+            targetCtx.fillStyle = difficultyColors[data.label];
+            targetCtx.fillRect(x + 2, y, barWidth - 4, barHeight);
+            
+            // Draw target number labels
+            targetCtx.fillStyle = '#333';
+            targetCtx.font = '10px Arial';
+            targetCtx.textAlign = 'center';
+            targetCtx.fillText(data.target.toString(), x + barWidth/2, targetCanvas.height - 30);
+            
+            // Draw percentage labels on taller bars
+            if (data.probability > 0.3) {
+                targetCtx.fillStyle = '#fff';
+                targetCtx.font = '9px Arial';
+                targetCtx.fillText(Math.round(data.probability * 100) + '%', x + barWidth/2, y + 15);
+            }
+        });
+        
+        // Draw title and labels
+        targetCtx.fillStyle = '#333';
+        targetCtx.font = '16px Arial';
+        targetCtx.textAlign = 'center';
+        targetCtx.fillText('3d6 Success Probabilities by Target Number', targetCanvas.width/2, 25);
+        
+        targetCtx.font = '12px Arial';
+        targetCtx.fillText('Target Number', targetCanvas.width/2, targetCanvas.height - 10);
+        
+        // Y-axis label
+        targetCtx.save();
+        targetCtx.translate(20, targetCanvas.height/2);
+        targetCtx.rotate(-Math.PI/2);
+        targetCtx.textAlign = 'center';
+        targetCtx.fillText('Success Probability', 0, 0);
+        targetCtx.restore();
+
+        // Draw damage visualization
+        const damageCanvas = document.getElementById('damageVisualization');
+        const damageCtx = damageCanvas.getContext('2d');
+        
+        // Draw STUN track
+        damageCtx.fillStyle = '#4ecdc4';
+        damageCtx.fillRect(50, 50, 280, 60);
+        damageCtx.fillStyle = '#333';
+        damageCtx.font = '14px Arial';
+        damageCtx.textAlign = 'center';
+        damageCtx.fillText('STUN Track (Consciousness)', 190, 75);
+        damageCtx.fillText('40 / 40 points', 190, 95);
+        
+        // Draw BODY track
+        damageCtx.fillStyle = '#ff6b6b';
+        damageCtx.fillRect(370, 50, 280, 60);
+        damageCtx.fillStyle = '#333';
+        damageCtx.fillText('BODY Track (Physical Health)', 510, 75);
+        damageCtx.fillText('12 / 12 points', 510, 95);
+        
+        // Draw damage example
+        damageCtx.fillStyle = '#ffff99';
+        damageCtx.fillRect(50, 150, 600, 100);
+        damageCtx.fillStyle = '#333';
+        damageCtx.font = '12px Arial';
+        damageCtx.textAlign = 'left';
+        damageCtx.fillText('Example: Superman takes 25 STUN and 8 BODY from Doomsday\'s attack', 70, 175);
+        
+        // Show damage result
+        damageCtx.fillStyle = '#99ccff';
+        damageCtx.fillRect(70, 190, 200, 40);
+        damageCtx.fillStyle = '#333';
+        damageCtx.textAlign = 'center';
+        damageCtx.fillText('STUN: 15/40 remaining', 170, 205);
+        damageCtx.fillText('(Badly shaken)', 170, 220);
+        
+        damageCtx.fillStyle = '#ffcccc';
+        damageCtx.fillRect(430, 190, 200, 40);
+        damageCtx.fillText('BODY: 4/12 remaining', 530, 205);
+        damageCtx.fillText('(Seriously injured)', 530, 220);
+        
+        // Title
+        damageCtx.fillStyle = '#333';
+        damageCtx.font = '16px Arial';
+        damageCtx.textAlign = 'center';
+        damageCtx.fillText('Two-Track Damage System', damageCanvas.width/2, 25);
+    </script>
+</body>
+</html>

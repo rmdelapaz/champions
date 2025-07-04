@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions Complete RPG - Introduction and Core Concepts</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Champions Complete RPG</h1>
+        <h2>Introduction and Core Concepts</h2>
+        <p><em>Welcome to the World of Superheroic Adventures!</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>What is Champions Complete?</h2>
+            <p>Imagine you're an architect designing a skyscraper. You need precise blueprints, detailed specifications, and a deep understanding of physics and engineering. Champions Complete RPG is like having the ultimate architectural toolkit - but instead of building towers, you're constructing superheroes and crafting epic adventures!</p>
+            
+            <p>Champions Complete is a superhero tabletop role-playing game based on the HERO System 6th Edition. It's designed specifically for creating and playing superheroes in a four-color comic book world. Think of it as your complete toolkit for becoming Stan Lee, Jack Kirby, and the Dungeon Master all rolled into one!</p>
+        </section>
+
+        <section class="core-philosophy">
+            <h2>The HERO System Philosophy</h2>
+            <p>The HERO System operates on a simple yet powerful principle: <strong>everything is built from the same basic components</strong>. It's like having a box of LEGO blocks - whether you're building a house, a spaceship, or a robot, you're using the same fundamental pieces, just arranged differently.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[HERO System Core] --> B[Powers]
+                    A --> C[Skills]
+                    A --> D[Talents]
+                    A --> E[Perks]
+                    A --> F[Disadvantages]
+                    B --> G[Energy Blast]
+                    B --> H[Flight]
+                    B --> I[Telepathy]
+                    C --> J[Combat Skills]
+                    C --> K[Knowledge Skills]
+                    C --> L[Social Skills]
+                    D --> M[Danger Sense]
+                    D --> N[Perfect Pitch]
+                    E --> O[Wealth]
+                    E --> P[Contacts]
+                    F --> Q[Physical Limitation]
+                    F --> R[Psychological Limitation]
+            </div>
+
+            <p>This unified approach means that Superman's heat vision and a police officer's pistol both use the same underlying mechanics - they're both ranged attacks that deal damage. The difference lies in the details: how much damage, what special effects, and what limitations apply.</p>
+        </section>
+
+        <section class="point-buy">
+            <h2>The Point-Buy System</h2>
+            <p>Think of character creation like shopping with a budget. You have a certain number of "character points" to spend, and everything costs points. Want to be super strong? That costs points. Want to fly? More points. Want to be invulnerable? Even more points!</p>
+
+            <p>But here's the genius part: you can get more points by taking disadvantages. It's like getting a discount on your superhero by accepting some flaws. Maybe your super strength only works during the day (like a solar-powered hero), or perhaps you have a code against killing that prevents you from using lethal force.</p>
+
+            <div class="example-box">
+                <h3>Real-World Analogy: The Smartphone Analogy</h3>
+                <p>Imagine you're designing a smartphone with a fixed budget:</p>
+                <ul>
+                    <li><strong>Better camera</strong> = More points (like Enhanced Senses)</li>
+                    <li><strong>Faster processor</strong> = More points (like high Intelligence)</li>
+                    <li><strong>Larger battery</strong> = More points (like high Endurance)</li>
+                    <li><strong>Waterproof case</strong> = More points (like Damage Resistance)</li>
+                </ul>
+                <p>But to afford all these features, you might accept:</p>
+                <ul>
+                    <li><strong>Shorter battery life</strong> = Disadvantage (like needing to recharge powers)</li>
+                    <li><strong>Fragile screen</strong> = Disadvantage (like a Physical Limitation)</li>
+                    <li><strong>Limited storage</strong> = Disadvantage (like a restriction on powers)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="characteristics">
+            <h2>The Eight Characteristics</h2>
+            <p>Every character in Champions has eight core characteristics that define their basic capabilities. Think of these as the fundamental stats that make up any living being - from the mightiest superhero to the most ordinary civilian.</p>
+
+            <canvas id="characteristicsChart" width="600" height="400"></canvas>
+
+            <div class="characteristics-grid">
+                <div class="char-card">
+                    <h3>Strength (STR)</h3>
+                    <p>Your raw physical power. This determines how much you can lift, how hard you can punch, and how much damage you can take from physical attacks. A normal human has STR 10, while Superman might have STR 100!</p>
+                </div>
+
+                <div class="char-card">
+                    <h3>Dexterity (DEX)</h3>
+                    <p>Your agility, reflexes, and fine motor control. This affects your accuracy with attacks, your ability to dodge, and how fast you can act. Spider-Man would have very high DEX due to his spider-sense and acrobatic abilities.</p>
+                </div>
+
+                <div class="char-card">
+                    <h3>Constitution (CON)</h3>
+                    <p>Your health, stamina, and ability to resist damage. This determines how much punishment you can take and how long you can keep fighting. The Hulk would have tremendous CON.</p>
+                </div>
+
+                <div class="char-card">
+                    <h3>Intelligence (INT)</h3>
+                    <p>Your reasoning ability, memory, and problem-solving skills. This affects your skill points and ability to figure out complex problems. Reed Richards (Mr. Fantastic) would have exceptional INT.</p>
+                </div>
+
+                <div class="char-card">
+                    <h3>Ego (EGO)</h3>
+                    <p>Your willpower, mental strength, and force of personality. This helps resist mental attacks and influences how persuasive you are. Professor X would have incredible EGO.</p>
+                </div>
+
+                <div class="char-card">
+                    <h3>Presence (PRE)</h3>
+                    <p>Your charisma, leadership ability, and how impressive you are. This affects social interactions and intimidation. Captain America would have high PRE as a natural leader.</p>
+                </div>
+
+                <div class="char-card">
+                    <h3>Speed (SPD)</h3>
+                    <p>How fast you can act in combat. This determines how many actions you get per turn. The Flash would have incredibly high SPD, allowing him to act multiple times while others act once.</p>
+                </div>
+
+                <div class="char-card">
+                    <h3>Physical Defense (PD)</h3>
+                    <p>Your natural resistance to physical damage. This reduces damage from punches, bullets, and other physical attacks. Iron Man's armor would give him high PD.</p>
+                </div>
+
+                <div class="char-card">
+                    <h3>Energy Defense (ED)</h3>
+                    <p>Your natural resistance to energy attacks. This reduces damage from lasers, fire, electricity, and other energy-based attacks. The Human Torch would have high ED against fire attacks.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="dice-system">
+            <h2>The 3d6 Dice System</h2>
+            <p>Champions uses three six-sided dice (3d6) for most rolls. This creates a bell curve where average results (10-11) are most common, while extremely high or low results are rare. It's like real life - most people are average at most things, with only a few being exceptionally good or bad.</p>
+
+            <div class="dice-probability">
+                <h3>Why 3d6 Instead of 1d20?</h3>
+                <p>Imagine you're a basketball player taking free throws:</p>
+                <ul>
+                    <li><strong>With 1d20</strong>: Every result is equally likely - you're as likely to make a perfect shot as you are to miss completely</li>
+                    <li><strong>With 3d6</strong>: You're most likely to make a decent shot, occasionally great, occasionally poor - much more realistic!</li>
+                </ul>
+            </div>
+
+            <canvas id="diceChart" width="600" height="300"></canvas>
+        </section>
+
+        <section class="game-flow">
+            <h2>How the Game Flows</h2>
+            <p>Champions follows a structured but flexible flow that mimics comic book storytelling:</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Scene Setup] --> B[Character Actions]
+                    B --> C[Dice Rolls]
+                    C --> D[Results & Consequences]
+                    D --> E[Story Development]
+                    E --> F[New Scene]
+                    F --> A
+                    
+                    style A fill:#e1f5fe
+                    style B fill:#f3e5f5
+                    style C fill:#e8f5e8
+                    style D fill:#fff3e0
+                    style E fill:#fce4ec
+                    style F fill:#f1f8e9
+            </div>
+        </section>
+
+        <section class="practical-examples">
+            <h2>Real-World Applications</h2>
+            
+            <div class="example-scenario">
+                <h3>Creating Your First Hero: The Firefighter</h3>
+                <p>Let's say you want to create a hero based on a firefighter who gained powers in a chemical plant explosion. Here's how you might approach it:</p>
+                
+                <div class="hero-build">
+                    <h4>Core Concept</h4>
+                    <p>"Jake Morrison was a veteran firefighter who gained the ability to control fire and become immune to flames after being exposed to experimental chemicals during a warehouse fire."</p>
+                    
+                    <h4>Characteristics (Point Allocation)</h4>
+                    <ul>
+                        <li><strong>STR 15</strong> (above average - firefighters need to be strong)</li>
+                        <li><strong>DEX 18</strong> (excellent - needs quick reflexes in dangerous situations)</li>
+                        <li><strong>CON 20</strong> (exceptional - must endure smoke, heat, and physical demands)</li>
+                        <li><strong>INT 13</strong> (good - needs to solve problems quickly)</li>
+                        <li><strong>EGO 16</strong> (high - brave and strong-willed)</li>
+                        <li><strong>PRE 14</strong> (good - natural leader and reassuring presence)</li>
+                    </ul>
+                    
+                    <h4>Powers</h4>
+                    <ul>
+                        <li><strong>Fire Control</strong> - Energy Blast with fire special effects</li>
+                        <li><strong>Fire Immunity</strong> - Damage Resistance vs. fire/heat</li>
+                        <li><strong>Fire Detection</strong> - Enhanced Senses to detect fires</li>
+                        <li><strong>Flame Body</strong> - Damage Shield (anyone who touches him takes fire damage)</li>
+                    </ul>
+                    
+                    <h4>Skills</h4>
+                    <ul>
+                        <li><strong>Firefighting</strong> - Professional skill</li>
+                        <li><strong>Paramedics</strong> - First aid and medical training</li>
+                        <li><strong>Climbing</strong> - Scaling buildings and obstacles</li>
+                        <li><strong>Demolitions</strong> - Knowledge of explosives and structural damage</li>
+                    </ul>
+                    
+                    <h4>Disadvantages</h4>
+                    <ul>
+                        <li><strong>Code Against Killing</strong> - Won't use lethal force</li>
+                        <li><strong>Protective of Civilians</strong> - Always puts innocent lives first</li>
+                        <li><strong>Public Identity</strong> - Still works as a firefighter</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h2>Practice Exercises</h2>
+            
+            <div class="exercise">
+                <h3>Exercise: Character Concept Development</h3>
+                <p>Think of your favorite superhero (or create an original one). Write down:</p>
+                <ol>
+                    <li>Their origin story in one paragraph</li>
+                    <li>Their three most important powers</li>
+                    <li>Their greatest strength (personality-wise)</li>
+                    <li>Their greatest weakness or limitation</li>
+                    <li>What drives them to be a hero</li>
+                </ol>
+                <p><strong>Example:</strong> "Spider-Man gained his powers from a radioactive spider bite. His key powers are web-slinging, wall-crawling, and spider-sense. His greatest strength is his sense of responsibility. His greatest weakness is his civilian life interfering with his hero duties. He's driven by the lesson that 'with great power comes great responsibility.'"</p>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise: Understanding Point Economy</h3>
+                <p>You have 100 character points to spend. Prioritize these elements for a detective-themed hero:</p>
+                <ul>
+                    <li>High Intelligence (for investigation)</li>
+                    <li>Good fighting skills (for dangerous situations)</li>
+                    <li>Enhanced senses (for finding clues)</li>
+                    <li>Contacts in the police force</li>
+                    <li>Wealth (for equipment and resources)</li>
+                </ul>
+                <p>What would you spend the most points on? What disadvantages might you take to get more points?</p>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise: Dice Probability Understanding</h3>
+                <p>If your character has a skill of 14- (meaning they succeed on a roll of 14 or less on 3d6), they succeed about 84% of the time. Consider these scenarios:</p>
+                <ul>
+                    <li>A skilled surgeon operating (needs precision)</li>
+                    <li>A detective looking for clues (needs thoroughness)</li>
+                    <li>A pilot flying in a storm (needs expertise)</li>
+                </ul>
+                <p>What skill levels would you give each profession, and why?</p>
+            </div>
+        </section>
+
+        <section class="next-steps">
+            <h2>What's Next?</h2>
+            <p>Now that you understand the foundational concepts of Champions Complete, you're ready to dive deeper into specific aspects of the game. In our next lesson, we'll explore:</p>
+            <ul>
+                <li>Building your first complete character step-by-step</li>
+                <li>Understanding the detailed point costs</li>
+                <li>Balancing powers with limitations</li>
+                <li>Creating a cohesive character concept</li>
+            </ul>
+            <p>Remember, Champions Complete is about creating heroes that feel like they belong in comic books - larger than life, but with very human struggles and motivations. The system gives you the tools; your imagination provides the story!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>End of Lesson: Introduction and Core Concepts</em></p>
+        <p>Ready to continue your Champions Complete journey? The next lesson awaits!</p>
+    </footer>
+
+    <script>
+        // Draw characteristics radar chart
+        const canvas = document.getElementById('characteristicsChart');
+        const ctx = canvas.getContext('2d');
+        
+        // Sample character stats for visualization
+        const stats = {
+            'STR': 15,
+            'DEX': 18,
+            'CON': 20,
+            'INT': 13,
+            'EGO': 16,
+            'PRE': 14,
+            'SPD': 4,
+            'PD': 8
+        };
+        
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 150;
+        
+        // Draw background grid
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.lineWidth = 1;
+        
+        for (let i = 1; i <= 4; i++) {
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, (radius / 4) * i, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+        
+        // Draw axes
+        const statNames = Object.keys(stats);
+        const angleStep = (2 * Math.PI) / statNames.length;
+        
+        statNames.forEach((stat, index) => {
+            const angle = index * angleStep - Math.PI / 2;
+            const x = centerX + Math.cos(angle) * radius;
+            const y = centerY + Math.sin(angle) * radius;
+            
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            // Add labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(stat, x + Math.cos(angle) * 20, y + Math.sin(angle) * 20);
+        });
+        
+        // Draw character stats
+        ctx.strokeStyle = '#ff6b6b';
+        ctx.fillStyle = 'rgba(255, 107, 107, 0.3)';
+        ctx.lineWidth = 2;
+        
+        ctx.beginPath();
+        statNames.forEach((stat, index) => {
+            const angle = index * angleStep - Math.PI / 2;
+            const value = Math.min(stats[stat], 25); // Cap at 25 for display
+            const distance = (value / 25) * radius;
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance;
+            
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        // Draw dice probability chart
+        const diceCanvas = document.getElementById('diceChart');
+        const diceCtx = diceCanvas.getContext('2d');
+        
+        const probabilities = [
+            { roll: 3, prob: 1/216 },
+            { roll: 4, prob: 3/216 },
+            { roll: 5, prob: 6/216 },
+            { roll: 6, prob: 10/216 },
+            { roll: 7, prob: 15/216 },
+            { roll: 8, prob: 21/216 },
+            { roll: 9, prob: 25/216 },
+            { roll: 10, prob: 27/216 },
+            { roll: 11, prob: 27/216 },
+            { roll: 12, prob: 25/216 },
+            { roll: 13, prob: 21/216 },
+            { roll: 14, prob: 15/216 },
+            { roll: 15, prob: 10/216 },
+            { roll: 16, prob: 6/216 },
+            { roll: 17, prob: 3/216 },
+            { roll: 18, prob: 1/216 }
+        ];
+        
+        const maxProb = Math.max(...probabilities.map(p => p.prob));
+        const barWidth = (diceCanvas.width - 100) / probabilities.length;
+        const chartHeight = diceCanvas.height - 60;
+        
+        probabilities.forEach((item, index) => {
+            const barHeight = (item.prob / maxProb) * chartHeight;
+            const x = 50 + index * barWidth;
+            const y = diceCanvas.height - 30 - barHeight;
+            
+            diceCtx.fillStyle = '#4ecdc4';
+            diceCtx.fillRect(x, y, barWidth - 2, barHeight);
+            
+            diceCtx.fillStyle = '#333';
+            diceCtx.font = '10px Arial';
+            diceCtx.textAlign = 'center';
+            diceCtx.fillText(item.roll.toString(), x + barWidth/2, diceCanvas.height - 10);
+        });
+        
+        // Add title
+        diceCtx.fillStyle = '#333';
+        diceCtx.font = '16px Arial';
+        diceCtx.textAlign = 'center';
+        diceCtx.fillText('3d6 Probability Distribution', diceCanvas.width/2, 20);
+    </script>
+</body>
+</html>
