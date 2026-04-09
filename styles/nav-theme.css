@@ -1,0 +1,99 @@
+/* Dark mode overrides for main.css */
+body.dark-mode {
+    background-color: #1a1a2e !important;
+    color: #c8cdd3 !important;
+}
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+    background-color: #2a3a6e;
+    color: #e0e0e0;
+}
+body.dark-mode strong { color: #e0e0e0; }
+body.dark-mode a { color: #74b9ff; }
+body.dark-mode code, body.dark-mode pre {
+    background-color: #1e2a3a;
+    color: #66d9a0;
+}
+body.dark-mode blockquote {
+    background-color: #2a2a3e;
+    color: #c8cdd3;
+}
+body.dark-mode table, body.dark-mode td, body.dark-mode tr, body.dark-mode th {
+    border-color: #555;
+    color: #c8cdd3;
+}
+body.dark-mode .mermaid_container,
+body.dark-mode .mermaid-diagram,
+body.dark-mode .mermaid {
+    background-color: #1e2a3a;
+    border-color: #3a3a5e;
+}
+body.dark-mode .comment-block {
+    background-color: #1e2a3a;
+    border-left-color: #4a8aff;
+    color: #c8cdd3;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(59,130,246,0.15);
+    border: 2px solid rgb(59,130,246);
+    color: rgb(59,130,246);
+    font-size: 1.4em;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(59,130,246,0.4);
+}
+body.dark-mode .theme-toggle {
+    background: rgba(116,185,255,0.15);
+    border-color: #74b9ff;
+    color: #74b9ff;
+}
+
+/* Prev / Next navigation bar */
+.page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: Arial, sans-serif;
+    font-size: 0.95em;
+    gap: 10px;
+}
+.page-nav a {
+    color: white !important;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.15);
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+.page-nav a:hover { background: rgba(255,255,255,0.3); }
+.page-nav .nav-home {
+    background: rgba(255,255,255,0.25);
+    font-weight: bold;
+}
+.page-nav .nav-placeholder {
+    width: 120px; /* keeps center aligned when prev or next is missing */
+}
+@media (max-width: 600px) {
+    .page-nav { font-size: 0.8em; padding: 8px 10px; }
+    .page-nav a { padding: 6px 10px; }
+}
