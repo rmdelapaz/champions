@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Sheets - The Champions Guide</title>
+    <meta name="description" content="Fillable Champions Complete (HERO System 6th Edition) character sheets: all seventeen characteristics with costs and rolls, Speed Chart Phases, defenses, movement, powers, skills, martial arts and Complications, with point totals, save, print and file import/export.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        /* ===== Controls (themed) ===== */
+        main .sheet-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin: 20px auto 6px; max-width: 860px; }
+        main .sheet-controls select {
+            min-height: 40px; padding: 6px 10px; border-radius: 8px; min-width: 200px; width: auto;
+            background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); font: inherit; font-size: 0.95rem;
+        }
+        main .sheet-controls button, main .tabs button {
+            min-height: 40px; padding: 7px 14px; margin: 0; border-radius: 8px; font: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer;
+            background: var(--surface); color: var(--heading); border: 1px solid var(--border-strong); width: auto;
+        }
+        main .sheet-controls button:hover, main .tabs button:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+        main .sheet-controls button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+        main .sheet-controls button.primary:hover { color: var(--accent-ink); background: var(--accent); filter: brightness(1.08); }
+        main .sheet-controls button.armed { background: #a3161a; border-color: #a3161a; color: #fff; }
+        main .tabs { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin: 12px auto 0; background: none; border: 0; box-shadow: none; padding: 0; }
+        html body > main > div.tabs[role="tablist"][aria-label] { background: none; border: 0; box-shadow: none; padding: 0; border-radius: 0; margin: 12px auto 0; }
+        main .tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+        #importFile { display: none; }
+        .sheet-status { text-align: center; min-height: 1.6em; margin: 4px 0 0; color: var(--muted); font-weight: 600; }
+        .sheet-help { max-width: 860px; margin: 10px auto 0; color: var(--muted); font-size: 0.95rem; }
+
+        /* ===== The sheet: a light page in both themes ===== */
+        .ch-sheet {
+            --ink: #1b1426; --soft: #4d4660; --line: #b3a9c6; --hero: #4a1f8f; --orange: #8f3a05; --paper: #fbfaf8;
+            width: min(8.5in, 100%); margin: 14px auto; padding: 14px 16px;
+            background: var(--paper); color: var(--ink); border: 2px solid #2a1748; border-radius: 4px;
+            font-family: "Source Sans 3", "Segoe UI", sans-serif; font-size: 14px; line-height: 1.3; box-shadow: var(--shadow);
+            color-scheme: light;
+        }
+        .ch-sheet b, .ch-sheet strong { color: var(--ink); }
+        .ch-sheet .page { display: none; }
+        .ch-sheet[data-page="char"] .page.p-char, .ch-sheet[data-page="powers"] .page.p-powers, .ch-sheet[data-page="bio"] .page.p-bio { display: block; }
+        .ch-sheet .lbl { display: block; font: 400 15px/1.1 "Bangers", "Segoe UI", sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: var(--hero); margin: 0 0 3px; }
+        .ch-sheet .box { border: 1.5px solid var(--line); border-radius: 6px; padding: 6px 8px; }
+        .ch-sheet input[type="text"], .ch-sheet select, .ch-sheet textarea, .ch-sheet .val {
+            width: 100%; max-width: none; min-height: 0; margin: 0; background: transparent; color: var(--ink);
+            border: 0; border-bottom: 1px dotted var(--line); border-radius: 0; padding: 2px; font: inherit; box-shadow: none;
+        }
+        .ch-sheet textarea { border-bottom: 0; resize: vertical; min-height: 54px; line-height: 1.35; }
+        .ch-sheet .val { display: block; min-height: 1.35em; white-space: pre-wrap; }
+        .ch-sheet .tx.val { min-height: 3.4em; border-bottom: 0; }
+        .ch-sheet input::placeholder, .ch-sheet textarea::placeholder { color: #5d566e; opacity: 1; font-style: italic; font-weight: 400; }
+        .ch-sheet input:focus, .ch-sheet select:focus, .ch-sheet textarea:focus { outline: 2px solid var(--hero); outline-offset: 1px; background: rgba(74, 31, 143, 0.07); }
+        .ch-sheet select option { background: #fbfaf8; color: #1b1426; }
+        .ch-sheet .out { display: inline-block; min-width: 1.6em; text-align: center; font-weight: 700; color: var(--ink); }
+        .ch-sheet small.k { display: block; font-size: 10px; color: var(--soft); text-transform: uppercase; letter-spacing: 0.05em; }
+        .ch-sheet .stack > * + * { margin-top: 8px; }
+        .ch-sheet .note { font-size: 11px; color: var(--soft); margin: 3px 0 0; }
+        .ch-sheet .warn { color: #8f1414; font-weight: 700; }
+
+        .ch-sheet .head { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 4px 12px; border-bottom: 2px solid var(--hero); padding-bottom: 6px; margin-bottom: 10px; }
+        .ch-sheet .head .name { grid-row: span 2; align-self: end; }
+        .ch-sheet .head .name input, .ch-sheet .head .name .val { font: 400 1.75rem "Bangers", "Segoe UI", sans-serif; letter-spacing: 0.04em; }
+        .ch-sheet .head .out { text-align: left; display: block; min-height: 1.35em; border-bottom: 1px dotted var(--line); padding: 2px; }
+        .ch-sheet .top { display: grid; grid-template-columns: 1.1fr 1fr; gap: 10px; }
+        .ch-sheet .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .ch-sheet table.t { width: 100%; border-collapse: collapse; display: table; margin: 0; font-size: 12.5px; }
+        .ch-sheet table.t th { font: 700 10.5px "Source Sans 3", sans-serif; letter-spacing: 0.05em; text-transform: uppercase; color: var(--hero); text-align: left; border: 0; border-bottom: 1.5px solid var(--ink); background: none; padding: 2px 3px; white-space: nowrap; }
+        .ch-sheet table.t td { border: 0; border-bottom: 1px solid #e6e1ee; padding: 2px 3px; background: none; color: var(--ink); vertical-align: middle; }
+        .ch-sheet table.t td.c, .ch-sheet table.t th.c { text-align: center; width: 3.6em; }
+        .ch-sheet table.t td.c input, .ch-sheet table.t td.c .val { text-align: center; padding: 0; }
+        .ch-sheet table.t td.c .out { min-width: 0; }
+        .ch-sheet .chars td:first-child { font-weight: 700; white-space: nowrap; width: 3.4em; }
+        .ch-sheet .chars td.rate { font-size: 11px; color: var(--soft); white-space: nowrap; text-align: center; }
+        .ch-sheet .chars tr.gap td { border-top: 1.5px solid var(--line); }
+        .ch-sheet .chars td.c input { font-weight: 700; }
+        .ch-sheet .sumline { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; font-size: 12.5px; }
+        .ch-sheet .kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; font-size: 12.5px; align-items: baseline; }
+        .ch-sheet .kv > span:nth-child(odd) { color: var(--soft); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+        .ch-sheet .kv .out { text-align: left; }
+        .ch-sheet .segs { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; margin-top: 4px; }
+        .ch-sheet .segs span { border: 1.5px solid var(--ink); border-radius: 3px; text-align: center; font-size: 11px; font-weight: 700; line-height: 18px; color: var(--soft); background: #fff; }
+        .ch-sheet .segs span.on { background: var(--hero); border-color: var(--hero); color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .ch-sheet .trk { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        .ch-sheet .trk > div { border: 2px solid var(--ink); border-radius: 8px; padding: 3px 6px; text-align: center; }
+        .ch-sheet .trk .lbl { color: var(--ink); margin: 0; }
+        .ch-sheet .trk input, .ch-sheet .trk .val { text-align: center; font: 700 1.25rem "Source Sans 3", sans-serif; border-bottom: 1px dotted var(--line); }
+        .ch-sheet .trk small { display: block; font-size: 10px; color: var(--soft); }
+        .ch-sheet .dg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 8px; }
+        .ch-sheet .dg input, .ch-sheet .dg .val { text-align: center; }
+        .ch-sheet .big { display: block; text-align: center; font: 700 1.15rem "Source Sans 3", sans-serif; color: var(--ink); min-height: 1.3em; }
+        .ch-sheet .mv td.c { width: 4.2em; }
+        .ch-sheet .ah { border: 2px solid var(--orange); border-radius: 8px; padding: 6px 8px; }
+        .ch-sheet .ah .lbl { color: var(--orange); }
+        .ch-sheet .ah .row { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 6px; }
+        .ch-sheet .ah select, .ch-sheet .ah input { border: 1px solid var(--line); border-radius: 4px; }
+        .ch-sheet .ah .res { margin-top: 6px; font: 700 1.05rem "Source Sans 3", sans-serif; color: var(--ink); }
+        .ch-sheet .ah .res span { color: var(--soft); font-weight: 400; font-size: 0.85rem; }
+        .ch-sheet .tally { width: 100%; border-collapse: collapse; font-size: 12.5px; display: table; margin: 0; }
+        .ch-sheet .tally td { border: 0; border-bottom: 1px solid #e6e1ee; padding: 2px 3px; background: none; color: var(--ink); }
+        .ch-sheet .tally td:last-child { text-align: right; font-weight: 700; width: 4em; }
+        .ch-sheet .tally tr.sum td { border-top: 1.5px solid var(--ink); font-weight: 700; }
+
+        @media (max-width: 760px) {
+            .ch-sheet { padding: 12px; }
+            .ch-sheet .head { grid-template-columns: 1fr 1fr; }
+            .ch-sheet .head .name { grid-column: 1 / -1; grid-row: auto; }
+            .ch-sheet .top, .ch-sheet .cols { grid-template-columns: 1fr; }
+            .ch-sheet .ah .row { grid-template-columns: 1fr 1fr; }
+            .ch-sheet .ah .row label:first-child { grid-column: 1 / -1; }
+            .ch-sheet .scroll { overflow-x: auto; }
+            .ch-sheet table.t.wide { min-width: 560px; }
+        }
+
+        /* ===== Print: three US Letter pages per character ===== */
+        .print-container { display: none; }
+        @media print {
+            @page { size: letter portrait; margin: 0.35in; }
+            .site-nav, .skip-link, body > header, .sheet-controls, .tabs, .sheet-status, .sheet-help, #sheet, footer, .site-footer { display: none !important; }
+            html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+            main { margin: 0 !important; padding: 0 !important; width: auto !important; max-width: none !important; }
+            .print-container { display: block !important; border: 0 !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; border-radius: 0 !important; }
+            .print-container .ch-sheet { width: 7.8in !important; margin: 0 auto !important; padding: 0 !important; border: 0 !important; box-shadow: none !important; font-size: 10.5px; line-height: 1.15; }
+            .print-container .ch-sheet .page { display: flex !important; flex-direction: column; height: 10.25in; box-sizing: border-box; overflow: hidden;
+                border: 1.5pt solid #2a1748; border-radius: 4px; padding: 0.12in 0.14in; page-break-after: always; break-after: page; }
+            .print-container .ch-sheet:last-child .page:last-child { page-break-after: auto; break-after: auto; }
+            .print-container .ch-sheet .val { min-height: 1.15em; padding: 0 2px; }
+            .print-container .ch-sheet .tx.val { min-height: 2.2em; }
+            .print-container .ch-sheet .box { padding: 3px 6px; }
+            .print-container .ch-sheet .stack > * + * { margin-top: 5px; }
+            .print-container .ch-sheet table.t { font-size: 10.5px; min-width: 0; }
+            .print-container .ch-sheet table.t td .val { min-height: 1.45em; }
+            .print-container .ch-sheet .chars td { padding: 5px 3px; }
+            .print-container .ch-sheet .grow { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+            .print-container .ch-sheet .grow .tx.val { flex: 1; }
+            .print-container .ch-sheet .cols.grow { display: grid; }
+            .print-container .ch-sheet .top > .stack { display: flex; flex-direction: column; }
+            .print-container .ch-sheet .top > .stack > .box:last-child { flex: 1; }
+            .print-container .ch-sheet .cols.grow > .stack { display: flex; flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Character Sheets</h1>
+        <p>Fill in, save and print 6th Edition heroes, with characteristic costs and rolls, Speed Chart Phases and running point totals worked out for you.</p>
+    </header>
+
+    <main id="main">
+        <div class="sheet-controls">
+            <select id="sheetSelect" aria-label="Saved sheets"><option value="">— Select Sheet —</option></select>
+            <button type="button" class="primary" id="newBtn">✨ New</button>
+            <button type="button" id="saveBtn">💾 Save</button>
+            <button type="button" id="copyBtn">📋 Copy</button>
+            <button type="button" id="deleteBtn">🗑️ Delete</button>
+            <button type="button" id="printBtn">🖨️ Print</button>
+            <button type="button" id="printAllBtn">🖨️ Print All</button>
+            <button type="button" id="blankBtn">📄 Print Blank</button>
+            <button type="button" id="exportBtn">📤 Export</button>
+            <button type="button" id="importBtn">📥 Import</button>
+            <input type="file" id="importFile" accept=".json,application/json">
+        </div>
+        <p class="sheet-status" id="status" role="status" aria-live="polite"></p>
+        <div class="tabs" role="tablist" aria-label="Sheet pages">
+            <button type="button" role="tab" id="tab-char" aria-controls="sheet" aria-selected="true" data-page="char">🦸 Characteristics &amp; Combat</button>
+            <button type="button" role="tab" id="tab-powers" aria-controls="sheet" aria-selected="false" data-page="powers">⚡ Powers &amp; Abilities</button>
+            <button type="button" role="tab" id="tab-bio" aria-controls="sheet" aria-selected="false" data-page="bio">📖 Complications &amp; Background</button>
+        </div>
+
+        <form class="ch-sheet" id="sheet" data-page="char" autocomplete="off" onsubmit="return false">
+            <!-- ===================== PAGE 1: CHARACTERISTICS & COMBAT ===================== -->
+            <div class="page p-char">
+                <div class="head">
+                    <label class="name"><span class="lbl">Hero name</span><input type="text" name="name" maxlength="60" placeholder="Resonance"></label>
+                    <label><small class="k">Player</small><input type="text" name="player"></label>
+                    <label><small class="k">Concept / real name</small><input type="text" name="concept" placeholder="Dr. Marcus Webb, sonic engineer"></label>
+                    <label><small class="k">Campaign</small><input type="text" name="campaign"></label>
+                    <label><small class="k">Base points</small><input type="text" name="basePts" maxlength="5" inputmode="numeric" placeholder="325"></label>
+                    <label><small class="k">Experience</small><input type="text" name="xp" maxlength="5" inputmode="numeric"></label>
+                    <div><small class="k">Total points</small><span class="out" data-out="totalPts"></span></div>
+                </div>
+
+                <div class="top">
+                    <div class="box">
+                        <span class="lbl">Characteristics</span>
+                        <table class="t chars"><thead><tr><th>Char</th><th class="c">Base</th><th class="c">Value</th><th class="c">Cost</th><th class="c">Points</th><th class="c">Roll</th></tr></thead><tbody id="chars"></tbody></table>
+                        <div class="sumline"><span>Characteristics total: <b class="out" data-out="charTotal"></b> points</span><span class="note" style="margin:0">Roll = 9 + CHAR ÷ 5</span></div>
+                    </div>
+                    <div class="stack">
+                        <div class="box">
+                            <span class="lbl">Strength &amp; Speed</span>
+                            <div class="kv">
+                                <span>HTH damage</span><span class="out" data-out="hth"></span>
+                                <span>Lift</span><span class="out" data-out="lift"></span>
+                                <span>Perception</span><span class="out" data-out="per"></span>
+                                <span>Phases</span><span class="out" data-out="phaseCount"></span>
+                            </div>
+                            <div class="segs" aria-label="Speed Chart: Segments in which this hero acts"><span data-seg="1">1</span><span data-seg="2">2</span><span data-seg="3">3</span><span data-seg="4">4</span><span data-seg="5">5</span><span data-seg="6">6</span><span data-seg="7">7</span><span data-seg="8">8</span><span data-seg="9">9</span><span data-seg="10">10</span><span data-seg="11">11</span><span data-seg="12">12</span></div>
+                            <p class="note">Filled Segments are your Phases. Post-Segment 12: everyone Recovers (REC to STUN and END).</p>
+                        </div>
+                        <div class="trk">
+                            <div><span class="lbl">STUN</span><input type="text" name="stunNow" maxlength="4" inputmode="numeric" aria-label="Current STUN"><small>of <span class="out" data-out="stunMax"></span></small></div>
+                            <div><span class="lbl">BODY</span><input type="text" name="bodyNow" maxlength="4" inputmode="numeric" aria-label="Current BODY"><small>of <span class="out" data-out="bodyMax"></span></small></div>
+                            <div><span class="lbl">END</span><input type="text" name="endNow" maxlength="4" inputmode="numeric" aria-label="Current END"><small>of <span class="out" data-out="endMax"></span></small></div>
+                        </div>
+                        <div class="box">
+                            <span class="lbl">Defenses</span>
+                            <div class="dg">
+                                <div><small class="k">Total PD</small><span class="big" data-out="pdTot"></span></div>
+                                <div><small class="k">Total ED</small><span class="big" data-out="edTot"></span></div>
+                                <div><small class="k">Stun limit (CON)</small><span class="big" data-out="conVal"></span></div>
+                                <label><small class="k">Resistant PD</small><input type="text" name="rpd" maxlength="3" inputmode="numeric"></label>
+                                <label><small class="k">Resistant ED</small><input type="text" name="red" maxlength="3" inputmode="numeric"></label>
+                                <label><small class="k">Mental Def.</small><input type="text" name="mdef" maxlength="3" inputmode="numeric"></label>
+                                <label><small class="k">Power Def.</small><input type="text" name="powdef" maxlength="3" inputmode="numeric"></label>
+                                <label><small class="k">Flash Def.</small><input type="text" name="fdef" maxlength="12"></label>
+                                <label><small class="k">Other</small><input type="text" name="odef"></label>
+                            </div>
+                            <p class="note">Total = characteristic + Resistant defense from powers. Only Resistant defense stops killing BODY. More STUN than CON from one attack: Stunned.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cols" style="margin-top:8px">
+                    <div class="box">
+                        <span class="lbl">Movement</span>
+                        <table class="t mv"><thead><tr><th>Mode</th><th class="c">Base</th><th class="c">Bought</th><th class="c">Total</th></tr></thead><tbody>
+                            <tr><td>Running</td><td class="c">12m</td><td class="c"><input type="text" name="runPlus" maxlength="4" inputmode="numeric" aria-label="Extra Running bought, metres"></td><td class="c"><span class="out" data-out="run"></span></td></tr>
+                            <tr><td>Leaping</td><td class="c">4m</td><td class="c"><input type="text" name="leapPlus" maxlength="4" inputmode="numeric" aria-label="Extra Leaping bought, metres"></td><td class="c"><span class="out" data-out="leap"></span></td></tr>
+                            <tr><td>Swimming</td><td class="c">4m</td><td class="c"><input type="text" name="swimPlus" maxlength="4" inputmode="numeric" aria-label="Extra Swimming bought, metres"></td><td class="c"><span class="out" data-out="swim"></span></td></tr>
+                            <tr><td colspan="4"><input type="text" name="move1" aria-label="Other movement 1" placeholder="Flight 40m"></td></tr>
+                            <tr><td colspan="4"><input type="text" name="move2" aria-label="Other movement 2"></td></tr>
+                        </tbody></table>
+                        <p class="note">Bought movement is a power: put its cost on the Powers page.</p>
+                    </div>
+                    <div class="box">
+                        <span class="lbl">Combat Skill Levels</span>
+                        <table class="t"><thead><tr><th class="c">Cost</th><th class="c">Levels</th><th>Applies to</th></tr></thead><tbody id="csls"></tbody></table>
+                        <p class="note">CSL costs count with Skills in the point totals.</p>
+                    </div>
+                </div>
+
+                <div class="ah" style="margin-top:8px" aria-label="Attack helper">
+                    <span class="lbl">Attack Helper</span>
+                    <div class="row">
+                        <label><small class="k">Attack</small><select id="ahType"><option value="p">OCV against DCV</option><option value="m">OMCV against DMCV (mental)</option></select></label>
+                        <label><small class="k">Target's DCV / DMCV</small><input type="text" id="ahDcv" maxlength="3" inputmode="numeric" placeholder="3"></label>
+                        <label><small class="k">Modifiers</small><input type="text" id="ahMod" maxlength="4" placeholder="0"></label>
+                    </div>
+                    <div class="res" id="ahOut">—</div>
+                </div>
+
+                <div class="box grow" style="margin-top:8px"><span class="lbl">Combat Notes &amp; Maneuvers</span><textarea name="combatNotes" rows="3" placeholder="Favourite maneuvers, Dodge +3 DCV, Haymaker +4 DC at −5 DCV"></textarea></div>
+            </div>
+
+            <!-- ===================== PAGE 2: POWERS & ABILITIES ===================== -->
+            <div class="page p-powers">
+                <div class="head" style="grid-template-columns: 1.6fr 1fr 1fr">
+                    <div class="name" style="grid-row:auto"><span class="lbl">Hero name</span><span class="val" data-mirror="name"></span></div>
+                    <div><small class="k">Total points</small><span class="out" data-out="totalPts2"></span></div>
+                    <div><small class="k">Unspent</small><span class="out" data-out="unspent2"></span></div>
+                </div>
+                <div class="box">
+                    <span class="lbl">Powers &amp; Equipment</span>
+                    <div class="scroll"><table class="t wide"><thead><tr><th class="c">Cost</th><th style="width:24%">Name</th><th>Power, Advantages &amp; Limitations</th><th class="c">END</th></tr></thead><tbody id="powers"></tbody></table></div>
+                    <p class="note">Active Points = base cost × (1 + Advantages). Real Points (what you pay) = Active Points ÷ (1 + Limitations). END = 1 per 10 Active Points.</p>
+                </div>
+                <div class="cols" style="margin-top:8px">
+                    <div class="box">
+                        <span class="lbl">Skills, Perks &amp; Talents</span>
+                        <table class="t"><thead><tr><th class="c">Cost</th><th>Name</th><th class="c">Roll</th></tr></thead><tbody id="skills"></tbody></table>
+                        <p class="note">Characteristic-based skill: 3 points for 9 + CHAR ÷ 5. Familiarity: 1 point, 8-.</p>
+                    </div>
+                    <div class="stack">
+                        <div class="box">
+                            <span class="lbl">Martial Arts</span>
+                            <table class="t"><thead><tr><th class="c">Cost</th><th>Maneuver</th><th class="c">OCV</th><th class="c">DCV</th><th>Effect</th></tr></thead><tbody id="mas"></tbody></table>
+                        </div>
+                        <div class="box">
+                            <span class="lbl">Point Totals</span>
+                            <table class="tally"><tbody>
+                                <tr><td>Characteristics</td><td data-out="charTotal2"></td></tr>
+                                <tr><td>Powers &amp; equipment</td><td data-out="powTotal"></td></tr>
+                                <tr><td>Skills, perks, talents &amp; CSLs</td><td data-out="skTotal"></td></tr>
+                                <tr><td>Martial arts</td><td data-out="maTotal"></td></tr>
+                                <tr class="sum"><td>Points spent</td><td data-out="spent"></td></tr>
+                                <tr><td>Base points</td><td data-out="baseShow"></td></tr>
+                                <tr><td>Complications</td><td data-out="compShow"></td></tr>
+                                <tr><td>Experience</td><td data-out="xpShow"></td></tr>
+                                <tr class="sum"><td>Total points</td><td data-out="totalPts3"></td></tr>
+                                <tr><td>Unspent</td><td data-out="unspent"></td></tr>
+                            </tbody></table>
+                            <p class="note"><span class="warn" data-out="budgetWarn"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box grow" style="margin-top:8px"><span class="lbl">Gear &amp; Power Notes</span><textarea name="powerNotes" rows="3"></textarea></div>
+            </div>
+
+            <!-- ===================== PAGE 3: COMPLICATIONS & BACKGROUND ===================== -->
+            <div class="page p-bio">
+                <div class="head" style="grid-template-columns: 1.6fr 1fr 1fr">
+                    <div class="name" style="grid-row:auto"><span class="lbl">Hero name</span><span class="val" data-mirror="name"></span></div>
+                    <div><small class="k">Complication points</small><span class="out" data-out="compTotal"></span></div>
+                    <label><small class="k">Complications cap</small><input type="text" name="compCap" maxlength="4" inputmode="numeric" placeholder="75"></label>
+                </div>
+                <div class="box">
+                    <span class="lbl">Complications</span>
+                    <table class="t"><thead><tr><th class="c">Points</th><th>Complication</th></tr></thead><tbody id="comps"></tbody></table>
+                    <p class="note">Complications are part of the Total Points, not added on top: a standard hero has 400 Total Points, up to 75 of them from Complications. <span class="warn" data-out="compWarn"></span></p>
+                </div>
+                <div class="cols grow" style="margin-top:8px">
+                    <div class="stack">
+                        <div class="box grow"><span class="lbl">Background &amp; Origin</span><textarea name="background" rows="5" placeholder="Who, what, where, when and why: the accident, the training or the heritage that made a hero"></textarea></div>
+                        <div class="box grow"><span class="lbl">Personality</span><textarea name="personality" rows="3"></textarea></div>
+                        <div class="box"><span class="lbl">Quote</span><input type="text" name="quote" placeholder="&quot;Everybody, cover your ears.&quot;"></div>
+                        <div class="box grow"><span class="lbl">Appearance &amp; Costume</span><textarea name="appearance" rows="3"></textarea></div>
+                    </div>
+                    <div class="stack">
+                        <div class="box grow"><span class="lbl">Powers &amp; Tactics</span><textarea name="tactics" rows="4"></textarea></div>
+                        <div class="box grow"><span class="lbl">Campaign Use</span><textarea name="campaignUse" rows="3"></textarea></div>
+                        <div class="box grow"><span class="lbl">Notes</span><textarea name="notes" rows="4"></textarea></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="sheet-help">
+            <p><strong>How it works.</strong> A sheet auto-saves in this browser once it has a name. Renaming a sheet renames its save. Use the tabs to move between the three pages. <strong>Print</strong> prints all three pages of the current character, one per US Letter sheet, and <strong>Print Blank</strong> prints an empty set. <strong>Export</strong> downloads every sheet as a JSON file and <strong>Import</strong> merges a file like that back in (a sheet with the same name is replaced). Nothing leaves your browser.</p>
+            <p><strong>Worked out for you.</strong> Each characteristic costs (Value − Base) × its cost per point, so STUN is ½ point each and END 1 point per 5 (buy them in 2s and 5s). The main six give a roll of 9 + CHAR ÷ 5, rounded; INT's is your Perception Roll. Every 5 STR is 1d6 of normal damage in hand-to-hand, and each 5 STR doubles what you can lift. SPD lights up your Phases on the Speed Chart. Total Points are your base points plus Complications plus Experience; leave Base points at 325 for a standard 400-point hero with 75 points of Complications. The Attack Helper (screen only) gives the 3d6 roll needed: 11 + OCV − DCV. See <a href="/champions_character_creation.html">Character Creation</a>, <a href="/champions_combat_system.html">Combat</a> and the <a href="/champions_dice_roller.html">Dice Roller</a>.</p>
+        </div>
+
+        <div class="print-container" id="printContainer"></div>
+    </main>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/champions_dice_roller.html">Dice Roller &amp; Damage Calculator</a>
+    <a class="next" href="/index.html">Guide Home</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Champions Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Champions and HERO System are trademarks of DOJ, Inc. (Hero Games). This guide is an unofficial fan resource.</div>
+
+    <script>
+    (function () {
+        'use strict';
+        var KEY = 'hero6-character-sheets';
+        var sheet = document.getElementById('sheet');
+        var select = document.getElementById('sheetSelect');
+        var $ = function (id) { return document.getElementById(id); };
+
+        // [key, label, base, cost per point, rate label, has a roll]
+        var CHARS = [['str', 'STR', 10, 1, '×1', 1], ['dex', 'DEX', 10, 2, '×2', 1], ['con', 'CON', 10, 1, '×1', 1], ['int', 'INT', 10, 1, '×1', 1],
+            ['ego', 'EGO', 10, 1, '×1', 1], ['pre', 'PRE', 10, 1, '×1', 1], ['ocv', 'OCV', 3, 5, '×5', 0], ['dcv', 'DCV', 3, 5, '×5', 0],
+            ['omcv', 'OMCV', 3, 3, '×3', 0], ['dmcv', 'DMCV', 3, 3, '×3', 0], ['spd', 'SPD', 2, 10, '×10', 0], ['pd', 'PD', 2, 1, '×1', 0],
+            ['ed', 'ED', 2, 1, '×1', 0], ['rec', 'REC', 4, 1, '×1', 0], ['end', 'END', 20, 0.2, '1 per 5', 0], ['body', 'BODY', 10, 1, '×1', 0],
+            ['stun', 'STUN', 20, 0.5, '1 per 2', 0]];
+        var SPEED = { 1: [7], 2: [6, 12], 3: [4, 8, 12], 4: [3, 6, 9, 12], 5: [3, 5, 8, 10, 12], 6: [2, 4, 6, 8, 10, 12],
+            7: [2, 4, 6, 7, 9, 11, 12], 8: [2, 3, 5, 6, 8, 9, 11, 12], 9: [2, 3, 4, 6, 7, 8, 10, 11, 12],
+            10: [2, 3, 4, 5, 6, 8, 9, 10, 11, 12], 11: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 12: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] };
+        var NPOW = 14, NSK = 15, NMA = 5, NCSL = 5, NCOMP = 10;
+        var FIELDS = ['name', 'player', 'concept', 'campaign', 'basePts', 'xp', 'stunNow', 'bodyNow', 'endNow', 'rpd', 'red', 'mdef', 'powdef', 'fdef', 'odef',
+            'runPlus', 'leapPlus', 'swimPlus', 'move1', 'move2', 'combatNotes', 'powerNotes', 'compCap',
+            'background', 'personality', 'quote', 'appearance', 'tactics', 'campaignUse', 'notes'];
+        var BOOLS = {};
+
+        var ch = '';
+        CHARS.forEach(function (c, i) {
+            FIELDS.push(c[0]);
+            ch += '<tr' + (i === 6 ? ' class="gap"' : '') + '><td>' + c[1] + '</td><td class="c">' + c[2] + '</td>' +
+                '<td class="c"><input type="text" name="' + c[0] + '" maxlength="4" inputmode="numeric" aria-label="' + c[1] + ' value"></td>' +
+                '<td class="rate">' + c[4] + '</td><td class="c"><span class="out" data-out="p_' + c[0] + '"></span></td>' +
+                '<td class="c"><span class="out" data-out="r_' + c[0] + '"></span></td></tr>';
+        });
+        $('chars').innerHTML = ch;
+        function rows(host, count, cols) {
+            var h = '';
+            for (var i = 1; i <= count; i++) {
+                h += '<tr>' + cols.map(function (c) {
+                    var nm = c[0] + i; FIELDS.push(nm);
+                    return '<td' + (c[2] ? ' class="c"' : '') + (c[3] ? ' style="' + c[3] + '"' : '') + '><input type="text" name="' + nm + '"' + (c[2] ? ' maxlength="' + c[2] + '"' : '') +
+                        ' aria-label="' + c[1] + ' ' + i + '"' + (i === 1 && c[4] ? ' placeholder="' + c[4] + '"' : '') + '></td>';
+                }).join('') + '</tr>';
+            }
+            $(host).innerHTML = h;
+        }
+        rows('powers', NPOW, [['pwc', 'Power cost', 5], ['pwn', 'Power name', 0, 'width:24%', 'Sonic Blast'], ['pwd', 'Power, Advantages and Limitations', 0, '', 'Blast 12d6, Gestures (−¼); 60 Active Points'], ['pwe', 'Power END', 4]]);
+        rows('skills', NSK, [['skc', 'Skill cost', 4], ['skn', 'Skill, perk or talent', 0, '', 'Electronics'], ['skr', 'Skill roll', 5]]);
+        rows('mas', NMA, [['mac', 'Maneuver cost', 4], ['man', 'Maneuver', 0], ['mao', 'Maneuver OCV', 4], ['mad', 'Maneuver DCV', 4], ['max', 'Maneuver effect', 0]]);
+        rows('csls', NCSL, [['clc', 'CSL cost', 4], ['cll', 'CSL levels', 4], ['cla', 'CSL applies to', 0, '', 'Sonic Blast']]);
+        rows('comps', NCOMP, [['cop', 'Complication points', 4], ['cod', 'Complication', 0, '', 'Psychological Complication: Code Against Killing (Common, Total)']]);
+
+        // ----- rules -----
+        var num = function (v) { var x = parseFloat(String(v == null ? '' : v).replace('−', '-').replace(/[^0-9.\-]/g, '')); return isNaN(x) ? 0 : x; };
+        var has = function (get, k) { return String(get(k) == null ? '' : get(k)).trim() !== ''; };
+        function fmt(x) {
+            x = Math.round(x * 10) / 10;
+            var neg = x < 0, a = Math.abs(x), w = Math.floor(a), f = Math.round((a - w) * 10) / 10, s;
+            s = f === 0 ? String(w) : f === 0.5 ? (w ? w : '') + '½' : a.toFixed(1);
+            return (neg ? '−' : '') + s;
+        }
+        function value(get, c) { return has(get, c[0]) ? num(get(c[0])) : null; }
+        function roll(v) { return (9 + Math.round(v / 5)) + '-'; }
+        function hthDice(s) { var d = Math.floor(s / 5), half = s % 5 >= 3; return s < 3 ? '—' : (d ? d : '') + (half ? '½' : '') + 'd6'; }
+        function lift(s) {
+            var kg = 25 * Math.pow(2, s / 5), exact = s % 5 === 0;
+            var r = function (x) { var p = Math.pow(10, Math.max(0, Math.floor(Math.log10(x)) - 1)); return exact ? x : Math.round(x / p) * p; };
+            var t = (exact ? '' : '≈ ');
+            if (kg >= 1e6) return t + fmtN(r(kg / 1e6)) + ' kilotonnes';
+            if (kg >= 1e4) return t + fmtN(r(kg / 1e3)) + ' tonnes';
+            return t + fmtN(r(kg)) + ' kg';
+        }
+        function fmtN(x) { return (Math.round(x * 10) / 10).toLocaleString('en-US'); }
+        function sumRows(get, prefix, count) { var t = 0, any = false; for (var i = 1; i <= count; i++) if (has(get, prefix + i)) { any = true; t += num(get(prefix + i)); } return { t: t, any: any }; }
+        function derive(get) {
+            var o = {}, v = {}, charT = 0, charAny = false;
+            CHARS.forEach(function (c) {
+                var x = value(get, c); v[c[0]] = x;
+                o['p_' + c[0]] = o['r_' + c[0]] = '';
+                if (x == null) return;
+                charAny = true;
+                var p = (x - c[2]) * c[3]; charT += p; o['p_' + c[0]] = fmt(p);
+                if (c[5]) o['r_' + c[0]] = roll(x);
+            });
+                        var pw = sumRows(get, 'pwc', NPOW), sk = sumRows(get, 'skc', NSK), cl = sumRows(get, 'clc', NCSL), ma = sumRows(get, 'mac', NMA), co = sumRows(get, 'cop', NCOMP);
+            var anySpent = charAny || pw.any || sk.any || cl.any || ma.any, z = function (on, x) { return anySpent ? fmt(on ? x : 0) : ''; };
+            o.powTotal = z(pw.any, pw.t); o.skTotal = z(sk.any || cl.any, sk.t + cl.t); o.maTotal = z(ma.any, ma.t);
+            var spent = charT + pw.t + sk.t + cl.t + ma.t; o.spent = z(true, spent);
+            o.compTotal = co.any ? fmt(co.t) : '';
+            var anyTot = has(get, 'basePts') || has(get, 'xp') || co.any;
+            var total = num(get('basePts')) + co.t + num(get('xp'));
+            o.baseShow = has(get, 'basePts') ? fmt(num(get('basePts'))) : '';
+            o.compShow = co.any ? fmt(co.t) : '';
+            o.xpShow = has(get, 'xp') ? fmt(num(get('xp'))) : '';
+            o.totalPts = o.totalPts2 = o.totalPts3 = anyTot ? fmt(total) : '';
+            o.unspent = o.unspent2 = anyTot ? fmt(total - spent) : '';
+            o.budgetWarn = anyTot && spent > total ? 'Overspent by ' + fmt(spent - total) + ' points.' : '';
+            var cap = has(get, 'compCap') ? num(get('compCap')) : 75;
+            o.compWarn = co.t > cap ? 'Over the ' + fmt(cap) + '-point cap by ' + fmt(co.t - cap) + '.' : '';
+            // Strength, Speed, Perception
+            o.hth = v.str == null ? '' : hthDice(v.str) + ' normal';
+            o.lift = v.str == null ? '' : lift(v.str);
+            o.per = v.int == null ? '' : roll(v.int);
+            var spd = v.spd == null ? null : Math.max(1, Math.min(12, Math.round(v.spd)));
+            o.phases = spd == null ? [] : SPEED[spd];
+            o.phaseCount = spd == null ? '' : SPEED[spd].length + ' per Turn: ' + SPEED[spd].join(', ');
+            o.stunMax = v.stun == null ? '' : fmt(v.stun);
+            o.bodyMax = v.body == null ? '' : fmt(v.body);
+            o.endMax = v.end == null ? '' : fmt(v.end);
+            o.conVal = v.con == null ? '' : fmt(v.con);
+            o.pdTot = v.pd == null && !has(get, 'rpd') ? '' : fmt((v.pd == null ? 2 : v.pd) + num(get('rpd'))) + (has(get, 'rpd') ? ' (' + fmt(num(get('rpd'))) + 'r)' : '');
+            o.edTot = v.ed == null && !has(get, 'red') ? '' : fmt((v.ed == null ? 2 : v.ed) + num(get('red'))) + (has(get, 'red') ? ' (' + fmt(num(get('red'))) + 'r)' : '');
+            o.run = (12 + num(get('runPlus'))) + 'm'; o.leap = (4 + num(get('leapPlus'))) + 'm'; o.swim = (4 + num(get('swimPlus'))) + 'm';
+            o.ocv = v.ocv == null ? 3 : v.ocv; o.omcv = v.omcv == null ? 3 : v.omcv;
+            o.charTotal = o.charTotal2 = z(charAny, charT);
+            return o;
+        }
+        function paint(root, get) {
+            var o = derive(get);
+            root.querySelectorAll('[data-out]').forEach(function (el) { var k = el.getAttribute('data-out'); if (o[k] != null) el.textContent = o[k]; });
+            root.querySelectorAll('[data-mirror]').forEach(function (el) { el.textContent = get(el.getAttribute('data-mirror')) || ''; });
+            root.querySelectorAll('[data-seg]').forEach(function (el) { el.classList.toggle('on', o.phases.indexOf(+el.getAttribute('data-seg')) >= 0); });
+            return o;
+        }
+
+        // ----- attack helper (screen only, not saved) -----
+        var DIST = {};
+        for (var a = 1; a <= 6; a++) for (var b = 1; b <= 6; b++) for (var c2 = 1; c2 <= 6; c2++) DIST[a + b + c2] = (DIST[a + b + c2] || 0) + 1 / 216;
+        function pSuccess(t) { var p = 0; Object.keys(DIST).forEach(function (k) { var n = +k; if (n === 3 || (n !== 18 && n <= t)) p += DIST[k]; }); return p; }
+        function ahShow(get) {
+            var o = derive(get), mental = $('ahType').value === 'm', cv = mental ? o.omcv : o.ocv;
+            var dcv = $('ahDcv').value.trim() === '' ? 3 : num($('ahDcv').value), mod = num($('ahMod').value);
+            var t = 11 + cv - dcv + mod;
+            $('ahOut').innerHTML = 'Hit on ' + t + '- <span>(11 + ' + (mental ? 'OMCV ' : 'OCV ') + cv + ' − ' + (mental ? 'DMCV ' : 'DCV ') + dcv + (mod ? (mod > 0 ? ' + ' : ' − ') + Math.abs(mod) : '') + '; ' + (pSuccess(t) * 100).toFixed(1) + '% on 3d6, a 3 always hits and an 18 always misses)</span>';
+        }
+        ['ahType', 'ahDcv', 'ahMod'].forEach(function (id) {
+            $(id).addEventListener('input', function (ev) { ev.stopPropagation(); ahShow(getVal); });
+            $(id).addEventListener('change', function (ev) { ev.stopPropagation(); ahShow(getVal); });
+        });
+
+        // ----- form plumbing -----
+        function field(nm) { return sheet.querySelector('[name="' + nm + '"]'); }
+        function getVal(nm) { var el = field(nm); return !el ? '' : el.type === 'checkbox' ? el.checked : el.value; }
+        function setVal(nm, v) { var el = field(nm); if (!el) return; if (el.type === 'checkbox') el.checked = v === true || v === 'true'; else el.value = v == null ? '' : String(v); }
+        function currentName() { return String(getVal('name')).trim(); }
+        function say(msg) { $('status').textContent = msg; }
+        function sanitize(raw) {
+            if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+            var out = {};
+            FIELDS.forEach(function (f) { var v = raw[f]; out[f] = BOOLS[f] ? (v === true || v === 'true') : ((typeof v === 'string' || typeof v === 'number') ? String(v).slice(0, 6000) : ''); });
+            return out;
+        }
+        function safeName(x) { return typeof x === 'string' && x.trim() !== '' && ['__proto__', 'constructor', 'prototype'].indexOf(x) < 0; }
+        function load() {
+            var out = {};
+            try {
+                var p = JSON.parse(localStorage.getItem(KEY));
+                if (p && typeof p === 'object' && !Array.isArray(p)) Object.keys(p).forEach(function (k) { var d = sanitize(p[k]); if (safeName(k) && d) out[k] = d; });
+            } catch (err) { /* storage blocked or corrupt */ }
+            return out;
+        }
+        function store(all) { try { localStorage.setItem(KEY, JSON.stringify(all)); return true; } catch (err) { say('Could not save: browser storage is unavailable or full.'); return false; } }
+        function read() { var d = {}; FIELDS.forEach(function (f) { d[f] = getVal(f); }); return d; }
+        function repaint() { paint(sheet, getVal); ahShow(getVal); }
+        function clearAll() { FIELDS.forEach(function (f) { setVal(f, BOOLS[f] ? false : ''); }); $('ahType').value = 'p'; $('ahDcv').value = ''; $('ahMod').value = ''; repaint(); }
+        function fill(d) { clearAll(); FIELDS.forEach(function (f) { setVal(f, d[f]); }); repaint(); }
+        function refreshSelect(sel) {
+            var all = load();
+            select.innerHTML = '<option value="">— Select Sheet —</option>';
+            Object.keys(all).sort().forEach(function (k) { var o = document.createElement('option'); o.value = k; o.textContent = k; if (k === sel) o.selected = true; select.appendChild(o); });
+        }
+        var currentKey = null, timer = null, armed = false;
+        function disarm() { armed = false; $('deleteBtn').classList.remove('armed'); $('deleteBtn').textContent = '🗑️ Delete'; }
+        function storeCurrent(name) {
+            var all = load();
+            if (currentKey && currentKey !== name) delete all[currentKey];
+            all[name] = read();
+            if (!store(all)) return false;
+            currentKey = name; refreshSelect(name); return true;
+        }
+        function autoSave() {
+            timer = null;
+            var name = currentName();
+            if (!safeName(name)) return;
+            var all = load();
+            if (all[name] && name !== currentKey) { say('A sheet named “' + name + '” already exists. Rename this one, or press Save to replace it.'); return; }
+            if (storeCurrent(name)) say('Saved “' + name + '”.');
+        }
+        function flush() { if (timer) { clearTimeout(timer); autoSave(); } }
+        function onEdit() { disarm(); repaint(); clearTimeout(timer); timer = setTimeout(autoSave, 800); }
+        sheet.addEventListener('input', onEdit);
+        sheet.addEventListener('change', onEdit);
+
+        var tabs = document.querySelectorAll('.tabs [role="tab"]');
+        function show(page) {
+            sheet.setAttribute('data-page', page);
+            tabs.forEach(function (t) { var on = t.getAttribute('data-page') === page; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+        }
+        tabs.forEach(function (t, i) {
+            t.addEventListener('click', function () { show(t.getAttribute('data-page')); });
+            t.addEventListener('keydown', function (ev) {
+                if (ev.key !== 'ArrowRight' && ev.key !== 'ArrowLeft') return;
+                var nx = tabs[(i + (ev.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; nx.focus(); show(nx.getAttribute('data-page'));
+            });
+        });
+
+        $('newBtn').addEventListener('click', function () { flush(); clearAll(); currentKey = null; select.value = ''; disarm(); show('char'); field('name').focus(); say('New blank sheet.'); });
+        $('saveBtn').addEventListener('click', function () {
+            clearTimeout(timer); timer = null;
+            var name = currentName();
+            if (!safeName(name)) { say('Give the character a name first.'); show('char'); field('name').focus(); return; }
+            if (storeCurrent(name)) say('Saved “' + name + '”.');
+        });
+        $('copyBtn').addEventListener('click', function () {
+            flush();
+            var base = currentName();
+            if (!base) { say('Give the character a name first.'); return; }
+            var all = load(), name = base + ' (copy)', i = 2;
+            while (all[name]) name = base + ' (copy ' + (i++) + ')';
+            var d = read(); d.name = name; all[name] = d;
+            if (!store(all)) return;
+            fill(d); currentKey = name; refreshSelect(name); say('Copied as “' + name + '”.');
+        });
+        $('deleteBtn').addEventListener('click', function () {
+            var name = select.value;
+            if (!name) { say('Choose a saved sheet to delete.'); return; }
+            if (!armed) { armed = true; this.classList.add('armed'); this.textContent = '🗑️ Click again to delete'; say('Click Delete again to remove “' + name + '”.'); return; }
+            clearTimeout(timer); timer = null;
+            var all = load(); delete all[name];
+            if (!store(all)) return;
+            clearAll(); currentKey = null; refreshSelect(''); disarm(); say('Deleted “' + name + '”.');
+        });
+        select.addEventListener('change', function () {
+            flush(); disarm();
+            var name = select.value, all = load();
+            if (!name || !all[name]) { clearAll(); currentKey = null; return; }
+            fill(all[name]); currentKey = name; refreshSelect(name); say('Loaded “' + name + '”.');
+        });
+
+        // ----- print: clone the form and turn every field into plain text -----
+        function staticSheet(d) {
+            var cl = sheet.cloneNode(true), get = function (k) { return d[k] == null ? '' : d[k]; };
+            cl.removeAttribute('id'); cl.querySelectorAll('[id]').forEach(function (el) { el.removeAttribute('id'); });
+            cl.querySelectorAll('.ah').forEach(function (el) { el.remove(); });
+            cl.querySelectorAll('input, select, textarea').forEach(function (el) {
+                var nm = el.getAttribute('name'), v = d[nm];
+                var span = document.createElement('span');
+                span.className = 'val' + (el.tagName === 'TEXTAREA' ? ' tx' : '');
+                span.textContent = v == null ? '' : String(v);
+                el.replaceWith(span);
+            });
+            paint(cl, get);
+            return cl;
+        }
+        function doPrint(list) {
+            var box = $('printContainer'); box.innerHTML = '';
+            list.forEach(function (d) { box.appendChild(staticSheet(d)); });
+            window.print();
+        }
+        window.addEventListener('afterprint', function () { $('printContainer').innerHTML = ''; });
+        $('printBtn').addEventListener('click', function () { if (!currentName()) { say('Give the character a name first.'); return; } doPrint([read()]); });
+        $('printAllBtn').addEventListener('click', function () {
+            var all = load(), names = Object.keys(all).sort();
+            if (!names.length) { say('No saved sheets to print yet.'); return; }
+            doPrint(names.map(function (k) { return all[k]; }));
+        });
+        $('blankBtn').addEventListener('click', function () { doPrint([{}]); });
+
+        // ----- export / import (local JSON files) -----
+        $('exportBtn').addEventListener('click', function () {
+            flush();
+            var all = load(), cnt = Object.keys(all).length;
+            if (!cnt) { say('No sheets to export yet.'); return; }
+            var url = URL.createObjectURL(new Blob([JSON.stringify(all, null, 2)], { type: 'application/json' }));
+            var a = document.createElement('a'); a.href = url; a.download = 'champions-character-sheets.json';
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+            say('Exported ' + cnt + (cnt === 1 ? ' sheet.' : ' sheets.'));
+        });
+        $('importBtn').addEventListener('click', function () { $('importFile').click(); });
+        $('importFile').addEventListener('change', function (ev) {
+            var file = ev.target.files && ev.target.files[0];
+            ev.target.value = '';
+            if (!file) return;
+            if (file.size > 5 * 1024 * 1024) { say('That file is too large to be a sheet file.'); return; }
+            flush();
+            var r = new FileReader();
+            r.onload = function () {
+                try {
+                    var data = JSON.parse(r.result);
+                    if (!data || typeof data !== 'object' || Array.isArray(data)) { say('That is not a sheet file.'); return; }
+                    var all = load(), count = 0;
+                    Object.keys(data).forEach(function (k) {
+                        var d = sanitize(data[k]); if (!d) return;
+                        var name = String(d.name || '').trim().slice(0, 200);
+                        if (!safeName(name)) return;
+                        all[name] = d; count++;
+                    });
+                    if (!count) { say('No valid sheets found in that file.'); return; }
+                    if (!store(all)) return;
+                    refreshSelect(currentKey || ''); say('Imported ' + count + (count === 1 ? ' sheet.' : ' sheets.'));
+                } catch (err) { say('Could not read that file.'); }
+            };
+            r.onerror = function () { say('Could not read that file.'); };
+            r.readAsText(file);
+        });
+
+        window.heroSheet = { derive: derive, lift: lift, hthDice: hthDice };
+        clearAll(); refreshSelect('');
+    })();
+    </script>
+</body>
+</html>
