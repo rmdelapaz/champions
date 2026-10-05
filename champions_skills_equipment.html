@@ -3,24 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Champions Complete RPG - Skills, Equipment, and Character Development</title>
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/nav-theme.css">
-    <script src="/nav-theme.js" defer></script>
+    <title>Skills, Perks &amp; Equipment - The Champions Guide</title>
+    <meta name="description" content="Skills, Perks and equipment in Champions: skill rolls, packages, gadgets bought as Foci, vehicles, and growing heroes with Experience Points.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true });
-    </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Champions Complete RPG</h1>
-        <h2>Skills, Equipment, and Character Development</h2>
-        <p><em>The Hero Behind the Mask: Building Complete Characters</em></p>
+        <h1>Skills, Perks &amp; Equipment</h1>
+        <p>How skills, perks, gear and Experience Points round out the hero behind the mask.</p>
     </header>
 
-    <main>
+    <main id="main">
+
         <section class="intro">
             <h2>Beyond the Cape: What Makes Heroes Human</h2>
             <p>Imagine Superman without Clark Kent's journalism skills, or Batman without his detective training and high-tech gadgets. Powers make characters super, but skills, equipment, and personal growth make them heroes. These elements ground fantastic characters in relatable human experiences while providing practical tools for adventure.</p>
@@ -34,19 +41,18 @@
 
             <div class="skill-philosophy">
                 <h3>The Expertise Philosophy</h3>
-                <p>Champions uses a unified approach to skills: everything is based on rolling 3d6 against a target number derived from a relevant characteristic plus skill points. It's like having different specializations on your Swiss Army knife - each tool is designed for specific situations but follows the same basic principle.</p>
+                <p>Champions uses a unified approach to skills: you roll 3d6 and succeed on the target number or less. For a characteristic-based skill bought at full roll (3 Character Points), the target is 9 + (CHAR ÷ 5): INT 15 gives a 12- roll, INT 18 a 13-. Familiarity with a skill costs 1 point and rolls 8-, the same level as the Everyman skills every character in the genre gets for free. A 3 always succeeds and an 18 always fails. It's like having different specializations on your Swiss Army knife - each tool is designed for specific situations but follows the same basic principle.</p>
                 
                 <div class="mermaid">
                     graph TD
-                        A[Skill Roll] --> B[3d6]
-                        B --> C[vs Target Number]
-                        C --> D[Characteristic + Skill Points]
-                        D --> E[Success/Failure]
-                        E --> F[Degree of Success]
+                        A[Skill Roll] --> B[Roll 3d6]
+                        B --> C[Target: 9 + CHAR/5]
+                        C --> E[Roll equal or under: success]
+                        E --> F[Made by more: better result]
                         
-                        D --> G[Example: Hacking]
-                        G --> H[INT 15 + Computer Programming 13-]
-                        H --> I[Roll 3d6 vs 15]
+                        C --> G[Example: Hacking]
+                        G --> H[INT 15: 9 + 3 = 12-]
+                        H --> I[Roll 12 or less: 74.1%]
                         
                         style A fill:#ff9999
                         style C fill:#99ccff
@@ -66,24 +72,24 @@
                         
                         <div class="skill-examples">
                             <div class="skill-detail">
-                                <h4>Hand-to-Hand Combat</h4>
-                                <p><strong>What it does:</strong> Improved unarmed fighting ability</p>
+                                <h4>Combat Skill Levels</h4>
+                                <p><strong>What it does:</strong> +1 OCV (or DCV) per level with a chosen group of attacks</p>
                                 <p><strong>Hero examples:</strong> Batman's martial arts, Black Widow's combat training</p>
-                                <p><strong>Cost:</strong> 3 points per +1 to Combat Value</p>
+                                <p><strong>Cost:</strong> Per level; the broader the group of attacks, the more each level costs</p>
                             </div>
                             
                             <div class="skill-detail">
                                 <h4>Weapons Familiarity</h4>
                                 <p><strong>What it does:</strong> No penalties with specific weapon types</p>
                                 <p><strong>Hero examples:</strong> Hawkeye's archery, Punisher's firearms</p>
-                                <p><strong>Cost:</strong> 2-3 points per weapon group</p>
+                                <p><strong>Cost:</strong> A small cost per weapon group; broader groups cost more</p>
                             </div>
                             
                             <div class="skill-detail">
                                 <h4>Combat Driving</h4>
                                 <p><strong>What it does:</strong> Vehicle combat and stunts</p>
                                 <p><strong>Hero examples:</strong> Ghost Rider's motorcycle skills, Batmobile piloting</p>
-                                <p><strong>Cost:</strong> 3 points</p>
+                                <p><strong>Cost:</strong> 3 points for a 9 + (DEX ÷ 5) roll</p>
                             </div>
                         </div>
                     </div>
@@ -97,22 +103,22 @@
                             <div class="skill-detail">
                                 <h4>Computer Programming</h4>
                                 <p><strong>What it does:</strong> Hacking, system design, digital forensics</p>
-                                <p><strong>Hero examples:</strong> Oracle's computer mastery, Iron Man's AI development</p>
-                                <p><strong>Typical roll:</strong> INT + skill vs. system security</p>
+                                <p><strong>Hero examples:</strong> Oracle's computer expertise, Iron Man's AI development</p>
+                                <p><strong>Typical roll:</strong> 9 + (INT ÷ 5), with penalties for tougher security</p>
                             </div>
                             
                             <div class="skill-detail">
                                 <h4>Forensic Medicine</h4>
                                 <p><strong>What it does:</strong> Determine cause of death, analyze injuries</p>
                                 <p><strong>Hero examples:</strong> Batman's detective work, Daredevil's enhanced analysis</p>
-                                <p><strong>Typical roll:</strong> INT + skill vs. case complexity</p>
+                                <p><strong>Typical roll:</strong> 9 + (INT ÷ 5), modified by how messy the scene is</p>
                             </div>
                             
                             <div class="skill-detail">
                                 <h4>Electronics</h4>
                                 <p><strong>What it does:</strong> Build, repair, and modify electronic devices</p>
                                 <p><strong>Hero examples:</strong> Forge's invention skills, Cyborg's self-repair</p>
-                                <p><strong>Typical roll:</strong> INT + skill vs. device complexity</p>
+                                <p><strong>Typical roll:</strong> 9 + (INT ÷ 5), modified by how complex the device is</p>
                             </div>
                         </div>
                     </div>
@@ -127,21 +133,21 @@
                                 <h4>Persuasion</h4>
                                 <p><strong>What it does:</strong> Convince others to cooperate</p>
                                 <p><strong>Hero examples:</strong> Captain America's leadership, Wonder Woman's diplomacy</p>
-                                <p><strong>Typical roll:</strong> PRE + skill vs. target's EGO</p>
+                                <p><strong>Typical roll:</strong> 9 + (PRE ÷ 5), modified by how reasonable the request is</p>
                             </div>
                             
                             <div class="skill-detail">
                                 <h4>Interrogation</h4>
                                 <p><strong>What it does:</strong> Extract information from unwilling subjects</p>
                                 <p><strong>Hero examples:</strong> Batman's intimidation techniques, good cop/bad cop</p>
-                                <p><strong>Typical roll:</strong> PRE + skill vs. target's EGO</p>
+                                <p><strong>Typical roll:</strong> 9 + (PRE ÷ 5), against a subject who resists</p>
                             </div>
                             
                             <div class="skill-detail">
                                 <h4>Acting</h4>
                                 <p><strong>What it does:</strong> Assume false identities, theatrical performance</p>
                                 <p><strong>Hero examples:</strong> Spider-Man's wisecracks, undercover work</p>
-                                <p><strong>Typical roll:</strong> PRE + skill vs. observer's INT</p>
+                                <p><strong>Typical roll:</strong> 9 + (PRE ÷ 5), opposed by an observer's Perception</p>
                             </div>
                         </div>
                     </div>
@@ -156,21 +162,21 @@
                                 <h4>Acrobatics</h4>
                                 <p><strong>What it does:</strong> Gymnastics, balance, fancy movement</p>
                                 <p><strong>Hero examples:</strong> Daredevil's rooftop parkour, Nightwing's circus training</p>
-                                <p><strong>Typical roll:</strong> DEX + skill vs. stunt difficulty</p>
+                                <p><strong>Typical roll:</strong> 9 + (DEX ÷ 5), with penalties for harder stunts</p>
                             </div>
                             
                             <div class="skill-detail">
                                 <h4>Stealth</h4>
                                 <p><strong>What it does:</strong> Move unseen and unheard</p>
                                 <p><strong>Hero examples:</strong> Batman's infiltration, Black Widow's espionage</p>
-                                <p><strong>Typical roll:</strong> DEX + skill vs. observer's PER</p>
+                                <p><strong>Typical roll:</strong> 9 + (DEX ÷ 5), opposed by an observer's Perception Roll</p>
                             </div>
                             
                             <div class="skill-detail">
                                 <h4>Climbing</h4>
                                 <p><strong>What it does:</strong> Scale walls, cliffs, and structures</p>
                                 <p><strong>Hero examples:</strong> Spider-Man without powers, mountain rescue</p>
-                                <p><strong>Typical roll:</strong> STR or DEX + skill vs. surface difficulty</p>
+                                <p><strong>Typical roll:</strong> 9 + (DEX ÷ 5), with penalties for sheer or slick surfaces</p>
                             </div>
                         </div>
                     </div>
@@ -181,6 +187,7 @@
         <section class="skill-building">
             <h2>Building Skill Packages: Professional Competence</h2>
             <p>Most heroes have background packages that represent their pre-superhero life. These skill packages provide both practical abilities and storytelling hooks. Think of them as character archetypes that ground your hero in the real world.</p>
+            <p>The costs below use the two prices this page has covered: 3 Character Points for a characteristic-based skill at its full 9 + (CHAR ÷ 5) roll, and 1 point for a Familiarity at 8-. Each package assumes the hero's key characteristics are at 13 (a 12- roll) unless it says otherwise. Perks such as Contacts, Fringe Benefits and Reputation are priced by their own rules in Champions Complete, so they're listed without costs.</p>
 
             <canvas id="skillPackageChart" width="800" height="500"></canvas>
 
@@ -191,18 +198,21 @@
                     <div class="package detective">
                         <h3>🕵️ Police Detective Package</h3>
                         <div class="package-details">
-                            <h4>Core Skills (25 points):</h4>
+                            <h4>Core Skills (13 points, INT 13 and PRE 13):</h4>
                             <ul>
-                                <li><strong>Criminology 13-</strong> (3 pts) - Understanding criminal behavior</li>
-                                <li><strong>Interrogation 13-</strong> (3 pts) - Getting suspects to talk</li>
-                                <li><strong>Streetwise 12-</strong> (2 pts) - Knowledge of criminal underworld</li>
-                                <li><strong>Computer Programming 11-</strong> (1 pt) - Database searches</li>
-                                <li><strong>Forensic Medicine 12-</strong> (2 pts) - Crime scene analysis</li>
-                                <li><strong>Firearms 12-</strong> (2 pts) - Police weapon training</li>
-                                <li><strong>Contact: Police Department</strong> (3 pts) - Official resources</li>
-                                <li><strong>Contact: Informants</strong> (2 pts) - Street-level information</li>
-                                <li><strong>Fringe Benefit: Police Powers</strong> (5 pts) - Legal authority</li>
-                                <li><strong>Reputation: Honest Cop</strong> (2 pts) - Public trust</li>
+                                <li><strong>Criminology 12-</strong> (3 pts) - Understanding criminal behavior</li>
+                                <li><strong>Interrogation 12-</strong> (3 pts) - Getting suspects to talk</li>
+                                <li><strong>Streetwise 12-</strong> (3 pts) - Knowledge of criminal underworld</li>
+                                <li><strong>Computer Programming 8-</strong> (1 pt, Familiarity) - Database searches</li>
+                                <li><strong>Forensic Medicine 12-</strong> (3 pts) - Crime scene analysis</li>
+                            </ul>
+                            <h4>Plus (priced by their own rules):</h4>
+                            <ul>
+                                <li><strong>Weapon Familiarity: Small Arms</strong> - Police weapon training</li>
+                                <li><strong>Contact: Police Department</strong> - Official resources</li>
+                                <li><strong>Contact: Informants</strong> - Street-level information</li>
+                                <li><strong>Fringe Benefit: Police Powers</strong> - Legal authority</li>
+                                <li><strong>Reputation: Honest Cop</strong> - Public trust</li>
                             </ul>
                             
                             <h4>Story Hooks:</h4>
@@ -221,17 +231,21 @@
                     <div class="package scientist">
                         <h3>🔬 Research Scientist Package</h3>
                         <div class="package-details">
-                            <h4>Core Skills (25 points):</h4>
+                            <h4>Core Skills (14 points, INT 18 for a 13- roll):</h4>
                             <ul>
-                                <li><strong>Physics 15-</strong> (5 pts) - Primary specialty</li>
-                                <li><strong>Chemistry 13-</strong> (3 pts) - Secondary science</li>
-                                <li><strong>Computer Programming 14-</strong> (4 pts) - Data analysis</li>
-                                <li><strong>Electronics 12-</strong> (2 pts) - Equipment maintenance</li>
-                                <li><strong>Professional Skill: Research 13-</strong> (3 pts) - Academic methodology</li>
-                                <li><strong>Language: German</strong> (2 pts) - Scientific papers</li>
-                                <li><strong>Contact: University</strong> (2 pts) - Academic resources</li>
-                                <li><strong>Contact: Scientific Community</strong> (2 pts) - Peer network</li>
-                                <li><strong>Reputation: Brilliant Scientist</strong> (2 pts) - Professional respect</li>
+                                <li><strong>Science Skill: Physics 13-</strong> (3 pts, INT-based) - Primary specialty</li>
+                                <li><strong>Science Skill: Chemistry 13-</strong> (3 pts, INT-based) - Secondary science</li>
+                                <li><strong>Computer Programming 13-</strong> (3 pts) - Data analysis</li>
+                                <li><strong>Electronics 13-</strong> (3 pts) - Equipment maintenance</li>
+                                <li><strong>Science Skill: Biology 8-</strong> (1 pt, Familiarity) - Enough to follow the lab next door</li>
+                                <li><strong>Mechanics 8-</strong> (1 pt, Familiarity) - Keeping old equipment running</li>
+                            </ul>
+                            <h4>Plus (priced by their own rules):</h4>
+                            <ul>
+                                <li><strong>Language: German</strong> - Scientific papers</li>
+                                <li><strong>Contact: University</strong> - Academic resources</li>
+                                <li><strong>Contact: Scientific Community</strong> - Peer network</li>
+                                <li><strong>Reputation: Brilliant Scientist</strong> - Professional respect</li>
                             </ul>
                             
                             <h4>Story Hooks:</h4>
@@ -250,16 +264,19 @@
                     <div class="package military">
                         <h3>🪖 Military Officer Package</h3>
                         <div class="package-details">
-                            <h4>Core Skills (25 points):</h4>
+                            <h4>Core Skills (13 points, INT 13 and DEX 13):</h4>
                             <ul>
-                                <li><strong>Combat Skill Levels +3</strong> (9 pts) - Military combat training</li>
-                                <li><strong>Tactics 13-</strong> (3 pts) - Strategic planning</li>
-                                <li><strong>Survival 12-</strong> (2 pts) - Field operations</li>
-                                <li><strong>Navigation 11-</strong> (1 pt) - Land navigation</li>
-                                <li><strong>Demolitions 12-</strong> (2 pts) - Explosives training</li>
-                                <li><strong>Pilot: Military Aircraft 12-</strong> (2 pts) - Flight training</li>
-                                <li><strong>Contact: Military Command</strong> (3 pts) - Official support</li>
-                                <li><strong>Fringe Benefit: Military Rank</strong> (3 pts) - Authority and resources</li>
+                                <li><strong>Tactics 12-</strong> (3 pts) - Strategic planning</li>
+                                <li><strong>Survival 12-</strong> (3 pts) - Field operations</li>
+                                <li><strong>Navigation 8-</strong> (1 pt, Familiarity) - Land navigation</li>
+                                <li><strong>Demolitions 12-</strong> (3 pts) - Explosives training</li>
+                                <li><strong>Combat Piloting 12-</strong> (3 pts) - Flight training</li>
+                            </ul>
+                            <h4>Plus (priced by their own rules):</h4>
+                            <ul>
+                                <li><strong>Combat Skill Levels</strong> - Military combat training</li>
+                                <li><strong>Contact: Military Command</strong> - Official support</li>
+                                <li><strong>Fringe Benefit: Military Rank</strong> - Authority and resources</li>
                             </ul>
                             
                             <h4>Story Hooks:</h4>
@@ -297,9 +314,9 @@
                         <div class="equipment-examples">
                             <div class="equipment-item">
                                 <h4>🏹 Hawkeye's Trick Arrows</h4>
-                                <p><strong>Game Mechanics:</strong> Variable Point Pool (60 points)</p>
-                                <p><strong>Limitations:</strong> OAF (Obvious Accessible Focus) -1, Charges -½</p>
-                                <p><strong>Real Cost:</strong> 24 points</p>
+                                <p><strong>Game Mechanics:</strong> A Multipower or Variable Power Pool of arrow powers</p>
+                                <p><strong>Limitations:</strong> OAF (Obvious Accessible Focus) -1 for the bow, plus Charges for a limited quiver</p>
+                                <p><strong>Point savings:</strong> The OAF alone halves the cost of the arrow powers</p>
                                 <p><strong>Special Effects:</strong> Different arrow types (explosive, net, EMP, etc.)</p>
                                 <p><strong>Story Element:</strong> Can be lost or damaged, needs restocking</p>
                             </div>
@@ -308,9 +325,9 @@
                                 <h4>🔫 Punisher's Arsenal</h4>
                                 <p><strong>Game Mechanics:</strong> Multiple weapons with different effects</p>
                                 <ul>
-                                    <li><strong>Assault Rifle:</strong> RKA 2d6, Autofire (+½), 30 Charges</li>
-                                    <li><strong>Sniper Rifle:</strong> RKA 3d6, +3 Range Levels, 10 Charges</li>
-                                    <li><strong>Grenades:</strong> RKA 2d6, Area Effect (+1), 6 Charges</li>
+                                    <li><strong>Assault Rifle:</strong> RKA 2d6, Autofire, 30 Charges, OAF</li>
+                                    <li><strong>Sniper Rifle:</strong> RKA 3d6, +3 Range Skill Levels, 10 Charges, OAF</li>
+                                    <li><strong>Grenades:</strong> RKA 2d6, Area of Effect, 6 Charges, OAF</li>
                                 </ul>
                                 <p><strong>Story Element:</strong> Requires maintenance, ammunition supply</p>
                             </div>
@@ -319,9 +336,9 @@
                                 <h4>🛡️ Captain America's Shield</h4>
                                 <p><strong>Game Mechanics:</strong> Multiple powers in one item</p>
                                 <ul>
-                                    <li><strong>Defense:</strong> Force Field 15 PD/ED, OIF</li>
-                                    <li><strong>Attack:</strong> RKA 2d6, Ranged, Returns, OIF</li>
-                                    <li><strong>Special:</strong> Deflection (rebounds attacks), OIF</li>
+                                    <li><strong>Defense:</strong> Resistant Protection and extra DCV, OAF (it can be knocked away)</li>
+                                    <li><strong>Attack:</strong> Thrown Blast that ricochets back to his hand, OAF</li>
+                                    <li><strong>Special:</strong> Deflection (blocks incoming ranged attacks), OAF</li>
                                 </ul>
                                 <p><strong>Story Element:</strong> Unique vibranium properties, symbolic importance</p>
                             </div>
@@ -334,26 +351,26 @@
                         <div class="equipment-examples">
                             <div class="equipment-item">
                                 <h4>🦇 Batman's Utility Belt</h4>
-                                <p><strong>Game Mechanics:</strong> Variable Point Pool (40 points)</p>
-                                <p><strong>Limitations:</strong> OAF -1, Limited Selection -¼</p>
-                                <p><strong>Real Cost:</strong> 18 points</p>
+                                <p><strong>Game Mechanics:</strong> A Variable Power Pool of gadgets</p>
+                                <p><strong>Limitations:</strong> OAF -1 (grab the belt and the gadgets go with it)</p>
+                                <p><strong>Point savings:</strong> The Focus makes a huge toolkit affordable</p>
                                 <p><strong>Contents:</strong> Grappling hooks, smoke bombs, first aid, lockpicks</p>
                                 <p><strong>Story Element:</strong> "I have just the thing for this situation"</p>
                             </div>
                             
                             <div class="equipment-item">
                                 <h4>🔍 Detective's Investigation Kit</h4>
-                                <p><strong>Game Mechanics:</strong> Enhanced Perception +3, specific senses</p>
+                                <p><strong>Game Mechanics:</strong> Enhanced Perception +3 with Sight</p>
                                 <p><strong>Equipment:</strong> Magnifying glass, fingerprint kit, chemical tests</p>
-                                <p><strong>Limitations:</strong> OAF -1, Only for forensic analysis -½</p>
+                                <p><strong>Limitations:</strong> OAF -1, plus a Limited Power: only for forensic analysis</p>
                                 <p><strong>Story Element:</strong> Professional tools that enhance natural skills</p>
                             </div>
                             
                             <div class="equipment-item">
                                 <h4>📱 High-Tech Communicator</h4>
-                                <p><strong>Game Mechanics:</strong> Mind Link with team members</p>
+                                <p><strong>Game Mechanics:</strong> A radio sense (send and receive) for talking with team members</p>
                                 <p><strong>Features:</strong> Encrypted, satellite relay, emergency beacon</p>
-                                <p><strong>Limitations:</strong> OAF -1, Can be jammed -¼</p>
+                                <p><strong>Limitations:</strong> OAF -1, plus a small Limitation because it can be jammed</p>
                                 <p><strong>Story Element:</strong> Team coordination, calling for backup</p>
                             </div>
                         </div>
@@ -369,11 +386,11 @@
                                 <p><strong>Modifications:</strong></p>
                                 <ul>
                                     <li><strong>Armor:</strong> 20 PD/ED protection</li>
-                                    <li><strong>Speed:</strong> Ground movement 25" (250 mph)</li>
+                                    <li><strong>Speed:</strong> Ground movement 50m</li>
                                     <li><strong>Weapons:</strong> Non-lethal deterrent systems</li>
                                     <li><strong>Electronics:</strong> Advanced computer, stealth systems</li>
                                 </ul>
-                                <p><strong>Limitations:</strong> OAF -1, Distinctive -¼</p>
+                                <p><strong>How it's bought:</strong> As a Vehicle (a Perk) with its own characteristics and powers, paid for with Character Points</p>
                             </div>
                             
                             <div class="equipment-item">
@@ -381,7 +398,7 @@
                                 <p><strong>Base Vehicle:</strong> Flying aircraft carrier</p>
                                 <p><strong>Capabilities:</strong></p>
                                 <ul>
-                                    <li><strong>Flight:</strong> 15" movement, can hover</li>
+                                    <li><strong>Flight:</strong> 30m, can hover</li>
                                     <li><strong>Base of Operations:</strong> Mobile headquarters</li>
                                     <li><strong>Stealth:</strong> Invisibility to Sight Group</li>
                                     <li><strong>Defenses:</strong> Force fields, point defense systems</li>
@@ -413,7 +430,7 @@
                     <div class="focus-type">
                         <h4>🥷 Inobvious Accessible Focus (IAF) -½</h4>
                         <p><strong>What it means:</strong> Hidden but can still be taken if discovered</p>
-                        <p><strong>Examples:</strong> Concealed weapons, hidden gadgets, implants</p>
+                        <p><strong>Examples:</strong> Concealed weapons, hidden gadgets, a ring or amulet</p>
                         <p><strong>Tactical implication:</strong> Safer but still vulnerable to thorough search</p>
                         <p><strong>Cost reduction:</strong> One-third discount</p>
                     </div>
@@ -443,15 +460,15 @@
                     <div class="gear-example">
                         <h4>⚡ Iron Man's Armor Analysis</h4>
                         <div class="analysis">
-                            <p><strong>Powers:</strong> Flight, Energy Blast, Life Support, Armor</p>
-                            <p><strong>Focus Type:</strong> OAF (Obvious Accessible Focus)</p>
+                            <p><strong>Powers:</strong> Flight, Blast, Life Support, Resistant Protection</p>
+                            <p><strong>Focus Type:</strong> OIF (Obvious Inaccessible Focus) -½</p>
                             <p><strong>Reasoning:</strong></p>
                             <ul>
                                 <li><strong>Obvious:</strong> Everyone can see the distinctive red and gold armor</li>
-                                <li><strong>Accessible:</strong> Can be damaged, hacked, or power depleted</li>
+                                <li><strong>Inaccessible:</strong> Nobody can grab it off him mid-fight, but it can be damaged, and it can be taken from him once he's captured or out of it</li>
                                 <li><strong>Story moments:</strong> Armor damaged forcing retreat, EMP attacks disabling systems</li>
                             </ul>
-                            <p><strong>Point savings:</strong> Massive power suite becomes affordable</p>
+                            <p><strong>Point savings:</strong> A one-third discount across a massive power suite</p>
                         </div>
                     </div>
                     
@@ -463,7 +480,7 @@
                             <p><strong>Reasoning:</strong></p>
                             <ul>
                                 <li><strong>Inobvious:</strong> Hidden under costume sleeves</li>
-                                <li><strong>Accessible:</strong> Can be removed if restrained, run out of web fluid</li>
+                                <li><strong>Accessible:</strong> A villain can grab them off his wrists in combat (running out of web fluid is a separate Charges Limitation)</li>
                                 <li><strong>Story moments:</strong> "Oh no, I'm out of webs!" dramatic tension</li>
                             </ul>
                             <p><strong>Point savings:</strong> Moderate discount for moderate vulnerability</p>
@@ -475,7 +492,7 @@
 
         <section class="character-development">
             <h2>Character Development: Growing Heroes</h2>
-            <p>Great heroes aren't static - they grow, learn, and evolve. Champions character development reflects this through earned character points that can improve existing abilities or add new ones. Think of it as the difference between Spider-Man in his first comic and the experienced hero he becomes.</p>
+            <p>Great heroes aren't static - they grow, learn, and evolve. Champions character development reflects this through Experience Points, which the GM awards and you spend exactly like Character Points to improve existing abilities or add new ones. Think of it as the difference between Spider-Man in his first comic and the experienced hero he becomes.</p>
 
             <div class="advancement-system">
                 <h3>The Experience Point System</h3>
@@ -483,19 +500,19 @@
                 <div class="mermaid">
                     graph TD
                         A[Adventure Complete] --> B[GM Awards Experience Points]
-                        B --> C[1-3 points typical session]
+                        B --> C[Rate set by the GM]
                         C --> D[Player Decides How to Spend]
                         D --> E[Improve Characteristics]
                         D --> F[Add New Skills]
                         D --> G[Enhance Powers]
                         D --> H[Buy Equipment]
-                        D --> I[Remove Disadvantages]
+                        D --> I[Buy Off Complications]
                         
-                        E --> J[Same cost as character creation]
+                        E --> J[Same costs as character creation]
                         F --> J
-                        G --> K[Powers cost more to improve]
-                        H --> L[Equipment follows focus rules]
-                        I --> M[Costly but removes limitations]
+                        G --> J
+                        H --> L[Gear uses Focus Limitations]
+                        I --> M[With GM approval]
                         
                         style A fill:#ff9999
                         style B fill:#99ccff
@@ -511,7 +528,7 @@
                     <div class="growth-path rookie-to-veteran">
                         <h3>🌱 The Rookie to Veteran Path</h3>
                         <div class="path-details">
-                            <h4>Starting Hero: "Shockwave" (150 points)</h4>
+                            <h4>Starting Hero: "Shockwave" (400 Total Points)</h4>
                             <ul>
                                 <li>Sonic powers but limited control</li>
                                 <li>Basic combat skills</li>
@@ -519,9 +536,9 @@
                                 <li>Accident-prone with powers</li>
                             </ul>
                             
-                            <h4>After 20 Sessions (60 experience points):</h4>
+                            <h4>After many sessions (60 Experience Points):</h4>
                             <ul>
-                                <li><strong>Improved Power Control</strong> (20 pts) - Remove "Accidental Activation" disadvantage</li>
+                                <li><strong>Improved Power Control</strong> (20 pts) - Buy off the "powers misfire" Physical Complication (with GM approval)</li>
                                 <li><strong>Combat Training</strong> (15 pts) - Add martial arts and tactics skills</li>
                                 <li><strong>Enhanced Powers</strong> (15 pts) - Increase sonic blast damage</li>
                                 <li><strong>New Equipment</strong> (10 pts) - Sound-dampening suit for stealth</li>
@@ -535,7 +552,7 @@
                     <div class="growth-path specialist-to-leader">
                         <h3>👑 The Specialist to Leader Path</h3>
                         <div class="path-details">
-                            <h4>Starting Hero: "Mindbridge" (200 points)</h4>
+                            <h4>Starting Hero: "Mindbridge" (400 Total Points)</h4>
                             <ul>
                                 <li>Powerful telepath but socially awkward</li>
                                 <li>Prefers to work alone</li>
@@ -543,11 +560,11 @@
                                 <li>Distrusts non-psychics</li>
                             </ul>
                             
-                            <h4>After 30 Sessions (90 experience points):</h4>
+                            <h4>After a long campaign (90 Experience Points):</h4>
                             <ul>
                                 <li><strong>Leadership Skills</strong> (25 pts) - Persuasion, tactics, inspiration</li>
                                 <li><strong>Team Powers</strong> (30 pts) - Mental link with team members</li>
-                                <li><strong>Social Growth</strong> (20 pts) - Remove "Loner" disadvantage</li>
+                                <li><strong>Social Growth</strong> (20 pts) - Buy off the "Loner" Psychological Complication (with GM approval)</li>
                                 <li><strong>Expanded Abilities</strong> (15 pts) - Precognition for team protection</li>
                             </ul>
                             
@@ -559,7 +576,7 @@
                     <div class="growth-path power-evolution">
                         <h3>⚡ The Power Evolution Path</h3>
                         <div class="path-details">
-                            <h4>Starting Hero: "Spark" (175 points)</h4>
+                            <h4>Starting Hero: "Spark" (400 Total Points)</h4>
                             <ul>
                                 <li>Basic electrical powers</li>
                                 <li>Can generate lightning bolts</li>
@@ -567,16 +584,16 @@
                                 <li>Limited to direct electrical attacks</li>
                             </ul>
                             
-                            <h4>After 25 Sessions (75 experience points):</h4>
+                            <h4>After a season of play (75 Experience Points):</h4>
                             <ul>
                                 <li><strong>Power Efficiency</strong> (20 pts) - Reduce Endurance costs</li>
-                                <li><strong>Electromagnetic Mastery</strong> (25 pts) - Control over magnetic fields</li>
+                                <li><strong>Electromagnetic Control</strong> (25 pts) - Control over magnetic fields</li>
                                 <li><strong>Electronic Integration</strong> (20 pts) - Interface with computers and machines</li>
                                 <li><strong>Energy Storage</strong> (10 pts) - Store electrical energy for later use</li>
                             </ul>
                             
                             <h4>Character Evolution:</h4>
-                            <p>From simple lightning thrower to electromagnetic master who can control technology and energy</p>
+                            <p>From simple lightning thrower to electromagnetic powerhouse who can control technology and energy</p>
                         </div>
                     </div>
                 </div>
@@ -657,10 +674,10 @@
         </section>
 
         <section class="exercises">
-            <h2>Practice Exercises</h2>
+            <h2>Try It at the Table</h2>
 
             <div class="exercise">
-                <h3>Exercise: Skill Package Design</h3>
+                <h3>Challenge: Skill Package Design</h3>
                 <p>Create three different 25-point skill packages for these character concepts:</p>
                 <div class="package-challenges">
                     <div class="challenge">
@@ -687,7 +704,7 @@
             </div>
 
             <div class="exercise">
-                <h3>Exercise: Equipment Design Challenge</h3>
+                <h3>Challenge: Equipment Design Challenge</h3>
                 <p>Design complete equipment sets for these hero concepts, including point costs and limitations:</p>
                 <div class="equipment-challenges">
                     <div class="challenge">
@@ -725,33 +742,33 @@
             </div>
 
             <div class="exercise">
-                <h3>Exercise: Character Development Planning</h3>
+                <h3>Challenge: Character Development Planning</h3>
                 <p>Plan a 5-session character growth arc for this starting hero:</p>
                 <div class="development-scenario">
-                    <h4>Starting Character: "Echo" (150 points)</h4>
+                    <h4>Starting Character: "Echo" (400 Total Points)</h4>
                     <ul>
                         <li><strong>Powers:</strong> Sound mimicry, voice throwing, enhanced hearing</li>
                         <li><strong>Background:</strong> Former radio DJ, excellent communicator</li>
                         <li><strong>Personality:</strong> Outgoing but struggles with self-doubt</li>
-                        <li><strong>Disadvantages:</strong> Haunted by past failure, overprotective of civilians</li>
+                        <li><strong>Complications:</strong> Haunted by past failure, overprotective of civilians</li>
                     </ul>
                     
                     <h4>Your Development Tasks:</h4>
                     <ol>
                         <li><strong>Session 1-2:</strong> What skills or abilities should they develop early?</li>
                         <li><strong>Session 3-4:</strong> How might their powers evolve or expand?</li>
-                        <li><strong>Session 5:</strong> What personality growth addresses their disadvantages?</li>
+                        <li><strong>Session 5:</strong> What personality growth addresses their Complications?</li>
                         <li><strong>Overall Arc:</strong> How does this character become more confident and effective?</li>
                     </ol>
                     
-                    <p><strong>Budget:</strong> Assume 3 experience points per session (15 total)</p>
+                    <p><strong>Budget:</strong> Assume your GM awards 3 Experience Points per session (15 total)</p>
                 </div>
             </div>
         </section>
 
         <section class="next-steps">
-            <h2>Next: Gamemastering and Adventure Design</h2>
-            <p>You now have a complete understanding of how to build and develop Champions characters! Our final lesson covers the art of running Champions games:</p>
+            <h2>Where to Go Next</h2>
+            <p>You now have a complete understanding of how to build and develop Champions characters! <a href="/champions_gamemastering.html">Gamemastering</a> covers the art of running Champions games:</p>
             <ul>
                 <li><strong>GM Techniques:</strong> Creating cinematic superhero adventures</li>
                 <li><strong>Adventure Structure:</strong> From street-level mysteries to cosmic threats</li>
@@ -762,11 +779,6 @@
         </section>
     </main>
 
-    <footer>
-        <p><em>End of Lesson: Skills, Equipment, and Character Development</em></p>
-        <p>The complete hero - powers, skills, gear, and growth!</p>
-    </footer>
-
     <script>
         // Draw skill package visualization
         const canvas = document.getElementById('skillPackageChart');
@@ -776,22 +788,22 @@
         const packages = [
             {
                 name: 'Police Detective',
-                skills: ['Criminology', 'Interrogation', 'Streetwise', 'Forensics', 'Firearms'],
-                points: [3, 3, 2, 2, 2],
+                skills: ['Criminology 12-', 'Interrogation 12-', 'Streetwise 12-', 'Forensic Medicine 12-', 'Computer Prog. 8-'],
+                points: [3, 3, 3, 3, 1],
                 contacts: ['Police Dept', 'Informants'],
                 color: '#4ecdc4'
             },
             {
                 name: 'Research Scientist',
-                skills: ['Physics', 'Chemistry', 'Programming', 'Electronics', 'Research'],
-                points: [5, 3, 4, 2, 3],
-                contacts: ['University', 'Scientists'],
+                skills: ['Physics 13-', 'Chemistry 13-', 'Computer Prog. 13-', 'Electronics 13-', 'Biology 8-', 'Mechanics 8-'],
+                points: [3, 3, 3, 3, 1, 1],
+                contacts: ['University', 'Scientific Community'],
                 color: '#45b7d1'
             },
             {
                 name: 'Military Officer',
-                skills: ['Combat Levels', 'Tactics', 'Survival', 'Demolitions', 'Pilot'],
-                points: [9, 3, 2, 2, 2],
+                skills: ['Tactics 12-', 'Survival 12-', 'Demolitions 12-', 'Combat Piloting 12-', 'Navigation 8-'],
+                points: [3, 3, 3, 3, 1],
                 contacts: ['Military Command'],
                 color: '#96ceb4'
             }
@@ -835,13 +847,13 @@
                 
                 // Points visualization
                 const points = pkg.points[skillIndex];
-                const dotSize = 4;
-                const dotsX = x + 150;
+                const dotSize = 6;
+                const dotsX = x + 175;
                 
-                ctx.fillStyle = pkg.color;
+                ctx.fillStyle = '#2f5f5b';
                 for (let i = 0; i < points; i++) {
                     ctx.beginPath();
-                    ctx.arc(dotsX + i * (dotSize + 2), skillY - 3, dotSize/2, 0, 2 * Math.PI);
+                    ctx.arc(dotsX + i * (dotSize + 3), skillY - 4, dotSize/2, 0, 2 * Math.PI);
                     ctx.fill();
                 }
                 
@@ -850,23 +862,25 @@
             
             // Contacts section
             skillY += 20;
-            ctx.fillStyle = '#666';
+            ctx.fillStyle = '#333';
             ctx.font = 'bold 11px Arial';
-            ctx.fillText('Contacts:', x + 10, skillY);
+            ctx.textAlign = 'left';
+            ctx.fillText('Contacts (Perks, not counted):', x + 10, skillY);
             skillY += 15;
             
-            ctx.font = '10px Arial';
+            ctx.font = '11px Arial';
+            ctx.fillStyle = '#333';
             pkg.contacts.forEach(contact => {
                 ctx.fillText('• ' + contact, x + 10, skillY);
                 skillY += 15;
             });
             
-            // Total points
-            const totalPoints = pkg.points.reduce((sum, p) => sum + p, 0) + pkg.contacts.length * 3;
-            ctx.fillStyle = pkg.color;
-            ctx.font = 'bold 12px Arial';
+            // Total skill points (Perks are not counted)
+            const totalPoints = pkg.points.reduce((sum, p) => sum + p, 0);
+            ctx.fillStyle = '#1a1a1a';
+            ctx.font = 'bold 13px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText(`Total: ${totalPoints} points`, x + packageWidth/2, y + packageHeight - 20);
+            ctx.fillText(`Skills: ${totalPoints} points`, x + packageWidth/2, y + packageHeight - 20);
         });
         
         // Title
@@ -876,9 +890,18 @@
         ctx.fillText('Professional Skill Package Comparison', canvas.width/2, 30);
         
         // Legend
-        ctx.font = '10px Arial';
+        ctx.fillStyle = '#333';
+        ctx.font = '12px Arial';
         ctx.textAlign = 'left';
-        ctx.fillText('• = 1 skill point investment', 50, canvas.height - 20);
+        ctx.fillText('\u2022 = 1 Character Point.  Full roll 9 + CHAR/5 = 3 points; Familiarity 8- = 1 point.', 50, canvas.height - 25);
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/champions_combat_system.html">Combat</a>
+    <a class="next" href="/champions_gamemastering.html">Gamemastering</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Champions Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Champions and HERO System are trademarks of DOJ, Inc. (Hero Games). This guide is an unofficial fan resource.</div>
 </body>
 </html>
