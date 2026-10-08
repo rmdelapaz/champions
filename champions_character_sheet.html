@@ -183,11 +183,11 @@
             <!-- ===================== PAGE 1: CHARACTERISTICS & COMBAT ===================== -->
             <div class="page p-char">
                 <div class="head">
-                    <label class="name"><span class="lbl">Hero name</span><input type="text" name="name" maxlength="60" placeholder="Resonance"></label>
+                    <label class="name"><span class="lbl">Hero name</span><input type="text" name="name" maxlength="60"></label>
                     <label><small class="k">Player</small><input type="text" name="player"></label>
-                    <label><small class="k">Concept / real name</small><input type="text" name="concept" placeholder="Dr. Marcus Webb, sonic engineer"></label>
+                    <label><small class="k">Concept / real name</small><input type="text" name="concept"></label>
                     <label><small class="k">Campaign</small><input type="text" name="campaign"></label>
-                    <label><small class="k">Base points</small><input type="text" name="basePts" maxlength="5" inputmode="numeric" placeholder="325"></label>
+                    <label><small class="k">Base points</small><input type="text" name="basePts" maxlength="5" inputmode="numeric"></label>
                     <label><small class="k">Experience</small><input type="text" name="xp" maxlength="5" inputmode="numeric"></label>
                     <div><small class="k">Total points</small><span class="out" data-out="totalPts"></span></div>
                 </div>
@@ -240,7 +240,7 @@
                             <tr><td>Running</td><td class="c">12m</td><td class="c"><input type="text" name="runPlus" maxlength="4" inputmode="numeric" aria-label="Extra Running bought, metres"></td><td class="c"><span class="out" data-out="run"></span></td></tr>
                             <tr><td>Leaping</td><td class="c">4m</td><td class="c"><input type="text" name="leapPlus" maxlength="4" inputmode="numeric" aria-label="Extra Leaping bought, metres"></td><td class="c"><span class="out" data-out="leap"></span></td></tr>
                             <tr><td>Swimming</td><td class="c">4m</td><td class="c"><input type="text" name="swimPlus" maxlength="4" inputmode="numeric" aria-label="Extra Swimming bought, metres"></td><td class="c"><span class="out" data-out="swim"></span></td></tr>
-                            <tr><td colspan="4"><input type="text" name="move1" aria-label="Other movement 1" placeholder="Flight 40m"></td></tr>
+                            <tr><td colspan="4"><input type="text" name="move1" aria-label="Other movement 1"></td></tr>
                             <tr><td colspan="4"><input type="text" name="move2" aria-label="Other movement 2"></td></tr>
                         </tbody></table>
                         <p class="note">Bought movement is a power: put its cost on the Powers page.</p>
@@ -262,7 +262,7 @@
                     <div class="res" id="ahOut">—</div>
                 </div>
 
-                <div class="box grow" style="margin-top:8px"><span class="lbl">Combat Notes &amp; Maneuvers</span><textarea name="combatNotes" rows="3" placeholder="Favourite maneuvers, Dodge +3 DCV, Haymaker +4 DC at −5 DCV"></textarea></div>
+                <div class="box grow" style="margin-top:8px"><span class="lbl">Combat Notes &amp; Maneuvers</span><textarea name="combatNotes" rows="3"></textarea></div>
             </div>
 
             <!-- ===================== PAGE 2: POWERS & ABILITIES ===================== -->
@@ -314,7 +314,7 @@
                 <div class="head" style="grid-template-columns: 1.6fr 1fr 1fr">
                     <div class="name" style="grid-row:auto"><span class="lbl">Hero name</span><span class="val" data-mirror="name"></span></div>
                     <div><small class="k">Complication points</small><span class="out" data-out="compTotal"></span></div>
-                    <label><small class="k">Complications cap</small><input type="text" name="compCap" maxlength="4" inputmode="numeric" placeholder="75"></label>
+                    <label><small class="k">Complications cap</small><input type="text" name="compCap" maxlength="4" inputmode="numeric"></label>
                 </div>
                 <div class="box">
                     <span class="lbl">Complications</span>
@@ -325,7 +325,7 @@
                     <div class="stack">
                         <div class="box grow"><span class="lbl">Background &amp; Origin</span><textarea name="background" rows="5" placeholder="Who, what, where, when and why: the accident, the training or the heritage that made a hero"></textarea></div>
                         <div class="box grow"><span class="lbl">Personality</span><textarea name="personality" rows="3"></textarea></div>
-                        <div class="box"><span class="lbl">Quote</span><input type="text" name="quote" placeholder="&quot;Everybody, cover your ears.&quot;"></div>
+                        <div class="box"><span class="lbl">Quote</span><input type="text" name="quote"></div>
                         <div class="box grow"><span class="lbl">Appearance &amp; Costume</span><textarea name="appearance" rows="3"></textarea></div>
                     </div>
                     <div class="stack">
@@ -392,7 +392,7 @@
                 h += '<tr>' + cols.map(function (c) {
                     var nm = c[0] + i; FIELDS.push(nm);
                     return '<td' + (c[2] ? ' class="c"' : '') + (c[3] ? ' style="' + c[3] + '"' : '') + '><input type="text" name="' + nm + '"' + (c[2] ? ' maxlength="' + c[2] + '"' : '') +
-                        ' aria-label="' + c[1] + ' ' + i + '"' + (i === 1 && c[4] ? ' placeholder="' + c[4] + '"' : '') + '></td>';
+                        ' aria-label="' + c[1] + ' ' + i + '"' + '' + '></td>';
                 }).join('') + '</tr>';
             }
             $(host).innerHTML = h;
